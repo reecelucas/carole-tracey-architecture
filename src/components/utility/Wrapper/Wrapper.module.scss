@@ -6,11 +6,19 @@
 @import "../../../styles/tools/tools.functions";
 
 // Ensure these settings are configured before the @import of this file.
-$wrapper-max-width: 980px !default;
+$wrapper-max-width: 1020px !default;
 
 .wrapper {
     display: block;
     margin: 0 auto;
     max-width: $wrapper-max-width;
     padding: 0 rem-calc($base-spacing-unit);
+}
+
+.wrapperFw {
+    max-width: none;
+    padding: {
+        left: 0;
+        right: 0;
+    }
 }

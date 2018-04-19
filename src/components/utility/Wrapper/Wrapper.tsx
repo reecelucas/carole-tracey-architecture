@@ -2,6 +2,15 @@ import * as React from 'react';
 
 const styles = require('./Wrapper.module.scss');
 
-const Wrapper = ({ children }: any) => <div className={styles.wrapper}>{children}</div>;
+interface Props {
+    children: any;
+    fullWidth?: boolean
+}
+
+const Wrapper = ({ children, fullWidth }: Props) => (
+    <div className={`${styles.wrapper} ${fullWidth ? `${styles.wrapperFw}` : ''}`}>
+        {children}
+    </div>
+);
 
 export default Wrapper;

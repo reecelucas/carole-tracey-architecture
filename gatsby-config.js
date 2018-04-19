@@ -8,7 +8,7 @@ module.exports = {
     imageUrl: '/',
     imageAlt: 'Lorem ispum dolor amet',
     themeColour: themeColour,
-    fonts: ['Work Sans']
+    fonts: ['Libre Baskerville']
   },
   plugins: [
     /**

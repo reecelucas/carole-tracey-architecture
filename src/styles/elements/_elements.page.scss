@@ -30,12 +30,4 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	@include font-size($base-font-size, $base-line-height);
-
-	.fonts-loaded & {
-		font: {
-			family: $font-primary;
-			weight: 400;
-		}
-		letter-spacing: initial;
-	}
 }
