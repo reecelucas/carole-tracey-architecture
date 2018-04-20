@@ -35,8 +35,9 @@ const constructClassList = (size: Props['size']): string => {
     }
 
     return size
-        .map(({ value, breakpoint }) =>
-            styles[`${classMap[value] || classMap.base}${breakpointMap[breakpoint]}`]
+        .map(
+            ({ value, breakpoint }) =>
+                styles[`${classMap[value] || classMap.base}${breakpointMap[breakpoint]}`]
         )
         .join(' ');
 };
