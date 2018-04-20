@@ -11,8 +11,7 @@
  */
 
 $mq-breakpoints: (
-    phablet: 640px,
-    tablet: 768px,
+    tablet: 680px,
     desktop: 1024px
 ) !default;
 
@@ -20,12 +19,15 @@ $mq-breakpoints: (
 /* Colour palette
    ========================================================================== */
 
-$colour-one:   #FFFFFF !default; // WHITE
-$colour-two:   #ECECEC !default; // LIGHT GREY
-$colour-three: #767676 !default; // MEDIUM GREY
-$colour-four:  #484848 !default; // DARK GREY
-$colour-five:  #2B2B2B !default; // NEAR BLACK
-$colour-six:   #426591 !default; // BLUE
+$colour-one:   #ffffff !default; // WHITE
+$colour-two:   #f9fafa !default; // HAZE
+$colour-three: #f3f3f1 !default; // DESERT STORM
+$colour-four:  #000000 !default; // BLACK
+$colour-five:  #2F2F2E !default; // TUATARA
+$colour-six:   #cff4ec !default; // MINT TULIP
+$colour-seven: #e2f6cd !default; // TUSK
+$colour-eight: #d0f4ec !default; // GRANNY APPLE
+$colour-nine:  #94d6c8 !default; // SINBAD
 
 
 /* High-level base settings

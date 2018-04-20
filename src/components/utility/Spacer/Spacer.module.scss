@@ -4,6 +4,7 @@
 
 @import "../../../styles/settings/settings.global";
 @import "../../../styles/tools/tools.functions";
+@import "../../../styles/tools/tools.mixins";
 
 .spacer {
     margin-bottom: rem-calc($base-spacing-unit);
@@ -25,3 +26,70 @@
     margin-bottom: rem-calc($base-spacing-unit-huge);
 }
 
+
+/* `Medium` breakpoint variants
+   ========================================================================== */
+
+.spacer\@md {
+    @include tablet {
+        margin-bottom: rem-calc($base-spacing-unit);
+    }
+}
+
+.spacerTiny\@md {
+    @include tablet {
+        margin-bottom: rem-calc($base-spacing-unit-tiny);
+    }
+}
+
+.spacerSmall\@md {
+    @include tablet {
+        margin-bottom: rem-calc($base-spacing-unit-small);
+    }
+}
+
+.spacerLarge\@md {
+    @include tablet {
+        margin-bottom: rem-calc($base-spacing-unit-large);
+    }
+}
+
+.spacerHuge\@md {
+    @include tablet {
+        margin-bottom: rem-calc($base-spacing-unit-huge);
+    }
+}
+
+
+/* `Large` breakpoint variants
+   ========================================================================== */
+
+.spacer\@lrg {
+    @include desktop {
+        margin-bottom: rem-calc($base-spacing-unit);
+    }
+}
+
+.spacerTiny\@lrg {
+    @include desktop {
+        margin-bottom: rem-calc($base-spacing-unit-tiny);
+    }
+}
+
+.spacerSmall\@lrg {
+    @include desktop {
+        margin-bottom: rem-calc($base-spacing-unit-small);
+    }
+}
+
+.spacerLarge\@lrg {
+    @include desktop {
+        margin-bottom: rem-calc($base-spacing-unit-large);
+    }
+}
+
+.spacerHuge\@lrg {
+    @include desktop {
+        margin-bottom: rem-calc($base-spacing-unit-huge);
+    }
+}

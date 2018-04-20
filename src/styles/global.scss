@@ -4,37 +4,38 @@
 
 /**
  *
- * 	SETTINGS:
- * 	Global...............Project-specific, globally available settings.
- * 	Typography...........Project-specific, globally available typographic settings.
+ * SETTINGS:
+ * Global...............Project-specific, globally available settings.
+ * Typography...........Project-specific, globally available typographic settings.
  *
  *
- * 	TOOLS:
- *  Functions............Global SASS functions.
- * 	Mixins...............Global SASS mixins.
+ * TOOLS:
+ * Functions............Global SASS functions.
+ * Mixins...............Global SASS mixins.
  *
  *
- * 	GENERIC:
- * 	Normalize.css........Normalise browser defaults…
- * 	Reset................…and zero them out.
- * 	Box-sizing...........More manageable box-model.
- *	shared...............Base styles shared across many/all elements.
+ * GENERIC:
+ * Normalize.css........Normalise browser defaults…
+ * Reset................…and zero them out.
+ * Box-sizing...........More manageable box-model.
+ * shared...............Base styles shared across many/all elements.
  *
  *
- * 	ELEMENTS:
- *  Forms................Form boilerplate & reset.
- * 	Headings.............H1–H6 base styles.
- *  Images...............Default responsive image styles.
- *	Page.................html & body styling.
+ * ELEMENTS:
+ * Forms................Form boilerplate & reset.
+ * Headings.............H1–H6 base styles.
+ * Images...............Default responsive image styles.
+ * Page.................html & body styling.
  *
  *
- *  UTILITIES:
- * 	Colour...............Utilities for controlling background and font colour.
- *	Display..............Utilities for manipulating element display.
- *	Show-hide............Utilities for hiding content across resolutions.
- *	Typography...........Utilities for controlling font size and style.
- *  Widths...............Utilities for controlling element width. Can be used in
- *                       conjunction with o-layout to create a simple responsive grid.
+ * UTILITIES:
+ * Colour...............Utilities for controlling background and font colour.
+ * Display..............Utilities for manipulating element display.
+ * Padding..............Utilities for controlling top/btm padding.
+ * Show-hide............Utilities for hiding content across resolutions.
+ * Typography...........Utilities for controlling font size and style.
+ * Widths...............Utilities for controlling element width. Can be used in
+ *                      conjunction with o-layout to create a simple responsive grid.
  *
  */
 
@@ -60,6 +61,7 @@
 
 @import "utilities/utilities.colour";
 @import "utilities/utilities.display";
+@import "utilities/utilities.padding";
 @import "utilities/utilities.show-hide";
 @import "utilities/utilities.typography";
 @import "utilities/utilities.widths";

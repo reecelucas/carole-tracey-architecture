@@ -2,7 +2,7 @@
    #COLOUR
    ========================================================================== */
 
-// Use '!important' deliberately here – we always want trump classes to take.
+// Use '!important' deliberately here – we always want utility classes to take.
 
 /* Font colours
    ========================================================================== */
@@ -31,6 +31,18 @@
     color: $colour-six !important;
 }
 
+.u-colour-eta {
+    color: $colour-seven !important;
+}
+
+.u-colour-theta {
+    color: $colour-eight !important;
+}
+
+.u-colour-iota {
+    color: $colour-nine !important;
+}
+
 
 /* Background colours
    ========================================================================== */
@@ -57,4 +69,16 @@
 
 .u-bg-zeta {
     background-color: $colour-six !important;
+}
+
+.u-bg-eta {
+    background-color: $colour-seven !important;
+}
+
+.u-bg-theta {
+    background-color: $colour-eight !important;
+}
+
+.u-bg-iota {
+    background-color: $colour-nine !important;
 }
