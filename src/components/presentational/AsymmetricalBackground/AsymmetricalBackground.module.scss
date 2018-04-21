@@ -1,0 +1,20 @@
+/* ==========================================================================
+   #ASYMMETRICAL-BACKGROUND
+   ========================================================================== */
+
+@import "../../../styles/settings/settings.global";
+
+.asym {
+    position: relative;
+
+    &:before {
+        background-color: $colour-three;
+        content: "";
+        height: 65%;
+        position: absolute;
+            top: 0;
+            left: 0;
+        width: 100%;
+        z-index: -1;
+    }
+}

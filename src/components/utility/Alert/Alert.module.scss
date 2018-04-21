@@ -28,8 +28,9 @@ $alert-btn-size: 16px !default;
     border: 1px solid transparent;
     border-radius: 2px;
     display: flex;
-    font-family: $font-fallback;
+    font-family: $font-fallback-sans;
     padding: rem-calc($base-spacing-unit-small);
+    width: 100%;
     @include font-size($font-size-5);
 
     // Base icon styling, icon image is dependent on selected theme

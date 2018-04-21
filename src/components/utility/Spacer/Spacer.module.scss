@@ -1,5 +1,5 @@
 /* ==========================================================================
-   #Spacer
+   #SPACER
    ========================================================================== */
 
 @import "../../../styles/settings/settings.global";
@@ -8,6 +8,10 @@
 
 .spacer {
     margin-bottom: rem-calc($base-spacing-unit);
+}
+
+.spacerNone {
+    margin-bottom: 0;
 }
 
 .spacerTiny {
@@ -33,6 +37,12 @@
 .spacer\@md {
     @include tablet {
         margin-bottom: rem-calc($base-spacing-unit);
+    }
+}
+
+.spacerNone\@md {
+    @include tablet {
+        margin-bottom: 0;
     }
 }
 
@@ -67,6 +77,12 @@
 .spacer\@lrg {
     @include desktop {
         margin-bottom: rem-calc($base-spacing-unit);
+    }
+}
+
+.spacerNone\@lrg {
+    @include desktop {
+        margin-bottom: 0;
     }
 }
 

@@ -1,0 +1,19 @@
+/* ==========================================================================
+   #PAGE-GUTTER
+   ========================================================================== */
+
+@import "../../../styles/tools/tools.mixins";
+
+// Ensure these settings are configured before the @import of this file.
+$gutter-size: 5vmax !default;
+
+.gutter {
+
+    @include desktop {
+		padding: {
+			left: $gutter-size;
+			right: $gutter-size;
+		}
+    }
+
+}

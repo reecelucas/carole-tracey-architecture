@@ -8,7 +8,14 @@
    ========================================================================== */
 
 .u-font-italic {
-    font-style: italic;
+    font: {
+        family: $font-fallback-serif;
+        style: italic;
+    }
+
+    .fonts-loaded & {
+        font-family: $font-serif;
+    }
 }
 
 
@@ -31,29 +38,141 @@
 }
 
 
-/* Headings
+/* Font sizes
    ========================================================================== */
 
-.u-h1 {
+.u-fs-alpha {
     @include font-size($font-size-1, none, "important");
 }
 
-.u-h2 {
+.u-fs-beta {
     @include font-size($font-size-2, none, "important");
 }
 
-.u-h3 {
+.u-fs-gamma {
     @include font-size($font-size-3, none, "important");
 }
 
-.u-h4 {
+.u-fs-delta {
     @include font-size($font-size-4, none, "important");
 }
 
-.u-h5 {
+.u-fs-epsilon {
     @include font-size($font-size-5, none, "important");
 }
 
-.u-h6 {
+.u-fs-zeta {
     @include font-size($font-size-6, none, "important");
+}
+
+.u-fs-eta {
+    @include font-size($font-size-7, none, "important");
+}
+
+.u-fs-theta {
+    @include font-size($font-size-8, none, "important");
+}
+
+
+/* Font sizes: 'medium' breakpoint variants
+   ========================================================================== */
+
+.u-fs-alpha\@md {
+    @include tablet {
+        @include font-size($font-size-1, none, "important");
+    }
+}
+
+.u-fs-beta\@md {
+    @include tablet {
+        @include font-size($font-size-2, none, "important");
+    }
+}
+
+.u-fs-gamma\@md {
+    @include tablet {
+        @include font-size($font-size-3, none, "important");
+    }
+}
+
+.u-fs-delta\@md {
+    @include tablet {
+        @include font-size($font-size-4, none, "important");
+    }
+}
+
+.u-fs-epsilon\@md {
+    @include tablet {
+        @include font-size($font-size-5, none, "important");
+    }
+}
+
+.u-fs-zeta\@md {
+    @include tablet {
+        @include font-size($font-size-6, none, "important");
+    }
+}
+
+.u-fs-eta\@md {
+    @include tablet {
+        @include font-size($font-size-7, none, "important");
+    }
+}
+
+.u-fs-theta\@md {
+    @include tablet {
+        @include font-size($font-size-8, none, "important");
+    }
+}
+
+
+/* Font sizes: 'large' breakpoint variants
+   ========================================================================== */
+
+.u-fs-alpha\@lrg {
+    @include desktop {
+        @include font-size($font-size-1, none, "important");
+    }
+}
+
+.u-fs-beta\@lrg {
+    @include desktop {
+        @include font-size($font-size-2, none, "important");
+    }
+}
+
+.u-fs-gamma\@lrg {
+    @include desktop {
+        @include font-size($font-size-3, none, "important");
+    }
+}
+
+.u-fs-delta\@lrg {
+    @include desktop {
+        @include font-size($font-size-4, none, "important");
+    }
+}
+
+.u-fs-epsilon\@lrg {
+    @include desktop {
+        @include font-size($font-size-5, none, "important");
+    }
+}
+
+.u-fs-zeta\@lrg {
+    @include desktop {
+        @include font-size($font-size-6, none, "important");
+    }
+}
+
+.u-fs-eta\@lrg {
+    @include desktop {
+        @include font-size($font-size-7, none, "important");
+    }
+}
+
+.u-fs-theta\@lrg {
+    @include desktop {
+        @include font-size($font-size-8, none, "important");
+    }
 }

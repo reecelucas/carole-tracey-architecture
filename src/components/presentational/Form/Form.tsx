@@ -1,23 +1,30 @@
 import * as React from 'react';
 import FormErrorMessage from './FormErrorMessage';
-import Alert from '../utility/Alert/Alert';
-import validateEmail from '../../utilities/validateEmail';
+import Alert from '../../utility/Alert/Alert';
+import Spacer from '../../utility/Spacer/Spacer';
+import validateEmail from '../../../utilities/validateEmail';
+import { NAME, EMAIL, SUBJECT, MESSAGE } from './constants';
+
+const styles = require('./Form.module.scss');
 
 const initialState = {
-    name: '',
-    email: '',
-    message: '',
+    [NAME]: '',
+    [EMAIL]: '',
+    [SUBJECT]: '',
+    [MESSAGE]: '',
 
     touched: {
-        name: false,
-        email: false,
-        message: false
+        [NAME]: false,
+        [EMAIL]: false,
+        [SUBJECT]: false,
+        [MESSAGE]: false
     },
 
     errors: {
-        name: true,
-        email: true,
-        message: true
+        [NAME]: true,
+        [EMAIL]: true,
+        [SUBJECT]: true,
+        [MESSAGE]: true
     },
 
     submitting: false,
@@ -56,15 +63,19 @@ class Form extends React.Component<any, any> {
         let valid: boolean = false;
 
         switch (name) {
-            case 'name':
+            case NAME:
                 valid = value && value.length > 0;
                 break;
 
-            case 'message':
+            case SUBJECT:
                 valid = value && value.length > 0;
                 break;
 
-            case 'email':
+            case MESSAGE:
+                valid = value && value.length > 0;
+                break;
+
+            case EMAIL:
                 valid = value && validateEmail(value);
                 break;
         }
@@ -89,7 +100,7 @@ class Form extends React.Component<any, any> {
         return !Object.keys(errors).some(key => errors[key]);
     }
 
-    handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+    handleInputChange(event: React.ChangeEvent<any>) {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
@@ -100,7 +111,7 @@ class Form extends React.Component<any, any> {
         });
     }
 
-    handleInputBlur(event: React.FocusEvent<HTMLInputElement>) {
+    handleInputBlur(event: React.FocusEvent<any>) {
         const name = event.target.name;
 
         this.setState({
@@ -154,7 +165,7 @@ class Form extends React.Component<any, any> {
             .then(response => {
                 // Force execution into the `catch` statement
                 if (!response.ok) {
-                    throw new Error('Network response was not ok.');
+                    throw new Error('Network response was not ok');
                 }
 
                 this.handleSubmitSuccess();
@@ -179,60 +190,86 @@ class Form extends React.Component<any, any> {
     render() {
         return (
             <form
+                className={styles.form}
                 method="POST"
                 action="https://formspree.io/reecelucas@sky.com"
                 onSubmit={this.handleSubmit}
                 noValidate={!this.state.validateNatively}
             >
-                <div>
-                    <label htmlFor="name">
-                        Name (required)<br />
+                <div className={`${styles.item} ${styles.itemHalf}`}>
+                    <label htmlFor={NAME}>
+                        <span className={styles.label}>
+                            Name <span className="u-text--">(required)</span>
+                        </span>
                         <input
-                            id="name"
-                            className={this.shouldShowError('name') ? 'has-error' : ''}
+                            id={NAME}
+                            className={this.shouldShowError(NAME) ? styles.hasError : ''}
                             type="text"
-                            name="name"
-                            value={this.state.name}
+                            name={NAME}
+                            value={this.state[NAME]}
                             onChange={this.handleInputChange}
                             onBlur={this.handleInputBlur}
                             required={this.state.validateNatively}
                         />
-                        {this.shouldShowError('name') && <FormErrorMessage />}
+                        {this.shouldShowError(NAME) && <FormErrorMessage />}
                     </label>
                 </div>
 
-                <div>
-                    <label htmlFor="email">
-                        Email (required)<br />
+                <div className={`${styles.item} ${styles.itemHalf}`}>
+                    <label htmlFor={EMAIL}>
+                        <span className={styles.label}>
+                            Email <span className="u-text--">(required)</span>
+                        </span>
                         <input
-                            id="email"
-                            className={this.shouldShowError('email') ? 'has-error' : ''}
+                            id={EMAIL}
+                            className={this.shouldShowError(EMAIL) ? styles.hasError : ''}
                             type="email"
-                            name="email"
-                            value={this.state.email}
+                            name={EMAIL}
+                            value={this.state[EMAIL]}
                             onChange={this.handleInputChange}
                             onBlur={this.handleInputBlur}
                             required={this.state.validateNatively}
                         />
-                        {this.shouldShowError('email') && (
+                        {this.shouldShowError(EMAIL) && (
                             <FormErrorMessage message="Please enter a valid email address." />
                         )}
                     </label>
                 </div>
 
-                <div>
-                    <label htmlFor="message">
-                        Message (required)<br />
-                        <textarea
-                            id="message"
-                            className={this.shouldShowError('message') ? 'has-error' : ''}
-                            name="message"
-                            value={this.state.message}
+                <div className={styles.item}>
+                    <label htmlFor={SUBJECT}>
+                        <span className={styles.label}>
+                            Subject <span className="u-text--">(required)</span>
+                        </span>
+                        <input
+                            id={SUBJECT}
+                            className={this.shouldShowError(SUBJECT) ? styles.hasError : ''}
+                            type="text"
+                            name={SUBJECT}
+                            value={this.state[SUBJECT]}
                             onChange={this.handleInputChange}
                             onBlur={this.handleInputBlur}
                             required={this.state.validateNatively}
                         />
-                        {this.shouldShowError('message') && <FormErrorMessage />}
+                        {this.shouldShowError(SUBJECT) && <FormErrorMessage />}
+                    </label>
+                </div>
+
+                <div className={styles.item}>
+                    <label htmlFor={MESSAGE}>
+                        <span className={styles.label}>
+                            Message <span className="u-text--">(required)</span>
+                        </span>
+                        <textarea
+                            id={MESSAGE}
+                            className={this.shouldShowError(MESSAGE) ? styles.hasError : ''}
+                            name={MESSAGE}
+                            value={this.state[MESSAGE]}
+                            onChange={this.handleInputChange}
+                            onBlur={this.handleInputBlur}
+                            required={this.state.validateNatively}
+                        />
+                        {this.shouldShowError(MESSAGE) && <FormErrorMessage />}
                     </label>
                 </div>
 
@@ -248,6 +285,7 @@ class Form extends React.Component<any, any> {
                 )}
 
                 <button
+                    className={styles.submit}
                     type="submit"
                     disabled={!this.canBeSubmitted() && !this.state.validateNatively}
                 >

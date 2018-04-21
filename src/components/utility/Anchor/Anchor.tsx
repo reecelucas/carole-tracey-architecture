@@ -3,17 +3,17 @@ import * as React from 'react';
 const styles = require('./Anchor.module.scss');
 
 interface Props {
+    children: any;
     href: string;
     title?: string;
     ariaLabel?: string;
-    customClass?: string;
-    children: any;
+    className?: string;
     newTab?: boolean;
 }
 
-const Anchor = ({ href, newTab, title, ariaLabel, customClass, children }: Props) => (
+const Anchor = ({ href, newTab, title, ariaLabel, className, children }: Props) => (
     <a
-        className={customClass || styles.anchor}
+        className={className || styles.anchor}
         href={href}
         title={title || null}
         aria-label={ariaLabel || null}

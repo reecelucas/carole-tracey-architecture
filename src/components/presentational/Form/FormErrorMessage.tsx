@@ -1,7 +1,9 @@
 import * as React from 'react';
 
+const styles = require('./Form.module.scss');
+
 const FormErrorMessage = ({ message }: { message?: string }) => (
-    <p role="alert" aria-live="assertive">
+    <p className={styles.errorMessage} role="alert" aria-live="assertive">
         {message || 'Please fill in this field.'}
     </p>
 );

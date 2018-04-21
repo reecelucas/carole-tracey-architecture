@@ -3,42 +3,46 @@ import { ClassMap } from '../../../types';
 
 const styles = require('./Spacer.module.scss');
 
-type Size = 'tiny' | 'small' | 'large' | 'huge';
-type SizeObject = {
-    value?: Size;
-    breakpoint: 'medium' | 'large';
+type SizeValue = 'default' | 'none' | 'tiny' | 'small' | 'large' | 'huge';
+type sizeObject = {
+    default?: SizeValue;
+    medium?: SizeValue;
+    large?: SizeValue;
+    [key: string]: SizeValue;
 };
 
 interface Props {
-    children?: any;
-    size?: Size | SizeObject[];
+    children: any;
+    size?: SizeValue | sizeObject;
 }
 
 const classMap: ClassMap = {
-    base: 'spacer',
+    default: 'spacer',
+    none: 'spacerNone',
     tiny: 'spacerTiny',
     small: 'spacerSmall',
     large: 'spacerLarge',
     huge: 'spacerHuge'
 };
 
-const breakpointMap = {
+const breakpointMap: { [key: string]: string } = {
     medium: '@md',
     large: '@lrg'
 };
 
 const constructClassList = (size: Props['size']): string => {
-    if (!size) return styles.spacer;
+    if (!size) return styles[classMap.default];
 
     if (typeof size === 'string') {
-        return styles[classMap[size] || classMap.base];
+        return styles[classMap[size]] || classMap.default;
     }
 
-    return size
-        .map(
-            ({ value, breakpoint }) =>
-                styles[`${classMap[value] || classMap.base}${breakpointMap[breakpoint]}`]
-        )
+    return Object.keys(size)
+        .map((key: string) => {
+            const sizeValue = classMap[size[key]] || classMap.base;
+            const bp = breakpointMap[key] || '';
+            return styles[`${sizeValue}${bp}`];
+        })
         .join(' ');
 };
 

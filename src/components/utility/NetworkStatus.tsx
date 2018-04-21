@@ -5,7 +5,7 @@ interface State {
 }
 
 interface Props {
-    children?: any;
+    children: any;
 }
 
 // NetworkStatus class that detects offline/online changes

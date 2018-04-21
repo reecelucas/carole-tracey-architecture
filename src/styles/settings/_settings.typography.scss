@@ -29,8 +29,9 @@
 
 // Fallback to system font stack.
 
-$font-fallback: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
-$font-primary: "Libre Baskerville", Helvetica, sans-serif !default;
+$font-fallback-serif: Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif !default;
+$font-fallback-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+$font-serif: "Libre Baskerville", Helvetica, sans-serif !default;
 
 
 /* Typographic scale

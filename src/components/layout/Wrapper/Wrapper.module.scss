@@ -1,5 +1,5 @@
 /* ==========================================================================
-   #Wrapper
+   #WRAPPER
    ========================================================================== */
 
 @import "../../../styles/settings/settings.global";
@@ -15,10 +15,14 @@ $wrapper-max-width: 1020px !default;
     padding: 0 rem-calc($base-spacing-unit);
 }
 
-.wrapperFw {
+.fullWidth {
     max-width: none;
     padding: {
         left: 0;
         right: 0;
     }
+}
+
+.textCenter {
+    text-align: center;
 }

@@ -4,8 +4,8 @@ import { ClassMap } from '../../../types';
 const styles = require('./AspectRatioWrapper.module.scss');
 
 interface Props {
+    children: any;
     aspectRatio?: '8:5' | '4:3' | '3:2' | '1:1';
-    children?: any;
 }
 
 const classMap: ClassMap = {

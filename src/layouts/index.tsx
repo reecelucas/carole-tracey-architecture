@@ -6,7 +6,7 @@ import loadFonts from '../utilities/loadFonts';
 import controlOutline from '../utilities/controlOutline';
 
 // Global UI
-import Footer from '../components/Footer/Footer';
+import Footer from '../components/presentational/Footer/Footer';
 import '../styles/global.scss';
 
 interface Props {

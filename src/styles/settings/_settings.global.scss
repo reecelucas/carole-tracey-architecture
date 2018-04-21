@@ -11,7 +11,7 @@
  */
 
 $mq-breakpoints: (
-    tablet: 680px,
+    tablet: 768px,
     desktop: 1024px
 ) !default;
 
@@ -33,9 +33,9 @@ $colour-nine:  #94d6c8 !default; // SINBAD
 /* High-level base settings
    ========================================================================== */
 
-$base-font-size:    16px !default;
-$base-line-height:  24px !default;
-$base-text-colour:  $colour-five;
+$base-font-size:   16px !default;
+$base-line-height: 24px !default;
+$base-text-colour: $colour-five;
 
 
 /* Spacing

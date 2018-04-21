@@ -6,7 +6,7 @@ interface State {
 }
 
 interface Props {
-    children?: any;
+    children: any;
     expanded?: boolean;
 }
 
