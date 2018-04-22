@@ -39,7 +39,7 @@ const constructClassList = (size: Props['size']): string => {
 
     return Object.keys(size)
         .map((key: string) => {
-            const sizeValue = classMap[size[key]] || classMap.base;
+            const sizeValue = classMap[size[key]] || classMap.default;
             const bp = breakpointMap[key] || '';
             return styles[`${sizeValue}${bp}`];
         })

@@ -7,7 +7,7 @@ interface Props {
     wide?: boolean;
 }
 
-const ProfileImage = ({ children, wide }: any) => (
+const ProfileImage = ({ children, wide }: Props) => (
     <div className={`${styles.profile} ${wide ? styles.wide : ''}`}>{children}</div>
 );
 
