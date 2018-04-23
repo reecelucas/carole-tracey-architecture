@@ -48,7 +48,7 @@ const constructClassList = (size: Props['size']): string => {
 };
 
 const Spacer = ({ children, className, size }: Props) => (
-    <div className={`${constructClassList(size)} ${className}`}>{children}</div>
+    <div className={`${constructClassList(size)} ${className || ''}`}>{children}</div>
 );
 
 export default Spacer;

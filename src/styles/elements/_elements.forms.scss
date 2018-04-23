@@ -22,7 +22,7 @@ $fh-input-height--textarea: 220px !default;
 $fh-input-width: 100% !default;
 $fh-input-max-width: 100% !default;
 $fh-input-bg-color: $colour-one !default;
-$fh-focus-bg-color: darken($colour-one, 2.5%) !default;
+$fh-focus-bg-color: $colour-two !default;
 
 // `select` Vendor Styling
 $fh-allow-select-vendor-styling: false !default;

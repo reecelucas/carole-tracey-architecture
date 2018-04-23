@@ -9,7 +9,7 @@ interface Props {
 }
 
 const HeroPanel = ({ children, className, image }: Props) => (
-    <div className={`${styles.panel} ${className}`}>
+    <div className={`${styles.panel} ${className || ''}`}>
         <div className={image ? styles.imageWrapper : styles.textWrapper}>{children}</div>
     </div>
 );

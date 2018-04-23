@@ -45,12 +45,12 @@ class NetworkStatus extends React.Component<Props, State> {
 
 export class Online extends NetworkStatus {
     render() {
-        return this.state.online ? this.props.children : null;
+        return this.state.online && this.props.children;
     }
 }
 
 export class Offline extends NetworkStatus {
     render() {
-        return !this.state.online ? this.props.children : null;
+        return !this.state.online && this.props.children;
     }
 }

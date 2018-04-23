@@ -13,7 +13,7 @@ interface Props {
 }
 
 const Tile = ({ className, number, heading, copy }: Props) => (
-    <div className={`${styles.tile} ${className}`}>
+    <div className={`${styles.tile} ${className || ''}`}>
         <Wrapper>
             <div className={styles.inner}>
                 <span className={`${styles.number} u-font-italic`}>{number}</span>

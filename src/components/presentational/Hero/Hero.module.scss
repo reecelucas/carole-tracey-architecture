@@ -17,6 +17,7 @@ $hero-height: 80vh !default;
     @include tablet {
         flex-direction: row;
         height: $hero-height;
+        min-height: 600px;
     }
 }
 

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { MESSAGES } from './constants';
 
 const styles = require('./Form.module.scss');
 
@@ -8,7 +9,7 @@ interface Props {
 
 const FormErrorMessage = ({ message }: Props) => (
     <p className={styles.errorMessage} role="alert" aria-live="assertive">
-        {message || 'Please fill in this field.'}
+        {message || MESSAGES.inputErrorGeneric}
     </p>
 );
 

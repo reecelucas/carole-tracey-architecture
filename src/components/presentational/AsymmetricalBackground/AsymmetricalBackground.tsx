@@ -8,7 +8,7 @@ interface Props {
 }
 
 const AsymmetricalBackground = ({ children, className }: Props) => (
-    <div className={`${styles.asym} ${className}`}>{children}</div>
+    <div className={`${styles.asym} ${className || ''}`}>{children}</div>
 );
 
 export default AsymmetricalBackground;

@@ -1,10 +1,12 @@
 import * as React from 'react';
 import FormErrorMessage from './FormErrorMessage';
+import FormLoader from './FormLoader';
 import Alert from '../utility/Alert/Alert';
 import Spacer from '../utility/Spacer/Spacer';
 import validateEmail from '../../utilities/validateEmail';
-import { encodeFormData } from './helpers';
-import { NAME, EMAIL, SUBJECT, MESSAGE } from './constants';
+import encodeFormData from './encodeFormData';
+import { Online, Offline } from '../utility/NetworkStatus';
+import { NAME, EMAIL, SUBJECT, MESSAGE, EMAIL_API, MESSAGES } from './constants';
 
 const styles = require('./Form.module.scss');
 
@@ -138,21 +140,28 @@ class Form extends React.Component<any, any> {
         this.setState(
             {
                 success: true,
+                submitting: false,
                 error: false,
                 submissionErrorMessage: ''
             },
             () => {
                 window.setTimeout(() => {
-                    this.setState({ ...this.state, ...initialState });
-                }, 2500);
+                    /**
+                     * Redirect user to the reCAPTCHA page. On successful completion
+                     * the user navigates back to the contact page via a standard
+                     * HTTP request, so there is no need to reset state here
+                     */
+                    location.href = EMAIL_API.reCAPTCHA;
+                }, 2000);
             }
         );
     }
 
     handleSubmitError(message?: string) {
         const errorMsg = `
-            There was a problem sending the email. Please try refreshing your browser or resubmitting.
-            ${message ? `Error: ${message}.` : ''}
+            There was a problem sending the email. Please try refreshing your browser or resubmitting. ${
+                message ? `Error: ${message}.` : ''
+            }
         `;
 
         this.setState({
@@ -162,11 +171,11 @@ class Form extends React.Component<any, any> {
         });
     }
 
-    handlePost(formData: string) {
+    handlePost(formData: string, actionUrl: string) {
         this.setState({ submitting: true });
 
         // Construct the fetch request object
-        const request = new Request('/', {
+        const request = new Request(actionUrl, {
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -198,125 +207,130 @@ class Form extends React.Component<any, any> {
         const actionUrl = target.action;
 
         // Encode form data in a format compatible with Netlify
-        const formData = encodeFormData({
-            'form-name': 'contact',
-            ...this.state.fields
-        });
-        this.handlePost(formData);
+        const formData = encodeFormData({ ...this.state.fields });
+        this.handlePost(formData, actionUrl);
     }
 
     render() {
         return (
-            <form
-                name="contact"
-                className={styles.form}
-                onSubmit={this.handleSubmit}
-                noValidate={!this.state.validateNatively}
-                data-netlify="true"
-            >
-                <div className={`${styles.item} ${styles.itemHalf}`}>
-                    <label htmlFor={NAME}>
-                        <span className={styles.label}>
-                            Name <span className="u-text--">(required)</span>
-                        </span>
-                        <input
-                            id={NAME}
-                            className={this.shouldShowError(NAME) ? styles.hasError : ''}
-                            type="text"
-                            name={NAME}
-                            value={this.state[NAME]}
-                            onChange={this.handleInputChange}
-                            onBlur={this.handleInputBlur}
-                            required={this.state.validateNatively}
-                        />
-                        {this.shouldShowError(NAME) && <FormErrorMessage />}
-                    </label>
-                </div>
-
-                <div className={`${styles.item} ${styles.itemHalf}`}>
-                    <label htmlFor={EMAIL}>
-                        <span className={styles.label}>
-                            Email <span className="u-text--">(required)</span>
-                        </span>
-                        <input
-                            id={EMAIL}
-                            className={this.shouldShowError(EMAIL) ? styles.hasError : ''}
-                            type="email"
-                            name={EMAIL}
-                            value={this.state[EMAIL]}
-                            onChange={this.handleInputChange}
-                            onBlur={this.handleInputBlur}
-                            required={this.state.validateNatively}
-                        />
-                        {this.shouldShowError(EMAIL) && (
-                            <FormErrorMessage message="Please enter a valid email address." />
-                        )}
-                    </label>
-                </div>
-
-                <div className={styles.item}>
-                    <label htmlFor={SUBJECT}>
-                        <span className={styles.label}>
-                            Subject <span className="u-text--">(required)</span>
-                        </span>
-                        <input
-                            id={SUBJECT}
-                            className={this.shouldShowError(SUBJECT) ? styles.hasError : ''}
-                            type="text"
-                            name={SUBJECT}
-                            value={this.state[SUBJECT]}
-                            onChange={this.handleInputChange}
-                            onBlur={this.handleInputBlur}
-                            required={this.state.validateNatively}
-                        />
-                        {this.shouldShowError(SUBJECT) && <FormErrorMessage />}
-                    </label>
-                </div>
-
-                <div className={styles.item}>
-                    <label htmlFor={MESSAGE}>
-                        <span className={styles.label}>
-                            Message <span className="u-text--">(required)</span>
-                        </span>
-                        <textarea
-                            id={MESSAGE}
-                            className={this.shouldShowError(MESSAGE) ? styles.hasError : ''}
-                            name={MESSAGE}
-                            value={this.state[MESSAGE]}
-                            onChange={this.handleInputChange}
-                            onBlur={this.handleInputBlur}
-                            required={this.state.validateNatively}
-                        />
-                        {this.shouldShowError(MESSAGE) && <FormErrorMessage />}
-                    </label>
-                </div>
-
-                {this.state.success && (
-                    <Spacer size="small" className="u-1/1">
-                        <Alert
-                            message="Your enquiry has been received! I'll be in touch very soon."
-                            theme="success"
-                        />
+            <div className={styles.container}>
+                <Offline>
+                    <Spacer>
+                        <Alert message={MESSAGES.offline} theme="warning" />
                     </Spacer>
-                )}
+                </Offline>
 
-                {this.state.error && (
-                    <Spacer size="small" className="u-1/1">
-                        <Alert
-                            message={this.state.submissionErrorMessage || 'Error!'}
-                            theme="error"
-                        />
-                    </Spacer>
-                )}
-
-                <button
-                    className={styles.submit}
-                    type="submit"
-                    disabled={!this.canBeSubmitted() && !this.state.validateNatively}
+                <form
+                    className={styles.form}
+                    onSubmit={this.handleSubmit}
+                    noValidate={!this.state.validateNatively}
+                    action={EMAIL_API.endpoint}
                 >
-                    Send
-                </button>
-            </form>
+                    <div className={`${styles.item} ${styles.itemHalf}`}>
+                        <label htmlFor={NAME}>
+                            <span className={styles.label}>
+                                Name <span className="u-text--">(required)</span>
+                            </span>
+                            <input
+                                id={NAME}
+                                className={this.shouldShowError(NAME) ? styles.hasError : ''}
+                                type="text"
+                                name={NAME}
+                                value={this.state[NAME]}
+                                onChange={this.handleInputChange}
+                                onBlur={this.handleInputBlur}
+                                required={this.state.validateNatively}
+                            />
+                            {this.shouldShowError(NAME) && <FormErrorMessage />}
+                        </label>
+                    </div>
+
+                    <div className={`${styles.item} ${styles.itemHalf}`}>
+                        <label htmlFor={EMAIL}>
+                            <span className={styles.label}>
+                                Email <span className="u-text--">(required)</span>
+                            </span>
+                            <input
+                                id={EMAIL}
+                                className={this.shouldShowError(EMAIL) ? styles.hasError : ''}
+                                type="email"
+                                name={EMAIL}
+                                value={this.state[EMAIL]}
+                                onChange={this.handleInputChange}
+                                onBlur={this.handleInputBlur}
+                                required={this.state.validateNatively}
+                            />
+                            {this.shouldShowError(EMAIL) && (
+                                <FormErrorMessage message={MESSAGES.inputErrorEmail} />
+                            )}
+                        </label>
+                    </div>
+
+                    <div className={styles.item}>
+                        <label htmlFor={SUBJECT}>
+                            <span className={styles.label}>
+                                Subject <span className="u-text--">(required)</span>
+                            </span>
+                            <input
+                                id={SUBJECT}
+                                className={this.shouldShowError(SUBJECT) ? styles.hasError : ''}
+                                type="text"
+                                name={SUBJECT}
+                                value={this.state[SUBJECT]}
+                                onChange={this.handleInputChange}
+                                onBlur={this.handleInputBlur}
+                                required={this.state.validateNatively}
+                            />
+                            {this.shouldShowError(SUBJECT) && <FormErrorMessage />}
+                        </label>
+                    </div>
+
+                    <div className={styles.item}>
+                        <label htmlFor={MESSAGE}>
+                            <span className={styles.label}>
+                                Message <span className="u-text--">(required)</span>
+                            </span>
+                            <textarea
+                                id={MESSAGE}
+                                className={this.shouldShowError(MESSAGE) ? styles.hasError : ''}
+                                name={MESSAGE}
+                                value={this.state[MESSAGE]}
+                                onChange={this.handleInputChange}
+                                onBlur={this.handleInputBlur}
+                                required={this.state.validateNatively}
+                            />
+                            {this.shouldShowError(MESSAGE) && <FormErrorMessage />}
+                        </label>
+                    </div>
+
+                    <input type="hidden" name="_honeypot" value="" />
+
+                    {this.state.success && (
+                        <Spacer size="small" className="u-1/1">
+                            <Alert message={MESSAGES.redirect} theme="success" />
+                        </Spacer>
+                    )}
+
+                    {this.state.error && (
+                        <Spacer size="small" className="u-1/1">
+                            <Alert
+                                message={this.state.submissionErrorMessage || MESSAGES.submitError}
+                                theme="error"
+                            />
+                        </Spacer>
+                    )}
+
+                    <Online>
+                        <button
+                            className={styles.submit}
+                            type="submit"
+                            disabled={!this.canBeSubmitted() && !this.state.validateNatively}
+                        >
+                            {!this.state.submitting ? 'Send' : <FormLoader />}
+                        </button>
+                    </Online>
+                </form>
+            </div>
         );
     }
 }

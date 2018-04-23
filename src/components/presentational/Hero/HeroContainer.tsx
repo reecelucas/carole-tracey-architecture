@@ -8,7 +8,7 @@ interface Props {
 }
 
 const HeroContainer = ({ children, className }: Props) => (
-    <div className={`${styles.hero} ${className}`}>{children}</div>
+    <div className={`${styles.hero} ${className || ''}`}>{children}</div>
 );
 
 export default HeroContainer;

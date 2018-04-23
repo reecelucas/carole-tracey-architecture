@@ -9,14 +9,18 @@
 
 // Ensure these settings are configured before the @import of this file.
 $form-error-colour: #a94442 !default;
+$form-loader-dot-size: 10px !default;
 
-.form {
+.container {
     background-color: darken($colour-eight, 3%);
     border-radius: 4px;
-    display: flex;
-    flex-wrap: wrap;
     padding: rem-calc($base-spacing-unit);
     text-align: left;
+}
+
+.form {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .item {
@@ -43,17 +47,16 @@ $form-error-colour: #a94442 !default;
 }
 
 .submit {
+    align-items: center;
     background-color: $colour-nine;
     border: none;
     border-radius: 2px;
-    display: block;
+    display: flex;
+    justify-content: center;
     letter-spacing: 0.05em;
     padding: rem-calc($base-spacing-unit-small) rem-calc($base-spacing-unit-large);
     transition: all 0.3s ease;
-    text: {
-        align: center;
-        transform: uppercase;
-    }
+    text-transform: uppercase;
     width: 100%;
     @include font-size($font-size-4, 1);
 
@@ -66,6 +69,49 @@ $form-error-colour: #a94442 !default;
         opacity: 0.5;
         pointer-events: none;
     }
+}
+
+.loader {
+
+    span {
+        animation: wave 1.8s ease infinite;
+        background-color: $colour-one;
+        border-radius: 50%;
+        display: inline-block;
+        height: $form-loader-dot-size;
+        transition: all 6s ease;
+        width: $form-loader-dot-size;
+
+        &:not(:first-child) {
+            margin-left: rem-calc(6px);
+        }
+
+        &:nth-child(1) {
+            animation-delay: 0;
+        }
+
+        &:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        &:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+    }
+}
+
+@keyframes wave {
+
+    0%, 40%, 100% {
+        opacity: 0.75;
+        transform: translate(0, 0);
+    }
+
+    10% {
+        opacity: 1;
+        transform: translate(0, -($form-loader-dot-size));
+    }
+
 }
 
 

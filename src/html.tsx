@@ -12,13 +12,10 @@ let css: JSX.Element;
 const productionEnv: boolean = process.env.NODE_ENV === 'production';
 const inlineScript: string = `
     (function(){
-        var html = document.documentElement;
-        html.className += ' js';
-
         try {
             var record = JSON.parse(localStorage.getItem('fonts-loaded'));
             if (record && new Date().getTime() < record.timestamp) {
-            html.className += ' fonts-loaded';
+                document.documentElement.className += ' fonts-loaded';
             }
         } catch (err) {
             console.log(err);
