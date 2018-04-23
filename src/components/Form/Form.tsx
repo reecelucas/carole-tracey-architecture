@@ -13,7 +13,7 @@ const initialState = {
         [NAME]: '',
         [EMAIL]: '',
         [SUBJECT]: '',
-        [MESSAGE]: '',
+        [MESSAGE]: ''
     },
 
     touched: {
@@ -109,14 +109,17 @@ class Form extends React.Component<any, any> {
         const name = target.name;
 
         // After we've updated state with the input value, check if it's valid
-        this.setState({
-            fields: {
-                ...this.state.fields,
-                [name]: value
+        this.setState(
+            {
+                fields: {
+                    ...this.state.fields,
+                    [name]: value
+                }
+            },
+            () => {
+                this.validateField(name, value);
             }
-        }, () => {
-            this.validateField(name, value);
-        });
+        );
     }
 
     handleInputBlur(event: React.FocusEvent<any>) {
@@ -299,7 +302,10 @@ class Form extends React.Component<any, any> {
 
                 {this.state.error && (
                     <Spacer size="small" className="u-1/1">
-                        <Alert message={this.state.submissionErrorMessage || 'Error!'} theme="error" />
+                        <Alert
+                            message={this.state.submissionErrorMessage || 'Error!'}
+                            theme="error"
+                        />
                     </Spacer>
                 )}
 
