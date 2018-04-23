@@ -52,6 +52,7 @@ $form-loader-dot-size: 10px !default;
     border: none;
     border-radius: 2px;
     display: flex;
+    font-weight: 600;
     justify-content: center;
     letter-spacing: 0.05em;
     padding: rem-calc($base-spacing-unit-small) rem-calc($base-spacing-unit-large);
@@ -87,7 +88,7 @@ $form-loader-dot-size: 10px !default;
         }
 
         &:nth-child(1) {
-            animation-delay: 0;
+            animation-delay: 0s;
         }
 
         &:nth-child(2) {
