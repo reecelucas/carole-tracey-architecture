@@ -1,8 +1,8 @@
 import * as React from 'react';
 import FormErrorMessage from './FormErrorMessage';
-import Alert from '../../utility/Alert/Alert';
-import Spacer from '../../utility/Spacer/Spacer';
-import validateEmail from '../../../utilities/validateEmail';
+import Alert from '../utility/Alert/Alert';
+import Spacer from '../utility/Spacer/Spacer';
+import validateEmail from '../../utilities/validateEmail';
 import { NAME, EMAIL, SUBJECT, MESSAGE } from './constants';
 
 const styles = require('./Form.module.scss');

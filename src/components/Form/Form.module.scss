@@ -2,10 +2,10 @@
    #FORM
    ========================================================================== */
 
-@import "../../../styles/settings/settings.global";
-@import "../../../styles/settings/settings.typography";
-@import "../../../styles/tools/tools.functions";
-@import "../../../styles/tools/tools.mixins";
+@import "../../styles/settings/settings.global";
+@import "../../styles/settings/settings.typography";
+@import "../../styles/tools/tools.functions";
+@import "../../styles/tools/tools.mixins";
 
 // Ensure these settings are configured before the @import of this file.
 $form-error-colour: #a94442 !default;

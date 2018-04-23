@@ -11,7 +11,7 @@ import Wrapper from '../components/layout/Wrapper/Wrapper';
 // Presentational components
 import SectionIntro from '../components/presentational/SectionIntro';
 import SectionHeading from '../components/presentational/SectionHeading';
-import Form from '../components/presentational/Form/Form';
+import Form from '../components/Form/Form';
 
 class ContactPage extends React.Component<any, void> {
     render() {
