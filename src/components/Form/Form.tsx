@@ -3,15 +3,18 @@ import FormErrorMessage from './FormErrorMessage';
 import Alert from '../utility/Alert/Alert';
 import Spacer from '../utility/Spacer/Spacer';
 import validateEmail from '../../utilities/validateEmail';
+import { encodeFormData } from './helpers';
 import { NAME, EMAIL, SUBJECT, MESSAGE } from './constants';
 
 const styles = require('./Form.module.scss');
 
 const initialState = {
-    [NAME]: '',
-    [EMAIL]: '',
-    [SUBJECT]: '',
-    [MESSAGE]: '',
+    fields: {
+        [NAME]: '',
+        [EMAIL]: '',
+        [SUBJECT]: '',
+        [MESSAGE]: '',
+    },
 
     touched: {
         [NAME]: false,
@@ -106,7 +109,12 @@ class Form extends React.Component<any, any> {
         const name = target.name;
 
         // After we've updated state with the input value, check if it's valid
-        this.setState({ [name]: value }, () => {
+        this.setState({
+            fields: {
+                ...this.state.fields,
+                [name]: value
+            }
+        }, () => {
             this.validateField(name, value);
         });
     }
@@ -151,12 +159,15 @@ class Form extends React.Component<any, any> {
         });
     }
 
-    handlePost(formData: FormData, actionUrl: string) {
+    handlePost(formData: string) {
         this.setState({ submitting: true });
 
         // Construct the fetch request object
-        const request = new Request(actionUrl, {
-            headers: { Accept: 'application/json' },
+        const request = new Request('/', {
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
             method: 'POST',
             body: formData
         });
@@ -183,18 +194,22 @@ class Form extends React.Component<any, any> {
         const target = event.target as HTMLFormElement;
         const actionUrl = target.action;
 
-        const formData = new FormData(target);
-        this.handlePost(formData, actionUrl);
+        // Encode form data in a format compatible with Netlify
+        const formData = encodeFormData({
+            'form-name': 'contact',
+            ...this.state.fields
+        });
+        this.handlePost(formData);
     }
 
     render() {
         return (
             <form
+                name="contact"
                 className={styles.form}
-                method="POST"
-                action="https://formspree.io/reecelucas@sky.com"
                 onSubmit={this.handleSubmit}
                 noValidate={!this.state.validateNatively}
+                data-netlify="true"
             >
                 <div className={`${styles.item} ${styles.itemHalf}`}>
                     <label htmlFor={NAME}>
@@ -274,14 +289,18 @@ class Form extends React.Component<any, any> {
                 </div>
 
                 {this.state.success && (
-                    <Alert
-                        message="Your enquiry has been received! I'll be in touch very soon."
-                        theme="success"
-                    />
+                    <Spacer size="small" className="u-1/1">
+                        <Alert
+                            message="Your enquiry has been received! I'll be in touch very soon."
+                            theme="success"
+                        />
+                    </Spacer>
                 )}
 
                 {this.state.error && (
-                    <Alert message={this.state.submissionErrorMessage || 'Error!'} theme="error" />
+                    <Spacer size="small" className="u-1/1">
+                        <Alert message={this.state.submissionErrorMessage || 'Error!'} theme="error" />
+                    </Spacer>
                 )}
 
                 <button

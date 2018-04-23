@@ -13,6 +13,7 @@ type sizeObject = {
 
 interface Props {
     children: any;
+    className?: string;
     size?: SizeValue | sizeObject;
 }
 
@@ -46,8 +47,8 @@ const constructClassList = (size: Props['size']): string => {
         .join(' ');
 };
 
-const Spacer = ({ children, size }: Props) => (
-    <div className={constructClassList(size)}>{children}</div>
+const Spacer = ({ children, className, size }: Props) => (
+    <div className={`${constructClassList(size)} ${className}`}>{children}</div>
 );
 
 export default Spacer;
