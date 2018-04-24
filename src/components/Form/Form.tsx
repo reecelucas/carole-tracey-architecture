@@ -56,12 +56,18 @@ class Form extends React.Component<any, any> {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    /**
+     * If these lifecycle hooks runs, it means js is enabled in
+     * the client, so we can safely validate the form with js
+     */
     componentDidMount() {
-        /**
-         * If this code runs, it means js is enabled in the client,
-         * so we can safely validate the form with js
-         */
         this.setState({ validateNatively: false });
+    }
+
+    componentDidUpdate() {
+        if (this.state.validateNatively) {
+            this.setState({ validateNatively: false });
+        }
     }
 
     validateField(name: string, value: any) {
