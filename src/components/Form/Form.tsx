@@ -139,10 +139,9 @@ class Form extends React.Component<any, any> {
                 submissionErrorMessage: ''
             },
             () => {
-                window.setTimeout(() => {
-                    // TODO: use immutability-helper to update nested state
-                    this.setState(initialState);
-                }, 2000);
+                setTimeout(() => {
+                    this.setState({ ...this.state, ...initialState });
+                }, 2500);
             }
         );
     }
@@ -227,7 +226,7 @@ class Form extends React.Component<any, any> {
                                 className={this.shouldShowError(NAME) ? styles.hasError : ''}
                                 type="text"
                                 name={NAME}
-                                value={this.state[NAME]}
+                                value={this.state.fields[NAME]}
                                 onChange={this.handleInputChange}
                                 onBlur={this.handleInputBlur}
                                 required={this.state.validateNatively}
@@ -246,7 +245,7 @@ class Form extends React.Component<any, any> {
                                 className={this.shouldShowError(EMAIL) ? styles.hasError : ''}
                                 type="email"
                                 name={EMAIL}
-                                value={this.state[EMAIL]}
+                                value={this.state.fields[EMAIL]}
                                 onChange={this.handleInputChange}
                                 onBlur={this.handleInputBlur}
                                 required={this.state.validateNatively}
@@ -267,7 +266,7 @@ class Form extends React.Component<any, any> {
                                 className={this.shouldShowError(SUBJECT) ? styles.hasError : ''}
                                 type="text"
                                 name={SUBJECT}
-                                value={this.state[SUBJECT]}
+                                value={this.state.fields[SUBJECT]}
                                 onChange={this.handleInputChange}
                                 onBlur={this.handleInputBlur}
                                 required={this.state.validateNatively}
@@ -285,7 +284,7 @@ class Form extends React.Component<any, any> {
                                 id={MESSAGE}
                                 className={this.shouldShowError(MESSAGE) ? styles.hasError : ''}
                                 name={MESSAGE}
-                                value={this.state[MESSAGE]}
+                                value={this.state.fields[MESSAGE]}
                                 onChange={this.handleInputChange}
                                 onBlur={this.handleInputBlur}
                                 required={this.state.validateNatively}
