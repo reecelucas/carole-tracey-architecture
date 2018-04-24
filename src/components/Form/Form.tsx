@@ -6,7 +6,7 @@ import Spacer from '../utility/Spacer/Spacer';
 import validateEmail from '../../utilities/validateEmail';
 import encodeFormData from './encodeFormData';
 import { Online, Offline } from '../utility/NetworkStatus';
-import { NAME, EMAIL, SUBJECT, MESSAGE, EMAIL_API, MESSAGES } from './constants';
+import { NAME, EMAIL, SUBJECT, MESSAGE, EMAIL_API_ENDPOINT, MESSAGES } from './constants';
 
 const styles = require('./Form.module.scss');
 
@@ -69,13 +69,7 @@ class Form extends React.Component<any, any> {
 
         switch (name) {
             case NAME:
-                valid = value && value.length > 0;
-                break;
-
             case SUBJECT:
-                valid = value && value.length > 0;
-                break;
-
             case MESSAGE:
                 valid = value && value.length > 0;
                 break;
@@ -146,12 +140,8 @@ class Form extends React.Component<any, any> {
             },
             () => {
                 window.setTimeout(() => {
-                    /**
-                     * Redirect user to the reCAPTCHA page. On successful completion
-                     * the user navigates back to the contact page via a standard
-                     * HTTP request, so there is no need to reset state here
-                     */
-                    location.href = EMAIL_API.reCAPTCHA;
+                    // TODO: use immutability-helper to update nested state
+                    this.setState(initialState);
                 }, 2000);
             }
         );
@@ -206,7 +196,7 @@ class Form extends React.Component<any, any> {
         const target = event.target as HTMLFormElement;
         const actionUrl = target.action;
 
-        // Encode form data in a format compatible with Netlify
+        // Encode form data in a format compatible with Basin's endpoint
         const formData = encodeFormData({ ...this.state.fields });
         this.handlePost(formData, actionUrl);
     }
@@ -224,7 +214,7 @@ class Form extends React.Component<any, any> {
                     className={styles.form}
                     onSubmit={this.handleSubmit}
                     noValidate={!this.state.validateNatively}
-                    action={EMAIL_API.endpoint}
+                    action={EMAIL_API_ENDPOINT}
                 >
                     <div className={`${styles.item} ${styles.itemHalf}`}>
                         <label htmlFor={NAME}>
@@ -302,8 +292,6 @@ class Form extends React.Component<any, any> {
                             {this.shouldShowError(MESSAGE) && <FormErrorMessage />}
                         </label>
                     </div>
-
-                    <input type="hidden" name="_honeypot" value="" />
 
                     {this.state.success && (
                         <Spacer size="small" className="u-1/1">
