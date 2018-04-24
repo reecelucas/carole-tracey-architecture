@@ -2,6 +2,7 @@ import * as React from 'react';
 import Helmet from 'react-helmet';
 
 // Utility components
+import ErrorBoundary from '../components/utility/ErrorBoundary';
 import Spacer from '../components/utility/Spacer/Spacer';
 import Text from '../components/utility/Text/Text';
 
@@ -40,7 +41,9 @@ class ContactPage extends React.Component<any, void> {
                             </Text>
                         </Spacer>
 
-                        <Form />
+                        <ErrorBoundary>
+                            <Form />
+                        </ErrorBoundary>
                     </Wrapper>
                 </section>
             </main>

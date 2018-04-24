@@ -211,10 +211,11 @@ class Form extends React.Component<any, any> {
                 </Offline>
 
                 <form
+                    action={EMAIL_API_ENDPOINT}
+                    method="POST"
                     className={styles.form}
                     onSubmit={this.handleSubmit}
                     noValidate={!this.state.validateNatively}
-                    action={EMAIL_API_ENDPOINT}
                 >
                     <div className={`${styles.item} ${styles.itemHalf}`}>
                         <label htmlFor={NAME}>
