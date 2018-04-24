@@ -110,31 +110,29 @@ class IndexPage extends React.Component<any, void> {
                         </AsymmetricalBackground>
                     </section>
 
-                    <section>
-                        <Spacer>
-                            <Wrapper fullWidth>
-                                <Grid columnCount={3} breakpoint="medium">
-                                    <Tile
-                                        className="u-bg-eta [ u-pad-top-30 u-pad-top-50@lrg ] [ u-pad-btm-20 u-pad-btm-40@lrg ]"
-                                        number="01."
-                                        heading="Individual Therapy"
-                                        copy="I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font."
-                                    />
-                                    <Tile
-                                        className="u-bg-gamma [ u-pad-top-30 u-pad-top-50@lrg ] [ u-pad-btm-20 u-pad-btm-40@lrg ]"
-                                        number="02."
-                                        heading="Group Therapy"
-                                        copy="I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font."
-                                    />
-                                    <Tile
-                                        className="u-bg-theta [ u-pad-top-30 u-pad-top-50@lrg ] [ u-pad-btm-20 u-pad-btm-40@lrg ]"
-                                        number="03."
-                                        heading="Couples Therapy"
-                                        copy="I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font."
-                                    />
-                                </Grid>
-                            </Wrapper>
-                        </Spacer>
+                    <section className="u-pad-btm-60 u-pad-btm-120@lrg">
+                        <Wrapper fullWidth>
+                            <Grid columnCount={3} breakpoint="medium">
+                                <Tile
+                                    className="u-bg-eta [ u-pad-top-30 u-pad-top-50@lrg ] [ u-pad-btm-40 u-pad-btm-60@lrg ]"
+                                    number="01."
+                                    heading="Individual Therapy"
+                                    copy="I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font."
+                                />
+                                <Tile
+                                    className="u-bg-gamma [ u-pad-top-30 u-pad-top-50@lrg ] [ u-pad-btm-40 u-pad-btm-60@lrg ]"
+                                    number="02."
+                                    heading="Group Therapy"
+                                    copy="I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font."
+                                />
+                                <Tile
+                                    className="u-bg-theta [ u-pad-top-30 u-pad-top-50@lrg ] [ u-pad-btm-40 u-pad-btm-60@lrg ]"
+                                    number="03."
+                                    heading="Couples Therapy"
+                                    copy="I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font."
+                                />
+                            </Grid>
+                        </Wrapper>
                     </section>
                 </PageGutter>
             </main>

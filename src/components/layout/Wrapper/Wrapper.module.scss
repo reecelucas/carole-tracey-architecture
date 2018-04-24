@@ -7,12 +7,17 @@
 
 // Ensure these settings are configured before the @import of this file.
 $wrapper-max-width: 1020px !default;
+$wrapper-max-width--wide: 1280px !default;
 
 .wrapper {
     display: block;
     margin: 0 auto;
     max-width: $wrapper-max-width;
     padding: 0 rem-calc($base-spacing-unit);
+}
+
+.wide {
+    max-width: $wrapper-max-width--wide;
 }
 
 .fullWidth {

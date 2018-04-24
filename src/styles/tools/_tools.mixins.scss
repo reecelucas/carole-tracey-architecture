@@ -144,6 +144,15 @@
     width: 100%;
 }
 
+/**
+ *  Progressively adds CSS grid, with
+ *  a flexbox fallback.
+ *
+ *  .usage {
+ *      @include gridWithFallback;
+ *  }
+ */
+
 @mixin gridWithFallback {
     display: flex;
     flex-wrap: wrap;
@@ -151,4 +160,31 @@
     @supports (display: grid) {
         display: grid;
     }
+}
+
+/**
+ *  Mixin to force an <img> to behave like a BG image
+ *  with `background-size: cover` applied.
+ *
+ *  .parent {
+ *      position: relative;
+ *  }
+ *
+ *  .childImage {
+ *      @include gridWithFallback;
+ *  }
+ */
+
+@mixin fauxBgImage {
+    height: auto;
+    min: {
+        height: 100%;
+        width: 100%;
+    }
+    max-width: none;
+    position: absolute;
+        top: 50%;
+        left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
 }

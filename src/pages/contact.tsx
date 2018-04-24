@@ -23,7 +23,7 @@ class ContactPage extends React.Component<any, void> {
                     <meta name="description" content="Optional index page description" />
                 </Helmet>
 
-                <section className="[ u-pad-top-50 u-pad-top-120@lrg ] u-pad-btm-60 u-bg-theta">
+                <section className="[ u-pad-top-50 u-pad-top-120@lrg ] [ u-pad-btm-60 u-pad-btm-120@lrg ] u-bg-theta">
                     <Wrapper textCenter>
                         <Spacer size="tiny">
                             <SectionIntro>Contact Me</SectionIntro>

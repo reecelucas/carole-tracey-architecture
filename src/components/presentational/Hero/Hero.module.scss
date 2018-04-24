@@ -44,17 +44,7 @@ $hero-height: 80vh !default;
     position: relative;
 
     img {
-        height: auto;
-        min: {
-            height: 100%;
-            width: 100%;
-        }
-        max-width: none;
-        position: absolute;
-            top: 50%;
-            left: 50%;
-        transform: translate(-50%, -50%);
-        width: auto;
+        @include fauxBgImage;
     }
 
     @include tablet {

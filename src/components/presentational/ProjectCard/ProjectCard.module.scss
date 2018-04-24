@@ -1,0 +1,70 @@
+/* ==========================================================================
+   #PROJECT-CARD
+   ========================================================================== */
+
+@import "../../../styles/settings/settings.global";
+@import "../../../styles/tools/tools.functions";
+@import "../../../styles/tools/tools.mixins";
+
+// Ensure these settings are configured before the @import of this file.
+$product-card-text-width: 50% !default;
+$product-card-image-width: 70% !default;
+
+.container {
+
+    @include tablet {
+        align-items: center;
+        display: flex;
+        padding: {
+            top: rem-calc($base-spacing-unit-huge);
+            bottom: rem-calc($base-spacing-unit-huge);
+        }
+        position: relative;
+
+        &.flipped {
+            flex-direction: row-reverse;
+        }
+    }
+
+}
+
+.textContainer {
+    background-color: $colour-one;
+    padding: {
+        top: rem-calc($base-spacing-unit-large);
+        bottom: rem-calc($base-spacing-unit-large);
+    }
+
+    @include tablet {
+        padding: rem-calc($base-spacing-unit-large) rem-calc($base-spacing-unit);
+        position: relative;
+        width: $product-card-text-width;
+        z-index: $z-index-base;
+    }
+}
+
+.imageContainer {
+
+    img {
+        width: 100%;
+    }
+
+    @include tablet {
+        height: 100%;
+        overflow: hidden;
+        position: absolute;
+            top: 0;
+            right: 0;
+        width: $product-card-image-width;
+
+        .flipped & {
+            right: auto;
+            left: 0;
+        }
+
+        img {
+            @include fauxBgImage;
+        }
+    }
+
+}
