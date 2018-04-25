@@ -116,19 +116,31 @@ class IndexPage extends React.Component<any, void> {
                                 <Tile
                                     className="u-bg-eta [ u-pad-top-30 u-pad-top-50@lrg ] [ u-pad-btm-40 u-pad-btm-60@lrg ]"
                                     number="01."
-                                    heading="Individual Therapy"
+                                    heading={
+                                        <SectionHeading>
+                                            Individual<br />Therapy
+                                        </SectionHeading>
+                                    }
                                     copy="I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font."
                                 />
                                 <Tile
                                     className="u-bg-gamma [ u-pad-top-30 u-pad-top-50@lrg ] [ u-pad-btm-40 u-pad-btm-60@lrg ]"
                                     number="02."
-                                    heading="Group Therapy"
+                                    heading={
+                                        <SectionHeading>
+                                            Group<br />Therapy
+                                        </SectionHeading>
+                                    }
                                     copy="I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font."
                                 />
                                 <Tile
                                     className="u-bg-theta [ u-pad-top-30 u-pad-top-50@lrg ] [ u-pad-btm-40 u-pad-btm-60@lrg ]"
                                     number="03."
-                                    heading="Couples Therapy"
+                                    heading={
+                                        <SectionHeading>
+                                            Couples<br />Therapy
+                                        </SectionHeading>
+                                    }
                                     copy="I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes to the font."
                                 />
                             </Grid>

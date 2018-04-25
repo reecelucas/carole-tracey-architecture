@@ -3,7 +3,7 @@ import * as React from 'react';
 const styles = require('./ProfileImage.module.scss');
 
 interface Props {
-    children: React.ReactNode;
+    children: JSX.Element;
     wide?: boolean;
 }
 
