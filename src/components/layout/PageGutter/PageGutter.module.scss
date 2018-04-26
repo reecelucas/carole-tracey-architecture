@@ -10,10 +10,10 @@ $gutter-size: 5vmax !default;
 .gutter {
 
     @include desktop {
-		padding: {
-			left: $gutter-size;
-			right: $gutter-size;
-		}
+        padding: {
+            left: $gutter-size;
+            right: $gutter-size;
+        }
     }
 
 }

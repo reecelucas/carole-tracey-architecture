@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-const styles = require('./Form.module.scss');
+const styles = require('./Loader.module.scss');
 
-const FormLoader = () => (
+const Loader = () => (
     <div className={styles.loader}>
         <span />
         <span />
@@ -10,4 +10,4 @@ const FormLoader = () => (
     </div>
 );
 
-export default FormLoader;
+export default Loader;

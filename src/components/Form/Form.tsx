@@ -1,8 +1,8 @@
 import * as React from 'react';
 import FormErrorMessage from './FormErrorMessage';
-import FormLoader from './FormLoader';
 import Alert from '../utility/Alert/Alert';
 import Spacer from '../utility/Spacer/Spacer';
+import Loader from '../presentational/Loader/Loader';
 import validateEmail from '../../utilities/validateEmail';
 import encodeFormData from './encodeFormData';
 import { Online, Offline } from '../utility/NetworkStatus';
@@ -320,7 +320,7 @@ class Form extends React.Component<any, any> {
                             type="submit"
                             disabled={!this.canBeSubmitted() && !this.state.validateNatively}
                         >
-                            {!this.state.submitting ? 'Send' : <FormLoader />}
+                            {!this.state.submitting ? 'Send' : <Loader />}
                         </button>
                     </Online>
                 </form>

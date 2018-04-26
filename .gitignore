@@ -20,6 +20,7 @@ sublime-gulp.log
 node_modules
 .cache/
 coverage
+.vscode
 
 # Build directory
 public/

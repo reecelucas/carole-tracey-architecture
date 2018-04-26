@@ -8,7 +8,7 @@ interface Props {
     flipped?: boolean;
     heading: string | JSX.Element;
     text: string;
-    image: React.ReactNode;
+    image: JSX.Element;
 }
 
 const ProjectCard = ({ flipped, heading, text, image }: Props) => (
@@ -19,7 +19,7 @@ const ProjectCard = ({ flipped, heading, text, image }: Props) => (
                 <Text>{text}</Text>
             </Wrapper>
         </div>
-        <div className={styles.imageContainer}>{image}</div>
+        <div className={styles.imageContainer}>[image]</div>
     </div>
 );
 
