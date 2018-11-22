@@ -1,0 +1,25 @@
+<footer id="contact" class="[ o-banner o-banner--contrast o-banner--no-space ] c-footer">
+  <div class="o-wrapper">
+    <div class="c-footer__boxed">
+      <div class="o-wrapper">
+        <h2 class="u-colour-beta">
+          {{ footer.title | preventOrphan | safe }}
+        </h2>
+
+        <p class="c-footer__copy">
+          {{ footer.text | preventOrphan | safe }}
+        </p>
+
+        <a class="c-btn c-btn--invert-hover" href="mailto:carole-tracey@live.com">
+          Say Hello!
+        </a>
+      </div>
+    </div>
+
+    <div class="c-footer__band">
+      <span>
+        &copy; {{ global.year }}, Carole Tracey
+      </span>
+    </div>
+  </div>
+</footer>

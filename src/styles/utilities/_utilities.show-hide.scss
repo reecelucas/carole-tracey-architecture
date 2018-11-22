@@ -13,32 +13,38 @@
  *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
  */
 
-.u-visually-hidden {
-    border: 0;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-    white-space: nowrap; /* [1] */
+.u-a11y-only {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap; /* [1] */
 }
 
-.u-show\@md {
-    display: none !important;
+.u-show-\@sml {
+  display: none !important;
 
-    @include tablet {
-        display: inline-block !important;
-    }
+  @include phablet {
+    display: inline-block !important;
+  }
 }
 
-.u-show\@lrg {
-    display: none !important;
+.u-show-\@med {
+  display: none !important;
 
-    @include desktop {
-        display: inline-block !important;
-    }
+  @include tablet {
+    display: inline-block !important;
+  }
 }
 
+.u-show-\@lrg {
+  display: none !important;
 
+  @include desktop {
+    display: inline-block !important;
+  }
+}

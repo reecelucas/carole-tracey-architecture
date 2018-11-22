@@ -7,23 +7,15 @@
 ehthumbs.db
 Thumbs.db
 
-# Sublime Text files
-*.sublime-project
-*.sublime-workspace
-.sublime-gulp.cache
-sublime-gulp.log
-
 # Map files
 *.map
 
 # Project dependencies
 node_modules
-.cache/
-coverage
-.vscode
+coverage/
 
 # Build directory
-public/
+dist/
 .DS_Store
 yarn-error.log
 yarn.lock

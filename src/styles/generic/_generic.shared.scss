@@ -3,17 +3,17 @@
    ========================================================================== */
 
 /**
- * css-mqpacker (https://github.com/hail2u/node-css-mqpacker)
+ * gulp-combine-mq (https://github.com/frontendfriends/gulp-combine-mq)
  * is used in production builds to combine inline media queries:
  * it uses the 'first win' algorithm to determine the order of
  * combined media queries. This is often undesirable, so we specify
  * the order here.
  */
 
-
 /* stylelint-disable */
-@include tablet {}
-@include desktop {}
+ @include phablet {}
+ @include tablet {}
+ @include desktop {}
 /* stylelint-enable */
 
 /**
@@ -29,3 +29,16 @@ fieldset, figure,
 pre {
 	margin-bottom: $base-spacing-unit;
 }
+
+/**
+ * Hide the `focus` outline style for user's who are
+ * navigating using a mouse.
+ */
+
+ body:not(.user-is-tabbing) a:focus,
+ body:not(.user-is-tabbing) button:focus,
+ body:not(.user-is-tabbing) input:focus,
+ body:not(.user-is-tabbing) select:focus,
+ body:not(.user-is-tabbing) textarea:focus {
+   outline: none;
+ }

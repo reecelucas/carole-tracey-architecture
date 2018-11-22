@@ -15,19 +15,35 @@
  */
 
 html {
+	color: $colour-7;
+	font-family: $font-fallback;
 	font-size: $base-font-size; /* [1] */
 	line-height: $base-line-height; /* [1] */
 	min-height: 100%; /* [2] */
 	overflow-y: scroll; /* [3] */
+
+	&.fonts-loaded {
+		font-family: $font-sans;
+	}
+
+	@include tablet {
+		font-size: $base-font-size--lrg;
+	}
 }
 
+/**
+ * 1. At tablet and above the header is fixed, so we offset the
+ *    body content by the header's height to ensure it doesn't overlap.
+ */
+
 body {
-	background-color: $colour-one;
-	color: $base-text-colour;
-	font-family: $font-fallback-sans;
-	letter-spacing: 0.025em;
+	background-color: $colour-1;
 	overflow-x: hidden;
+	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	@include font-size($base-font-size, $base-line-height);
+
+	@include phablet {
+		padding-top: $header-height; /* [1] */
+	}
 }

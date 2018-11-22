@@ -1,0 +1,55 @@
+/* ==========================================================================
+   #NAV
+   ========================================================================== */
+
+.c-nav {
+  font-size: $font-size-7;
+  font-weight: 700;
+
+  &:before,
+  &:after {
+    background-color: rgba($colour-8, 0.25);
+    content: "";
+    display: block;
+    height: 1px;
+    margin-top: $base-spacing-unit-small;
+    margin-bottom: $base-spacing-unit-small;
+    @include full-width;
+  }
+
+  @include phablet {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+
+    &:before,
+    &:after {
+      content: none;
+    }
+  }
+}
+
+.c-nav__item {
+  letter-spacing: $uppercase-letter-spacing;
+  line-height: 1.4;
+  text-transform: uppercase;
+
+  &:not(:last-child) {
+    margin-right: $base-spacing-unit;
+  }
+
+  &.is-active {
+    position: relative;
+
+    &:after {
+      background-color: $colour-5;
+      content: "";
+      display: inline-block;
+      height: 2px;
+      position: absolute;
+        bottom: 0;
+        left: 0;
+      width: 100%;
+    }
+  }
+}

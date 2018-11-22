@@ -3,5 +3,5 @@
 # “command” is the build command.
 
 [build]
-  publish = "public"
+  publish = "dist"
   command = "npm run build:server"

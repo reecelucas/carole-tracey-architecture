@@ -1,0 +1,34 @@
+<header class="c-header" data-header>
+	<a href="#content" class="c-skip-link">
+		Skip to content
+	</a>
+
+	<div class="o-wrapper c-header__inner">
+		<a class="c-header__logo" href="/">
+			Carole<strong class="u-font-bold">Tracey</strong>
+		</a>
+
+		{% if global.navigation %}
+			<nav class="c-nav" data-nav>
+				{% for item in global.navigation %}
+					<a
+						href="{{ item.href }}"
+						class="
+							{% if item.inline %}
+								c-nav__item
+							{% else %}
+								[ c-btn c-btn--ghost c-btn--small ] u-show-@sml
+							{% endif %}
+						"
+
+						{% if item.skipLink == true %}
+							data-nav-item
+						{% endif %}
+					>
+						{{ item.label }}
+					</a>
+				{% endfor %}
+			</nav>
+		{% endif %}
+	</div>
+</header>

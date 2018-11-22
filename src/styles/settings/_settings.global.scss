@@ -11,51 +11,61 @@
  */
 
 $mq-breakpoints: (
-    tablet: 768px,
-    desktop: 1024px
+  phablet: 640px,
+  tablet: 768px,
+  desktop: 1024px
 ) !default;
 
 
 /* Colour palette
    ========================================================================== */
 
-$colour-one:   #ffffff !default; // WHITE
-$colour-two:   #f9fafa !default; // HAZE
-$colour-three: #f3f3f1 !default; // DESERT STORM
-$colour-four:  #000000 !default; // BLACK
-$colour-five:  #2F2F2E !default; // TUATARA
-$colour-six:   #cff4ec !default; // MINT TULIP
-$colour-seven: #e2f6cd !default; // TUSK
-$colour-eight: #d0f4ec !default; // GRANNY APPLE
-$colour-nine:  #94d6c8 !default; // SINBAD
+$colour-1: #FFFFFF !default; // White
+$colour-2: #FAF7EB !default; // Off-White
+$colour-3: #F2F2F2 !default; // Light Grey
+$colour-4: #CCCCCC !default; // Mid Grey
+$colour-5: #e0bf76 !default; // Pale Gold
+$colour-6: #304166 !default; // Dark Blue
+$colour-7: #445475 !default; // Mid Blue
+$colour-8: #828da3 !default; // Light Blue
 
 
 /* High-level base settings
    ========================================================================== */
 
-$base-font-size:   16px !default;
-$base-line-height: 24px !default;
-$base-text-colour: $colour-five;
+$base-font-size: 16px !default;
+$base-font-size--lrg: 19px !default;
+$base-line-height: 1.6 !default;
+
+
+/* Widths & Heights
+   ========================================================================== */
+
+$base-site-max-width: 1200px !default;
+$header-height: 60px !default;
 
 
 /* Spacing
    ========================================================================== */
 
 /**
- * These are framework variables.
- * You can use them throughout the project,
+ * These are framework variables. You can use them throughout the project,
  * but do not modify or reassign them.
  */
 
-$base-spacing-unit:       24px !default;
-$base-spacing-unit-tiny:  8px  !default;
+$base-spacing-unit: 24px !default;
+$base-spacing-unit-tiny: 8px  !default;
 $base-spacing-unit-small: 16px !default;
 $base-spacing-unit-large: 48px !default;
-$base-spacing-unit-huge:  64px !default;
+$base-spacing-unit-huge: 64px !default;
+
+$uppercase-letter-spacing: 0.025em !default;
 
 
 /* Z-indexes
    ========================================================================== */
 
 $z-index-beneath: -1 !default;
-$z-index-base:     1 !default;
+$z-index-base: 1 !default;
+$z-index-modal: 2 !default;
+$z-index-skip-link: 3 !default;

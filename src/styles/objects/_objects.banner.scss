@@ -1,0 +1,43 @@
+/* ==========================================================================
+   #BANNER
+   ========================================================================== */
+
+$banner-padding: calc(10vh + #{$base-spacing-unit-large});
+$banner-padding--sml: calc(5vh + #{$base-spacing-unit-large});
+$banner-padding--lrg: calc(15vh + #{$base-spacing-unit-large});
+
+.o-banner {
+  padding: $banner-padding--sml 0;
+
+  @include tablet {
+    padding: $banner-padding 0;
+  }
+}
+
+
+/* Size variants
+  ========================================================================== */
+
+.o-banner--spaced-lrg {
+  padding: $banner-padding 0;
+
+  @include tablet {
+    padding: $banner-padding--lrg 0;
+  }
+}
+
+.o-banner--no-space {
+  padding: 0;
+
+  @include tablet {
+    padding: 0;
+  }
+}
+
+
+/* Style variants
+  ========================================================================== */
+
+.o-banner--contrast {
+  @include bg-texture;
+}
