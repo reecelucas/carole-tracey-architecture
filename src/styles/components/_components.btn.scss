@@ -14,7 +14,7 @@
   all: initial; /* [1] */
   background-color: $colour-5;
   border-radius: 3px;
-  color: $colour-6;
+  color: darken($colour-6, 7.5%);
   cursor: pointer; /* [2] */
   display: inline-block; /* [3] */
   font-family: $font-sans;
@@ -37,7 +37,7 @@
   &:active,
   &:focus {
     background-color: $colour-6;
-    color: $colour-5;
+    color: darken($colour-6, 7.5%);
     text-decoration: none; /* [4] */
   }
 
@@ -64,8 +64,8 @@
 
 .c-btn--ghost {
   background-color: transparent;
-  border: 2px solid $colour-8;
-  color: $colour-6;
+  border: 2px solid $colour-4;
+  color: $colour-4;
 
   &:hover,
   &:active,
