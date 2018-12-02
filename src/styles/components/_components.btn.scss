@@ -14,7 +14,7 @@
   all: initial; /* [1] */
   background-color: $colour-5;
   border-radius: 3px;
-  color: darken($colour-6, 7.5%);
+  color: $colour-1;
   cursor: pointer; /* [2] */
   display: inline-block; /* [3] */
   font-family: $font-sans;
@@ -36,8 +36,7 @@
   &:hover,
   &:active,
   &:focus {
-    background-color: $colour-6;
-    color: darken($colour-6, 7.5%);
+    background-color: darken($colour-5, 7.5%);
     text-decoration: none; /* [4] */
   }
 
@@ -60,31 +59,6 @@
   padding-right: $base-spacing-unit-small;
   padding-bottom: $base-spacing-unit-small - 8px;
   padding-left: $base-spacing-unit-small;
-}
-
-.c-btn--ghost {
-  background-color: transparent;
-  border: 2px solid $colour-4;
-  color: $colour-4;
-
-  &:hover,
-  &:active,
-  &:focus {
-    background-color: $colour-6;
-    border-color: $colour-6;
-    color: $colour-2;
-  }
-}
-
-.c-btn--invert-hover {
-
-  &:hover,
-  &:active,
-  &:focus {
-    background-color: $colour-1;
-    color: $colour-6;
-  }
-
 }
 
 /**
