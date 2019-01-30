@@ -15,7 +15,7 @@
  *  Bg-texture...........Mixin to provide the sites' signature contrasting background and texture.
  *  Cover................Mixin to stretch an element across its parentNode using absolute positioning.
  *  Full-width...........Mixin to force an element to full viewport width.
- *  Progressive-grid.....Mixin to progressively apply grid layout, falls back to flexbox.
+ *  Uppercase............Mixin to apply uppercase styling to text.
  *
  *
  * 	GENERIC:
@@ -74,7 +74,7 @@
 @import "tools/tools.bg-texture";
 @import "tools/tools.cover";
 @import "tools/tools.full-width";
-@import "tools/tools.progressive-grid";
+@import "tools/tools.uppercase";
 
 
 @import "generic/generic.normalize";

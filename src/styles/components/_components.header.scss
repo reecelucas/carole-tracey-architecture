@@ -8,7 +8,7 @@
   @include phablet {
     align-items: center;
     background-color: $colour-1;
-    box-shadow: 0 2px 3px 0 rgba($colour-8, 0.125);
+    box-shadow: 0 2px 3px 0 rgba($colour-4, 0.1);
     display: flex;
     height: $header-height;
     position: fixed;
@@ -39,9 +39,8 @@
 .c-header__logo {
   font-family: $font-sans;
   font-size: $font-size-6;
-  letter-spacing: $uppercase-letter-spacing;
   margin-bottom: 0;
-  text-transform: uppercase;
+  @include uppercase;
 
   .fonts-loaded & {
     font-family: $font-sans;

@@ -5,12 +5,16 @@ import {
 
 const loadedClass = 'fonts-loaded';
 
-const addLoadedClass = () => {
-  document.documentElement.className += ` ${loadedClass}`;
-};
-
 if (fetchFromLocalStorage(loadedClass)) {
-  addLoadedClass();
+  /**
+   * We use a flag in localStorage to infer whether the webfonts are cached.
+   * This is obviously not bulletproof because if the font is never cached,
+   * or the user clears their cache (but not their local storage), this check
+   * will still pass and the `fonts-loaded` class will be applied before the webfont
+   * is downloaded. Unfortunatelty, until the Cache API has better support there isn't
+   * a lot that can be done about this.
+   */
+  document.documentElement.classList.add(loadedClass);
 } else if ('fonts' in document) {
   Promise.all([
     document.fonts.load("400 1em 'Nunito'"),
@@ -18,7 +22,7 @@ if (fetchFromLocalStorage(loadedClass)) {
     document.fonts.load("400 1em 'EB Garamond'")
   ])
     .then(() => {
-      addLoadedClass();
+      document.documentElement.classList.add(loadedClass);
       saveToLocalStorage({
         key: loadedClass,
         value: true,

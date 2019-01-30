@@ -12,7 +12,7 @@ Promise.all([
   fontC.load(null, 5000)
 ])
   .then(() => {
-    document.documentElement.className += ` ${loadedClass}`;
+    document.documentElement.classList.add(loadedClass);
     saveToLocalStorage({
       key: loadedClass,
       value: true,

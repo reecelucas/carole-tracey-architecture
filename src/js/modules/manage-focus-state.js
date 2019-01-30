@@ -4,8 +4,8 @@
  * using the keyboard to navigate, so we preserve the default
  * focus outline styling.
  */
-const onFirstTabPress = event => {
-  if (event.keyCode === 9) {
+const onFirstTabPress = ({ key }) => {
+  if (key === 'Tab') {
     document.body.classList.add('user-is-tabbing');
     window.removeEventListener('keydown', onFirstTabPress);
   }
