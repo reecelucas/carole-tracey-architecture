@@ -3,8 +3,7 @@
     "eslint:recommended",
     "plugin:react/recommended",
     "prettier",
-    "prettier/react",
-    "react-hooks"
+    "prettier/react"
   ],
   "plugins": ["react", "prettier", "import", "react-hooks"],
   "env": {
