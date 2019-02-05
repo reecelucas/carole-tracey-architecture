@@ -10,7 +10,11 @@ const propTypes = {
 const CarouselControls = ({ onClick, slideIndexes }) => {
   return slideIndexes.map(i => {
     return (
-      <Button onClick={() => onClick(i)} aria-label={`Navigate to slide ${i}`}>
+      <Button
+        key={i}
+        onClick={() => onClick(i)}
+        aria-label={`Navigate to slide ${i}`}
+      >
         Click me!
       </Button>
     );
