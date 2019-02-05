@@ -30,7 +30,7 @@
   "scripts": {
     "clean": "rimraf public/*",
     "serve": "gatsby serve",
-    "build": "yarn clean && gatsby build",
+    "build": "rimraf .cache && yarn clean && gatsby build",
     "develop": "gatsby develop",
     "start": "npm run develop",
     "format": "prettier --write \"src/**/*.js\"",

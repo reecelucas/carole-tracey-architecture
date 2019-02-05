@@ -8,11 +8,11 @@ module.exports = {
     description: 'A project skeleton for building static PWAs using Gatsby JS',
     webfonts: [
       {
-        name: 'Open Sans',
-        path: '/fonts/open-sans-regular.woff2',
+        name: 'Nunito Sans',
+        path: '/fonts/nunito-sans-regular.woff2',
         urls: [
-          "url(/fonts/open-sans-regular.woff2) format('woff2')",
-          "url(/fonts/open-sans-regular.woff) format('woff')"
+          "url(/fonts/nunito-sans-regular.woff2) format('woff2')",
+          "url(/fonts/nunito-sans-regular.woff) format('woff')"
         ],
         meta: { weight: '400' }
       }

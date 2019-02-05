@@ -4,6 +4,7 @@ import { COLOURS, Z_INDEXES } from '../../styles/theme';
 export const ICON_SIZE = '3rem';
 export const CONNECTOR_STYLES = css`
   position: relative;
+  z-index: ${Z_INDEXES.base};
 
   &:after {
     background-color: ${COLOURS.teal4};

@@ -69,7 +69,9 @@ export const FONT_SIZES = {
 
 export const FONT_FAMILIES = {
   fallback: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
-  primary: '"Open Sans", sans-serif'
+  primary: '"Nunito Sans", sans-serif',
+  serif:
+    'Baskerville, "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif'
 };
 
 export const Z_INDEXES = {

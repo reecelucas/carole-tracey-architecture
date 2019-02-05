@@ -6,6 +6,11 @@ import preventOrphanedWord from '../helpers/preventOrphanedWord';
 import Layout from '../components/Layout/Layout';
 import Banner from '../components/Banner/Banner';
 import { Grid, GridItem } from '../components/Grid';
+import {
+  Carousel,
+  CarouselSlide,
+  CarouselControls
+} from '../components/Carousel';
 import Wrapper from '../components/Wrapper/Wrapper';
 import SkipLink from '../components/SkipLink/SkipLink';
 
@@ -15,8 +20,8 @@ import {
   AccordionItemTitle,
   AccordionItemBody
 } from '../components/Accordion';
-import SectionHeading from '../components/SectionHeading/SectionHeading';
 import Card from '../components/Card/Card';
+import Quote from '../components/Quote/Quote';
 import Footer from '../components/Footer/Footer';
 
 const propTypes = {
@@ -26,7 +31,8 @@ const propTypes = {
 const IndexPage = ({ data }) => {
   const {
     allPrismicServiceCard: services,
-    allPrismicProcessBlock: processBlocks
+    allPrismicProcessBlock: processBlocks,
+    allPrismicTestimonial: testimonials
   } = data;
 
   return (
@@ -36,7 +42,7 @@ const IndexPage = ({ data }) => {
       <main id="content">
         <Banner as="section" contrast>
           <Wrapper>
-            <SectionHeading>Services</SectionHeading>
+            <h1>Services</h1>
 
             <Grid columns={3} from="sm">
               {services.edges.map(({ node }) => {
@@ -58,7 +64,43 @@ const IndexPage = ({ data }) => {
 
         <Banner as="section">
           <Wrapper>
-            <SectionHeading>Process</SectionHeading>
+            <Carousel>
+              {({ navigateToSlide, slideIndexes }) => (
+                <React.Fragment>
+                  <ul>
+                    {testimonials.edges.map(({ node }, i) => {
+                      const { data, id } = node;
+
+                      return (
+                        <CarouselSlide key={id} index={i} active={i === 0}>
+                          {({ isActive }) =>
+                            isActive && (
+                              <li>
+                                <Quote
+                                  quote={preventOrphanedWord(data.quote.text)}
+                                  attribution={data.attribution.text}
+                                />
+                              </li>
+                            )
+                          }
+                        </CarouselSlide>
+                      );
+                    })}
+                  </ul>
+
+                  <CarouselControls
+                    onClick={navigateToSlide}
+                    slideIndexes={slideIndexes}
+                  />
+                </React.Fragment>
+              )}
+            </Carousel>
+          </Wrapper>
+        </Banner>
+
+        <Banner as="section" contrast>
+          <Wrapper>
+            <h1>Process</h1>
 
             <Accordion>
               {processBlocks.edges.map(({ node }, i) => {
@@ -70,7 +112,7 @@ const IndexPage = ({ data }) => {
                       {data.title.text}
                     </AccordionItemTitle>
                     <AccordionItemBody>
-                      <p>{data.description.text}</p>
+                      <p>{preventOrphanedWord(data.description.text)}</p>
                     </AccordionItemBody>
                   </AccordionItem>
                 );
@@ -127,15 +169,18 @@ export const query = graphql`
         }
       }
     }
-    allPrismicTestimonial {
+    allPrismicTestimonial(
+      sort: { fields: [data___order_position], order: ASC }
+    ) {
       edges {
         node {
           id
           data {
+            order_position
             quote {
               text
             }
-            name {
+            attribution {
               text
             }
           }

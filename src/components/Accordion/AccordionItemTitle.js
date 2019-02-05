@@ -30,9 +30,9 @@ const TitleButton = styled.button`
 const TitleIcon = styled.span`
   align-items: center;
   background-color: ${props =>
-    props.expanded ? `${COLOURS.teal7}` : `${COLOURS.white}`};
+    props.expanded ? `${COLOURS.teal8}` : `${COLOURS.white}`};
   border: 2px solid
-    ${props => (props.expanded ? `${COLOURS.teal7}` : `${COLOURS.teal4}`)};
+    ${props => (props.expanded ? `${COLOURS.teal8}` : `${COLOURS.teal4}`)};
   border-radius: 50%;
   color: ${props => (props.expanded ? `${COLOURS.white}` : `${COLOURS.black}`)};
   display: inline-flex;
@@ -40,6 +40,7 @@ const TitleIcon = styled.span`
   flex-shrink: 0;
   height: ${ICON_SIZE};
   justify-content: center;
+  line-height: 1;
   margin-right: ${SPACING.base};
   transition: all 0.2s ease;
   width: ${ICON_SIZE};
