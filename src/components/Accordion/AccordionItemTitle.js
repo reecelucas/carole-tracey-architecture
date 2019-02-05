@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import AccordionContext from './AccordionContext';
 import styled from '@emotion/styled';
 import { ICON_SIZE, CONNECTOR_STYLES } from './constants';
-import { SPACING, COLOURS, TYPE_SCALE } from '../../styles/theme';
+import { SPACING, COLOURS, FONT_SIZES } from '../../styles/theme';
 
 const propTypes = {
   children: PropTypes.any.isRequired,
@@ -11,6 +11,7 @@ const propTypes = {
 };
 
 const Title = styled.h2`
+  font-size: ${FONT_SIZES[4]};
   margin-bottom: 0;
   padding-bottom: ${props => (props.expanded ? '0' : `${SPACING.base}`)};
 
@@ -22,8 +23,6 @@ const Title = styled.h2`
 const TitleButton = styled.button`
   align-items: center;
   display: flex;
-  font-size: ${TYPE_SCALE[20]};
-  font-weight: 600;
   line-height: 1.4;
   width: 100%;
 `;
@@ -31,12 +30,13 @@ const TitleButton = styled.button`
 const TitleIcon = styled.span`
   align-items: center;
   background-color: ${props =>
-    props.expanded ? `${COLOURS.teal8}` : `${COLOURS.white}`};
+    props.expanded ? `${COLOURS.teal7}` : `${COLOURS.white}`};
   border: 2px solid
-    ${props => (props.expanded ? `${COLOURS.teal8}` : `${COLOURS.teal4}`)};
+    ${props => (props.expanded ? `${COLOURS.teal7}` : `${COLOURS.teal4}`)};
   border-radius: 50%;
   color: ${props => (props.expanded ? `${COLOURS.white}` : `${COLOURS.black}`)};
   display: inline-flex;
+  font-size: ${FONT_SIZES[5]};
   flex-shrink: 0;
   height: ${ICON_SIZE};
   justify-content: center;

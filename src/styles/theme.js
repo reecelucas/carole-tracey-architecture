@@ -8,7 +8,7 @@ export const BREAKPOINTS = {
 export const COLOURS = {
   base: '#00b443',
   white: '#ffffff',
-  black: '#344239',
+  black: '#2b2b2b',
   gray0: '#f8f9f9',
   gray1: '#ebeeec',
   gray2: '#dde1df',
@@ -54,17 +54,17 @@ export const WIDTHS = {
   siteMax: '1200px'
 };
 
-// Taken from: https://material.io/design/typography/the-type-system.html#
-export const TYPE_SCALE = {
-  10: '10px',
-  12: '12px',
-  14: '14px',
-  16: '16px',
-  20: '20px',
-  24: '24px',
-  34: '34px',
-  48: '48px',
-  60: '60px'
+// Major second scale: https://type-scale.com/
+export const FONT_SIZES = {
+  1: '1.802rem',
+  2: '1.602rem',
+  3: '1.424rem',
+  4: '1.266rem',
+  5: '1.125rem',
+  6: '1rem',
+  7: '0.889rem',
+  8: '0.79rem',
+  9: '0.702rem'
 };
 
 export const FONT_FAMILIES = {

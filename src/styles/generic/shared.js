@@ -1,5 +1,5 @@
 import { css } from '@emotion/core';
-import * as theme from '../theme';
+import { SPACING } from '../theme';
 
 export default css`
   h1,
@@ -15,6 +15,6 @@ export default css`
   fieldset,
   figure,
   pre {
-    margin-bottom: ${theme.SPACING.base};
+    margin-bottom: ${SPACING.base};
   }
 `;

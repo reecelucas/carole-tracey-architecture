@@ -15,15 +15,6 @@ module.exports = {
           "url(/fonts/open-sans-regular.woff) format('woff')"
         ],
         meta: { weight: '400' }
-      },
-      {
-        name: 'Open Sans',
-        path: '/fonts/open-sans-700.woff2',
-        urls: [
-          "url(/fonts/open-sans-700.woff2) format('woff2')",
-          "url(/fonts/open-sans-700.woff) format('woff')"
-        ],
-        meta: { weight: '700' }
       }
     ],
     webfontLoadedClass: 'fonts-loaded'

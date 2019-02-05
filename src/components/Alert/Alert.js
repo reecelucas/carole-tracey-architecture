@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
-import { SPACING, TYPE_SCALE } from '../../styles/theme';
+import { SPACING, FONT_SIZES } from '../../styles/theme';
 
 import successIcon from '../../images/alert-icon--success.svg';
 import warningIcon from '../../images/alert-icon--warning.svg';
@@ -45,7 +45,7 @@ const Container = styled.div`
   border-radius: 2px;
   color: ${({ theme }) => themes[theme].text};
   display: flex;
-  font-size: ${TYPE_SCALE[16]};
+  font-size: ${FONT_SIZES[6]};
   padding: ${SPACING.small};
 
   &:before {
@@ -66,7 +66,7 @@ const Container = styled.div`
 const CloseButton = styled.button`
   align-self: center;
   color: currentColor;
-  font-size: ${TYPE_SCALE[16]};
+  font-size: ${FONT_SIZES[6]};
   font-weight: 600;
   margin-left: auto;
   text-transform: uppercase;

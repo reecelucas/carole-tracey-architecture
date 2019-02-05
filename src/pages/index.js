@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
+import preventOrphanedWord from '../helpers/preventOrphanedWord';
 
 import Layout from '../components/Layout/Layout';
+import Banner from '../components/Banner/Banner';
+import { Grid, GridItem } from '../components/Grid';
 import Wrapper from '../components/Wrapper/Wrapper';
 import SkipLink from '../components/SkipLink/SkipLink';
 
@@ -12,6 +15,8 @@ import {
   AccordionItemTitle,
   AccordionItemBody
 } from '../components/Accordion';
+import SectionHeading from '../components/SectionHeading/SectionHeading';
+import Card from '../components/Card/Card';
 import Footer from '../components/Footer/Footer';
 
 const propTypes = {
@@ -19,71 +24,60 @@ const propTypes = {
 };
 
 const IndexPage = ({ data }) => {
-  const { allPrismicProjectCard: projects } = data;
+  const {
+    allPrismicServiceCard: services,
+    allPrismicProcessBlock: processBlocks
+  } = data;
 
   return (
     <Layout>
       <SkipLink />
 
       <main id="content">
-        <Wrapper>
-          <section>
-            <h1>Process</h1>
+        <Banner as="section" contrast>
+          <Wrapper>
+            <SectionHeading>Services</SectionHeading>
 
-            {projects.edges.map(({ node }) => {
-              const { data } = node;
+            <Grid columns={3} from="sm">
+              {services.edges.map(({ node }) => {
+                const { data, id } = node;
 
-              return (
-                <div key={data.title.text}>
-                  <img src={data.image.url} alt={data.image.alt} />
-                  <h2>{data.title.text}</h2>
-                  <p>{data.description.text}</p>
-                </div>
-              );
-            })}
+                return (
+                  <GridItem key={id}>
+                    <Card
+                      thumbnail={data.image}
+                      title={data.title.text}
+                      description={preventOrphanedWord(data.description.text)}
+                    />
+                  </GridItem>
+                );
+              })}
+            </Grid>
+          </Wrapper>
+        </Banner>
+
+        <Banner as="section">
+          <Wrapper>
+            <SectionHeading>Process</SectionHeading>
 
             <Accordion>
-              <AccordionItem expanded>
-                <AccordionItemTitle index={1}>Title One</AccordionItemTitle>
-                <AccordionItemBody>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Enim inventore velit sint quod blanditiis, sapiente
-                    voluptatibus, molestiae, dolore ipsam labore quaerat
-                    veritatis fuga libero! Explicabo aperiam sapiente optio
-                    consectetur placeat.
-                  </p>
-                </AccordionItemBody>
-              </AccordionItem>
+              {processBlocks.edges.map(({ node }, i) => {
+                const { data, id } = node;
 
-              <AccordionItem>
-                <AccordionItemTitle index={2}>Title Two</AccordionItemTitle>
-                <AccordionItemBody>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Enim inventore velit sint quod blanditiis, sapiente
-                    voluptatibus, molestiae, dolore ipsam labore quaerat
-                    veritatis fuga libero! Explicabo aperiam sapiente optio
-                    consectetur placeat.
-                  </p>
-                </AccordionItemBody>
-              </AccordionItem>
-
-              <AccordionItem>
-                <AccordionItemTitle index={3}>Title Two</AccordionItemTitle>
-                <AccordionItemBody>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Enim inventore velit sint quod blanditiis, sapiente
-                    voluptatibus, molestiae, dolore ipsam labore quaerat
-                    veritatis fuga libero! Explicabo aperiam sapiente optio
-                    consectetur placeat.
-                  </p>
-                </AccordionItemBody>
-              </AccordionItem>
+                return (
+                  <AccordionItem key={id} expanded={i === 0}>
+                    <AccordionItemTitle index={data.order_position}>
+                      {data.title.text}
+                    </AccordionItemTitle>
+                    <AccordionItemBody>
+                      <p>{data.description.text}</p>
+                    </AccordionItemBody>
+                  </AccordionItem>
+                );
+              })}
             </Accordion>
-          </section>
-        </Wrapper>
+          </Wrapper>
+        </Banner>
       </main>
 
       <Footer />
@@ -93,10 +87,14 @@ const IndexPage = ({ data }) => {
 
 export const query = graphql`
   query IndexPageQuery {
-    allPrismicProjectCard {
+    allPrismicServiceCard(
+      sort: { fields: [data___order_position], order: ASC }
+    ) {
       edges {
         node {
+          id
           data {
+            order_position
             image {
               url
               alt
@@ -111,9 +109,28 @@ export const query = graphql`
         }
       }
     }
+    allPrismicProcessBlock(
+      sort: { fields: [data___order_position], order: ASC }
+    ) {
+      edges {
+        node {
+          id
+          data {
+            order_position
+            title {
+              text
+            }
+            description {
+              text
+            }
+          }
+        }
+      }
+    }
     allPrismicTestimonial {
       edges {
         node {
+          id
           data {
             quote {
               text

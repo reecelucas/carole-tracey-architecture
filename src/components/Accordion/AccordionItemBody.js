@@ -12,7 +12,7 @@ const propTypes = {
 
 const Body = styled.div`
   margin-bottom: 0;
-  max-width: 70ch;
+  max-width: 75ch;
   padding-left: calc(${ICON_SIZE} + ${SPACING.base});
   padding-bottom: ${SPACING.base};
   position: relative;

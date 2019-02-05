@@ -1,24 +1,29 @@
 import { css } from '@emotion/core';
-import * as theme from '../theme';
+import { rgba } from 'polished';
+import { FONT_FAMILIES, COLOURS, BREAKPOINTS } from '../theme';
 
 export default css`
   html {
-    color: ${theme.COLOURS.black};
-    font-family: ${theme.FONT_FAMILIES.fallback};
-    font-size: ${theme.TYPE_SCALE[16]};
+    color: ${rgba(COLOURS.black, 0.8)};
+    font-family: ${FONT_FAMILIES.fallback};
+    font-size: 16px;
     line-height: 1.6;
     letter-spacing: 0.025em;
     min-height: 100%;
     overflow-y: scroll;
 
     &.fonts-loaded {
-      font-family: ${theme.FONT_FAMILIES.primary};
+      font-family: ${FONT_FAMILIES.primary};
       letter-spacing: initial;
+    }
+
+    @media (min-width: ${BREAKPOINTS.lg}) {
+      font-size: 19px;
     }
   }
 
   body {
-    background-color: ${theme.COLOURS.white};
+    background-color: ${COLOURS.white};
     overflow-x: hidden;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;

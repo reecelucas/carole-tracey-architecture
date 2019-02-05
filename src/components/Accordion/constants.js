@@ -1,7 +1,7 @@
 import { css } from '@emotion/core';
 import { COLOURS, Z_INDEXES } from '../../styles/theme';
 
-export const ICON_SIZE = '4rem';
+export const ICON_SIZE = '3rem';
 export const CONNECTOR_STYLES = css`
   position: relative;
 

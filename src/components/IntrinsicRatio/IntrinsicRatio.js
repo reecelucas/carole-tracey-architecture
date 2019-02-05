@@ -31,11 +31,11 @@ const Container = styled.div`
   }
 
   .o-ratio__content,
-  .o-ratio > video,
-  .o-ratio > img,
-  .o-ratio > iframe,
-  .o-ratio > embed,
-  .o-ratio > object {
+  > video,
+  > img,
+  > iframe,
+  > embed,
+  > object {
     bottom: 0;
     height: 100%;
     left: 0;
