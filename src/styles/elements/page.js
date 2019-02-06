@@ -1,5 +1,6 @@
 import { css } from '@emotion/core';
 import { rgba } from 'polished';
+import { HEADER_HEIGHT } from '../../constants/global';
 import { FONT_FAMILIES, COLOURS, BREAKPOINTS } from '../theme';
 
 export default css`
@@ -28,5 +29,9 @@ export default css`
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    @media (min-width: ${BREAKPOINTS.sm}) {
+      padding-top: ${HEADER_HEIGHT}px;
+    }
   }
 `;

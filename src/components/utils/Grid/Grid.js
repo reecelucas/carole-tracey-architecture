@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import { BREAKPOINTS, SPACING } from '../../styles/theme';
+import { BREAKPOINTS, SPACING } from '../../../styles/theme';
 
 const validCSSUnit =
   'px' || 'rem' || 'em' || '%' || 'vw' || 'vh' || 'vmin' || 'vmax' || 'ch';

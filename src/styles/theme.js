@@ -76,6 +76,7 @@ export const FONT_FAMILIES = {
 export const Z_INDEXES = {
   beneath: -1,
   base: 1,
-  modal: 2,
-  skipLink: 3
+  header: 2,
+  modal: 3,
+  skipLink: 4
 };

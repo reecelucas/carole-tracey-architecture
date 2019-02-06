@@ -1,12 +1,20 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { COLOURS, SPACING, FONT_SIZES, Z_INDEXES } from '../../styles/theme';
+import {
+  COLOURS,
+  SPACING,
+  FONT_FAMILIES,
+  FONT_SIZES,
+  Z_INDEXES
+} from '../../styles/theme';
 
 const borderRadius = '8px';
 
 const StyledLink = styled.a`
   clip: rect(1px, 1px, 1px, 1px);
+  font-family: ${FONT_FAMILIES.fallback};
   font-size: ${FONT_SIZES[6]};
+  font-weight: 600;
   height: 1px;
   overflow: hidden;
   outline: none !important;

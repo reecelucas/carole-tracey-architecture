@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import { COLOURS } from '../../styles/theme';
+import { COLOURS } from '../../../styles/theme';
 
 const propTypes = {
   children: PropTypes.any.isRequired,

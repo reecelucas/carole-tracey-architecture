@@ -1,7 +1,7 @@
 import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 
-import Wrapper from '../Wrapper/Wrapper';
+import Wrapper from '../utils/Wrapper/Wrapper';
 
 const Footer = () => (
   // The result of the graphql `query` is passed into the `render` prop as `data`

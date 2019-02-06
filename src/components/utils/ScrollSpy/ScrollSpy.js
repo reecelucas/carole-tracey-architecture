@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import debounce from '../../helpers/debounce';
+import debounce from '../../../helpers/debounce';
 
 const propTypes = {
   children: PropTypes.func.isRequired,
@@ -11,6 +11,7 @@ const propTypes = {
       PropTypes.shape({ current: PropTypes.instanceOf(Element) })
     ])
   ).isRequired,
+  offset: PropTypes.number,
   disable: PropTypes.bool
 };
 
@@ -18,13 +19,16 @@ let scrollTicking = false;
 let scrollY = null;
 let cache = [];
 
-const ScrollSpy = ({ spyOn, disable, children }) => {
+const ScrollSpy = ({ spyOn, offset, disable, children }) => {
   const [currentId, setCurrentId] = useState('');
 
   useEffect(() => {
     scrollY = window.pageYOffset;
     cacheElements(spyOn);
     bindEventHandlers();
+
+    // Set initial currentId
+    updateCurrentId();
 
     return () => {
       unbindEventHandlers();
@@ -49,7 +53,9 @@ const ScrollSpy = ({ spyOn, disable, children }) => {
       if (!element) return;
 
       const elementHeight = element.offsetHeight;
-      const elementTop = element.offsetTop;
+      const elementTop = offset
+        ? element.offsetTop - offset
+        : element.offsetTop;
       const cacheEntry = {
         elementId: element.id || '',
         elementTop,

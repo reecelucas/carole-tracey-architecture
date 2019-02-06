@@ -4,23 +4,16 @@ import { graphql } from 'gatsby';
 import preventOrphanedWord from '../helpers/preventOrphanedWord';
 
 import Layout from '../components/Layout/Layout';
-import Banner from '../components/Banner/Banner';
-import SkipLink from '../components/SkipLink/SkipLink';
-import Wrapper from '../components/Wrapper/Wrapper';
-import { Grid, GridItem } from '../components/Grid';
-import ScrollSpy from '../components/ScrollSpy/ScrollSpy';
+import Wrapper from '../components/utils/Wrapper/Wrapper';
+import { Grid, GridItem } from '../components/utils/Grid';
 
-import {
-  Accordion,
-  AccordionItem,
-  AccordionItemTitle,
-  AccordionItemBody
-} from '../components/Accordion';
+import Banner from '../components/Banner/Banner';
+import Header from '../components/Header/Header';
+import Nav from '../components/Nav/Nav';
 import Card from '../components/Card/Card';
 import TestimonialSlider from '../components/TestimonialSlider/TestimonialSlider';
+import VerticalSteps from '../components/VerticalSteps/VerticalSteps';
 import Footer from '../components/Footer/Footer';
-
-import Anchor from '../components/Anchor/Anchor';
 
 const propTypes = {
   data: PropTypes.object.isRequired
@@ -39,29 +32,9 @@ const IndexPage = ({ data }) => {
 
   return (
     <Layout>
-      <SkipLink />
-
-      <ScrollSpy spyOn={[sectionOne, sectionTwo, sectionThree]}>
-        {({ currentId }) => {
-          console.log({ currentId });
-
-          return (
-            <nav
-              style={{ position: 'fixed', top: '0', left: '0', width: '100%' }}
-            >
-              <Anchor id="#services" href="#services">
-                Services
-              </Anchor>
-              <Anchor id="#process" href="#process">
-                Process
-              </Anchor>
-              <Anchor id="#testimonials" href="#testimonials">
-                Testimonials
-              </Anchor>
-            </nav>
-          );
-        }}
-      </ScrollSpy>
+      <Header>
+        <Nav spyOn={[sectionOne, sectionTwo, sectionThree]} />
+      </Header>
 
       <main id="content">
         <Banner as="section" id="services" ref={sectionOne} contrast>
@@ -95,23 +68,7 @@ const IndexPage = ({ data }) => {
         <Banner id="process" as="section" ref={sectionThree} contrast>
           <Wrapper>
             <h1>Process</h1>
-
-            <Accordion>
-              {processItems.edges.map(({ node }, i) => {
-                const { data, id } = node;
-
-                return (
-                  <AccordionItem key={id} expanded={i === 0}>
-                    <AccordionItemTitle index={data.order_position}>
-                      {data.title.text}
-                    </AccordionItemTitle>
-                    <AccordionItemBody>
-                      <p>{preventOrphanedWord(data.description.text)}</p>
-                    </AccordionItemBody>
-                  </AccordionItem>
-                );
-              })}
-            </Accordion>
+            <VerticalSteps items={processItems} />
           </Wrapper>
         </Banner>
       </main>

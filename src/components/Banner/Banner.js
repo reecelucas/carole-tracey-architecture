@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import { SPACING, COLOURS } from '../../styles/theme';
+import { COLOURS, SPACING } from '../../styles/theme';
 
 const propTypes = {
   children: PropTypes.any.isRequired,
   contrast: PropTypes.bool,
-  size: PropTypes.oneOf(['sm', 'md', 'lg']),
-  as: PropTypes.string
+  size: PropTypes.oneOf(['sm', 'md', 'lg'])
 };
 
 const sizePaddingMap = {
@@ -25,10 +24,10 @@ const StyledBanner = styled.div`
 `;
 
 const Banner = React.forwardRef(function Banner(props, ref) {
-  const { children, contrast, size, as, ...rest } = props;
+  const { children, contrast, size, ...rest } = props;
 
   return (
-    <StyledBanner contrast={contrast} size={size} as={as} ref={ref} {...rest}>
+    <StyledBanner contrast={contrast} size={size} ref={ref} {...rest}>
       {children}
     </StyledBanner>
   );

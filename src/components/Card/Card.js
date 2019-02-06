@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import IntrinsicRatio from '../IntrinsicRatio/IntrinsicRatio';
-import Image from '../Image/Image';
-import { COLOURS, SPACING, FONT_SIZES } from '../../styles/theme';
+import IntrinsicRatio from '../utils/IntrinsicRatio/IntrinsicRatio';
+import Image from '../utils/Image/Image';
+import { COLOURS, FONT_SIZES, SPACING } from '../../styles/theme';
 
 const propTypes = {
   thumbnail: PropTypes.exact({

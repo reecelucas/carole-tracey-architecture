@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import { SPACING, WIDTHS } from '../../styles/theme';
+import { SPACING, WIDTHS } from '../../../styles/theme';
 
 const propTypes = {
   children: PropTypes.any.isRequired,
@@ -13,6 +13,7 @@ const StyledWrapper = styled.div`
   margin: 0 auto;
   max-width: ${WIDTHS.siteMax};
   padding: 0 ${SPACING.base};
+  width: 100%;
 `;
 
 const Wrapper = ({ children, as, ...rest }) => (

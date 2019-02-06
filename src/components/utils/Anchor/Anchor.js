@@ -1,10 +1,8 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
-import getAttributeProps from '../../helpers/getAttributeProps';
-import { css } from '@emotion/core';
-import { captureInteraction } from '../../error-handling/error-handling';
-import { COLOURS } from '../../styles/theme';
+import getAttributeProps from '../../../helpers/getAttributeProps';
+import { captureInteraction } from '../../../error-handling/error-handling';
 
 const propTypes = {
   children: PropTypes.any.isRequired,
@@ -15,27 +13,9 @@ const propTypes = {
   newTab: PropTypes.bool
 };
 
-const styles = css`
-  border-bottom: 1px solid ${COLOURS.teal8};
-  box-shadow: inset 0 -2px 0 0 ${COLOURS.teal8};
-  hyphens: auto;
-  overflow-wrap: break-word;
-  position: relative;
-  transition: all 0.1s ease;
-  word-wrap: break-word;
-  word-break: break-word;
-
-  &:hover,
-  &:active,
-  &:focus {
-    background-color: ${COLOURS.teal8};
-    color: ${COLOURS.white};
-  }
-`;
-
 const Anchor = ({ children, href, id, title, className, newTab, ...rest }) => {
   const sharedProps = {
-    css: [styles, className],
+    className,
     title: title || null,
     ...getAttributeProps(rest)
   };

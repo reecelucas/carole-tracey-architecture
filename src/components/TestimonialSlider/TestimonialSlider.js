@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import VisuallyHidden from '@reach/visually-hidden';
 import Button from '../Button/Button';
-import { Carousel, CarouselSlide } from '../Carousel';
+import { Carousel, CarouselSlide } from '../utils/Carousel';
 import Quote from '../Quote/Quote';
 import preventOrphanedWord from '../../helpers/preventOrphanedWord';
 import { COLOURS, SPACING } from '../../styles/theme';
