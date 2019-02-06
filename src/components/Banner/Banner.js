@@ -24,13 +24,15 @@ const StyledBanner = styled.div`
   padding: ${props => getPadding(props)} 0;
 `;
 
-const Banner = ({ children, contrast, size, as }) => {
+const Banner = React.forwardRef(function Banner(props, ref) {
+  const { children, contrast, size, as, ...rest } = props;
+
   return (
-    <StyledBanner contrast={contrast} size={size} as={as}>
+    <StyledBanner contrast={contrast} size={size} as={as} ref={ref} {...rest}>
       {children}
     </StyledBanner>
   );
-};
+});
 
 Banner.propTypes = propTypes;
 

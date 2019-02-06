@@ -40,8 +40,16 @@ const Anchor = ({ children, href, id, title, className, newTab, ...rest }) => {
     ...getAttributeProps(rest)
   };
 
+  // Any internal link will start with one slash
+  const internal = /^\/(?!\/)/.test(href);
+
   const renderExternalLink = () => (
-    <a href={href} target="_blank" rel="noopener noreferrer" {...sharedProps}>
+    <a
+      href={href}
+      target={newTab ? '_blank' : null}
+      rel={newTab ? 'noopener noreferrer' : null}
+      {...sharedProps}
+    >
       {children}
     </a>
   );
@@ -58,7 +66,7 @@ const Anchor = ({ children, href, id, title, className, newTab, ...rest }) => {
     </Link>
   );
 
-  return newTab ? renderExternalLink() : renderInternalLink();
+  return internal ? renderInternalLink() : renderExternalLink();
 };
 
 Anchor.propTypes = propTypes;

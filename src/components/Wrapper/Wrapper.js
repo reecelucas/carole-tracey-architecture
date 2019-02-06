@@ -15,8 +15,10 @@ const StyledWrapper = styled.div`
   padding: 0 ${SPACING.base};
 `;
 
-const Wrapper = ({ children, as }) => (
-  <StyledWrapper as={as}>{children}</StyledWrapper>
+const Wrapper = ({ children, as, ...rest }) => (
+  <StyledWrapper as={as} {...rest}>
+    {children}
+  </StyledWrapper>
 );
 
 Wrapper.propTypes = propTypes;
