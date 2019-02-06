@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import ScrollSpy from '../utils/ScrollSpy/ScrollSpy';
+import ease from '../../helpers/ease';
+import setFocus from '../../helpers/setFocus';
 import { HEADER_HEIGHT } from '../../constants/global';
 import {
   BREAKPOINTS,
@@ -77,38 +79,92 @@ const StyledNavItem = styled.a`
   }
 `;
 
-const Nav = ({ spyOn }) => (
-  <ScrollSpy spyOn={spyOn} offset={HEADER_HEIGHT}>
-    {({ currentId }) => {
-      return (
-        <StyledNav>
-          <StyledNavItem
-            id="nav-item-services"
-            href="#services"
-            isActive={currentId === 'services'}
-          >
-            Services
-          </StyledNavItem>
-          <StyledNavItem
-            id="nav-item-testimonials"
-            href="#testimonials"
-            isActive={currentId === 'testimonials'}
-          >
-            Testimonials
-          </StyledNavItem>
-          <StyledNavItem
-            id="nav-item-process"
-            href="#process"
-            isActive={currentId === 'process'}
-          >
-            Process
-          </StyledNavItem>
-        </StyledNav>
-      );
-    }}
-  </ScrollSpy>
-);
+/**
+ * Keep a local reference to the `currentId` property
+ * returned from the `ScrollSpy` render function.
+ */
+let _currentId = null;
+
+const Nav = ({ spyOn }) => {
+  const [clickedItemId, setClickedItemId] = useState('');
+  const [scrolling, setScrolling] = useState(false);
+
+  const onClick = event => {
+    event.preventDefault();
+
+    const { target } = event;
+    const hash = target.getAttribute('href');
+    const id = hash.substring(1); // Strip leading `#`
+    const { current: element } = spyOn.find(({ current }) => current.id === id);
+
+    if (!element || _currentId === id) return;
+
+    setClickedItemId(id);
+    setScrolling(true);
+
+    const elementTop = element.offsetTop - HEADER_HEIGHT;
+
+    ease({
+      startValue: window.pageYOffset,
+      endValue: elementTop,
+      durationMs: 450,
+      onStep: value => window.scroll(0, value),
+      onComplete: () => {
+        setFocus(element, { y: elementTop });
+
+        // Reset
+        setClickedItemId('');
+        setScrolling(false);
+
+        if (window.history && window.history.pushState) {
+          // Update url with hash to ensure native anchor behaviour is preserved
+          window.history.pushState(null, null, hash);
+        }
+      }
+    });
+  };
+
+  const isActive = id =>
+    (scrolling && clickedItemId === id) || (_currentId === id && !scrolling);
+
+  return (
+    <ScrollSpy spyOn={spyOn} offset={HEADER_HEIGHT}>
+      {({ currentId }) => {
+        _currentId = currentId;
+
+        return (
+          <StyledNav>
+            <StyledNavItem
+              id="nav-item-services"
+              href="#services"
+              isActive={isActive('services')}
+              onClick={onClick}
+            >
+              Services
+            </StyledNavItem>
+            <StyledNavItem
+              id="nav-item-testimonials"
+              href="#testimonials"
+              isActive={isActive('testimonials')}
+              onClick={onClick}
+            >
+              Testimonials
+            </StyledNavItem>
+            <StyledNavItem
+              id="nav-item-process"
+              href="#process"
+              isActive={isActive('process')}
+              onClick={onClick}
+            >
+              Process
+            </StyledNavItem>
+          </StyledNav>
+        );
+      }}
+    </ScrollSpy>
+  );
+};
 
 Nav.propTypes = propTypes;
 
-export default Nav;
+export default React.memo(Nav);

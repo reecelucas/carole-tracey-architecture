@@ -11,7 +11,6 @@ const propTypes = {
 const StyledQuote = styled.blockquote`
   font-family: ${FONT_FAMILIES.serif};
   font-size: ${FONT_SIZES[3]};
-  font-style: italic;
   margin: 0 auto;
   max-width: 80ch;
   text-align: center;
@@ -21,7 +20,6 @@ const StyledAttribution = styled.span`
   display: inline-block;
   font-family: ${FONT_FAMILIES.fallback};
   font-size: ${FONT_SIZES[8]};
-  font-style: normal;
   font-weight: 700;
   vertical-align: top;
 `;

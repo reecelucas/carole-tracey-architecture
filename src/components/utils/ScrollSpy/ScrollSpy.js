@@ -11,40 +11,30 @@ const propTypes = {
       PropTypes.shape({ current: PropTypes.instanceOf(Element) })
     ])
   ).isRequired,
-  offset: PropTypes.number,
-  disable: PropTypes.bool
+  offset: PropTypes.number
 };
 
 let scrollTicking = false;
 let scrollY = null;
 let cache = [];
 
-const ScrollSpy = ({ spyOn, offset, disable, children }) => {
+const ScrollSpy = ({ spyOn, offset, children }) => {
   const [currentId, setCurrentId] = useState('');
 
   useEffect(() => {
     scrollY = window.pageYOffset;
     cacheElements(spyOn);
-    bindEventHandlers();
+    document.addEventListener('scroll', onScroll);
+    window.addEventListener('resize', onResize);
 
     // Set initial currentId
     updateCurrentId();
 
     return () => {
-      unbindEventHandlers();
+      document.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onResize);
     };
   }, []);
-
-  useEffect(() => {
-    if (disable === true) {
-      unbindEventHandlers();
-      return;
-    }
-
-    if (disable === false) {
-      bindEventHandlers();
-    }
-  }, [disable]);
 
   const cacheElements = refs => {
     if (!refs || refs.length === 0) return;
@@ -93,16 +83,6 @@ const ScrollSpy = ({ spyOn, offset, disable, children }) => {
     cacheElements(spyOn);
     updateCurrentId();
   });
-
-  const bindEventHandlers = () => {
-    document.addEventListener('scroll', onScroll);
-    window.addEventListener('resize', onResize);
-  };
-
-  const unbindEventHandlers = () => {
-    document.removeEventListener('scroll', onScroll);
-    window.removeEventListener('resize', onResize);
-  };
 
   return children({ currentId });
 };
