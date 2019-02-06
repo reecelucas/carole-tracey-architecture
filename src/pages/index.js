@@ -5,14 +5,9 @@ import preventOrphanedWord from '../helpers/preventOrphanedWord';
 
 import Layout from '../components/Layout/Layout';
 import Banner from '../components/Banner/Banner';
-import { Grid, GridItem } from '../components/Grid';
-import {
-  Carousel,
-  CarouselSlide,
-  CarouselControls
-} from '../components/Carousel';
-import Wrapper from '../components/Wrapper/Wrapper';
 import SkipLink from '../components/SkipLink/SkipLink';
+import Wrapper from '../components/Wrapper/Wrapper';
+import { Grid, GridItem } from '../components/Grid';
 
 import {
   Accordion,
@@ -21,7 +16,7 @@ import {
   AccordionItemBody
 } from '../components/Accordion';
 import Card from '../components/Card/Card';
-import Quote from '../components/Quote/Quote';
+import TestimonialSlider from '../components/TestimonialSlider/TestimonialSlider';
 import Footer from '../components/Footer/Footer';
 
 const propTypes = {
@@ -64,37 +59,7 @@ const IndexPage = ({ data }) => {
 
         <Banner as="section">
           <Wrapper>
-            <Carousel>
-              {({ navigateToSlide, slideIndexes }) => (
-                <React.Fragment>
-                  <ul>
-                    {testimonials.edges.map(({ node }, i) => {
-                      const { data, id } = node;
-
-                      return (
-                        <CarouselSlide key={id} index={i} active={i === 0}>
-                          {({ isActive }) =>
-                            isActive && (
-                              <li>
-                                <Quote
-                                  quote={preventOrphanedWord(data.quote.text)}
-                                  attribution={data.attribution.text}
-                                />
-                              </li>
-                            )
-                          }
-                        </CarouselSlide>
-                      );
-                    })}
-                  </ul>
-
-                  <CarouselControls
-                    onClick={navigateToSlide}
-                    slideIndexes={slideIndexes}
-                  />
-                </React.Fragment>
-              )}
-            </Carousel>
+            <TestimonialSlider testimonials={testimonials} />
           </Wrapper>
         </Banner>
 

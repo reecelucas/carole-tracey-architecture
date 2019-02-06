@@ -6,7 +6,7 @@ import { ICON_SIZE, CONNECTOR_STYLES } from './constants';
 import { SPACING, COLOURS, FONT_SIZES } from '../../styles/theme';
 
 const propTypes = {
-  children: PropTypes.any.isRequired,
+  children: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired
 };
 

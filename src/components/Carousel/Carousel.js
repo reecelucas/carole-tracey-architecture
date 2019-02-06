@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import CarouselContext from './CarouselContext';
 
 const propTypes = {
-  children: PropTypes.any.isRequired
+  children: PropTypes.func.isRequired
 };
 
 const Slider = ({ children }) => {
@@ -42,7 +42,8 @@ const Slider = ({ children }) => {
     >
       {children({
         navigateToSlide: navigate,
-        slideIndexes: slides
+        slideIndexes: slides,
+        activeSlideIndex: activeIndex
       })}
     </CarouselContext.Provider>
   );

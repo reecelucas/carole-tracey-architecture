@@ -7,7 +7,10 @@ const validCSSUnit =
   'px' || 'rem' || 'em' || '%' || 'vw' || 'vh' || 'vmin' || 'vmax' || 'ch';
 
 const propTypes = {
-  children: PropTypes.any.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.element),
+    PropTypes.element
+  ]).isRequired,
   columns: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]).isRequired,
   gutter: (props, propValue, componentName) => {
     const value = props[propValue];

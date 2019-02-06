@@ -13,7 +13,7 @@ export default css`
     overflow-y: scroll;
 
     &.fonts-loaded {
-      font-family: ${FONT_FAMILIES.primary};
+      font-family: ${FONT_FAMILIES.sans};
       letter-spacing: initial;
     }
 

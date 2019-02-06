@@ -11,7 +11,7 @@ const propTypes = {
   id: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   className: PropTypes.string,
-  children: PropTypes.any.isRequired
+  children: PropTypes.node.isRequired
 };
 
 const reset = css`

@@ -30,7 +30,7 @@ const Quote = ({ quote, attribution }) => {
   return (
     <StyledQuote>
       <p>&ldquo;{quote}&rdquo;</p>
-      <StyledAttribution>{attribution}</StyledAttribution>
+      {attribution && <StyledAttribution>{attribution}</StyledAttribution>}
     </StyledQuote>
   );
 };

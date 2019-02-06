@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import IntrinsicRatio from '../IntrinsicRatio/IntrinsicRatio';
 import Image from '../Image/Image';
-import { SPACING, FONT_SIZES } from '../../styles/theme';
+import { COLOURS, SPACING, FONT_SIZES } from '../../styles/theme';
 
 const propTypes = {
   thumbnail: PropTypes.exact({
@@ -27,17 +27,22 @@ const Thumbnail = styled.div`
 
 const Title = styled.h3`
   font-size: ${FONT_SIZES[4]};
-  margin-bottom: ${SPACING.tiny};
+  margin-bottom: 0;
+
+  &:after {
+    background-color: ${COLOURS.teal8};
+    border-radius: 3px;
+    content: '';
+    display: block;
+    height: 3px;
+    margin-top: ${SPACING.tiny};
+    margin-bottom: ${SPACING.base};
+    width: 2em;
+  }
 `;
 
-const Info = styled.div`
-  align-items: flex-start;
-  display: flex;
-  flex-direction: column;
-
-  p {
-    margin: 0;
-  }
+const Description = styled.p`
+  margin: 0;
 `;
 
 const Card = ({ thumbnail, title, description }) => (
@@ -49,9 +54,7 @@ const Card = ({ thumbnail, title, description }) => (
     </Thumbnail>
 
     <Title>{title}</Title>
-    <Info>
-      <p>{description}</p>
-    </Info>
+    <Description>{description}</Description>
   </Wrapper>
 );
 

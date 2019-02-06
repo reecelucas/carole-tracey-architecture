@@ -7,11 +7,11 @@ import { captureInteraction } from '../../error-handling/error-handling';
 import { COLOURS } from '../../styles/theme';
 
 const propTypes = {
+  children: PropTypes.any.isRequired,
   href: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   title: PropTypes.string,
   className: PropTypes.string,
-  children: PropTypes.any,
   newTab: PropTypes.bool
 };
 
