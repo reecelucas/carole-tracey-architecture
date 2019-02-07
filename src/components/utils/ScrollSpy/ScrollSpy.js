@@ -1,18 +1,25 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import debounce from '../../../helpers/debounce';
+import isBrowser from '../../../helpers/isBrowser';
 
-const propTypes = {
-  children: PropTypes.func.isRequired,
-  // Array of React Refs
-  spyOn: PropTypes.arrayOf(
-    PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.shape({ current: PropTypes.instanceOf(Element) })
-    ])
-  ).isRequired,
-  offset: PropTypes.number
-};
+/**
+ * `instanceOf` causes Gatsby to error during the HTML build
+ * step due to some SSR issue.
+ */
+const propTypes = isBrowser()
+  ? {
+      children: PropTypes.func.isRequired,
+      // Array of React Refs
+      spyOn: PropTypes.arrayOf(
+        PropTypes.oneOfType([
+          PropTypes.func,
+          PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+        ])
+      ).isRequired,
+      offset: PropTypes.number
+    }
+  : {};
 
 let scrollTicking = false;
 let scrollY = null;

@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import { css } from '@emotion/core';
 import VisuallyHidden from '@reach/visually-hidden';
-import Button from '../Button/Button';
+import Button from '../utils/Button/Button';
 import { Carousel, CarouselSlide } from '../utils/Carousel';
 import Quote from '../Quote/Quote';
 import preventOrphanedWord from '../../helpers/preventOrphanedWord';
@@ -31,15 +30,6 @@ const propTypes = {
 };
 
 const buttonSize = '24px';
-const buttonReset = css`
-  background: none;
-  padding: 0;
-
-  &:hover,
-  &:focus {
-    background: none;
-  }
-`;
 
 const CarouselSlides = styled.ul`
   margin-bottom: ${SPACING.large};
@@ -52,8 +42,7 @@ const CarouselControls = styled.div`
 `;
 
 const CarouselControl = styled(Button)`
-  ${buttonReset};
-  border: 2px solid ${COLOURS.teal4};
+  border: 2px solid ${COLOURS.green4};
   border-radius: 50%;
   flex-shrink: 0;
   height: ${buttonSize};
@@ -61,7 +50,7 @@ const CarouselControl = styled(Button)`
   width: ${buttonSize};
 
   &:before {
-    background-color: ${COLOURS.teal8};
+    background-color: ${COLOURS.green8};
     border-radius: 50%;
     content: '';
     display: inline-block;
@@ -112,7 +101,7 @@ const TestimonialSlider = ({ testimonials }) => {
           <CarouselControls>
             {slideIndexes.map(i => (
               <CarouselControl
-                id={slideIds[i]}
+                id={`btn-${slideIds[i]}`}
                 key={slideIds[i]}
                 isActive={activeSlideIndex === i}
                 onClick={() => navigateToSlide(i)}

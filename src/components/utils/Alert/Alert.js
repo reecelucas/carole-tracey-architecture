@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 import { SPACING, FONT_SIZES } from '../../../styles/theme';
 
+import Button from '../Button/Button';
 import successIcon from '../../images/alert-icon--success.svg';
 import warningIcon from '../../images/alert-icon--warning.svg';
 import errorIcon from '../../images/alert-icon--error.svg';
@@ -63,7 +64,7 @@ const Container = styled.div`
   }
 `;
 
-const CloseButton = styled.button`
+const CloseButton = styled(Button)`
   align-self: center;
   color: currentColor;
   font-size: ${FONT_SIZES[6]};
@@ -87,7 +88,9 @@ const Alert = ({ children, theme, className }) => {
       aria-live="assertive"
     >
       {children}
-      <CloseButton onClick={dismiss}>Dismiss</CloseButton>
+      <CloseButton id="btn-alert-close" onClick={dismiss}>
+        Dismiss
+      </CloseButton>
     </Container>
   );
 

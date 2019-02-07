@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
-import getAttributeProps from '../../../helpers/getAttributeProps';
 import { captureInteraction } from '../../../error-handling/error-handling';
 
 const propTypes = {
@@ -9,15 +8,13 @@ const propTypes = {
   href: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   title: PropTypes.string,
-  className: PropTypes.string,
   newTab: PropTypes.bool
 };
 
-const Anchor = ({ children, href, id, title, className, newTab, ...rest }) => {
+const Anchor = ({ children, href, id, title, newTab, ...rest }) => {
   const sharedProps = {
-    className,
     title: title || null,
-    ...getAttributeProps(rest)
+    ...rest
   };
 
   // Any internal link will start with one slash

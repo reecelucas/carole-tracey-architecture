@@ -60,7 +60,7 @@ const Header = ({ children }) => {
       <SkipLink />
 
       <HeaderInner>
-        <Logo id="site-logo" href="/" aria-label="caroletracey.com">
+        <Logo id="cta-site-logo" href="/" aria-label="caroletracey.com">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 48">
             <path
               fill="#DEC38B"

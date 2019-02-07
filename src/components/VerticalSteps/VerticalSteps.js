@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import preventOrphanedWord from '../../helpers/preventOrphanedWord';
+import Button from '../utils/Button/Button';
 import {
   Accordion,
   AccordionItem,
@@ -38,7 +39,7 @@ const CONNECTOR_STYLES = css`
   z-index: ${Z_INDEXES.base};
 
   &:after {
-    background-color: ${COLOURS.teal4};
+    background-color: ${COLOURS.green8};
     content: '';
     display: inline-block;
     height: 100%;
@@ -60,7 +61,7 @@ const Title = styled.h2`
   }
 `;
 
-const TitleButton = styled.button`
+const TitleButton = styled(Button)`
   align-items: center;
   display: flex;
   line-height: 1.4;
@@ -69,10 +70,9 @@ const TitleButton = styled.button`
 
 const TitleIcon = styled.span`
   align-items: center;
-  background-color: ${props =>
-    props.expanded ? `${COLOURS.teal8}` : `${COLOURS.white}`};
-  border: 2px solid
-    ${props => (props.expanded ? `${COLOURS.teal8}` : `${COLOURS.teal4}`)};
+  background-color: ${({ expanded }) =>
+    expanded ? `${COLOURS.green8}` : `${COLOURS.gray0}`};
+  border: 2px solid ${COLOURS.green8};
   border-radius: 50%;
   color: ${props => (props.expanded ? `${COLOURS.white}` : `${COLOURS.black}`)};
   display: inline-flex;
@@ -113,6 +113,7 @@ const VerticalSteps = ({ items }) => (
             {({ expanded, onClick }) => (
               <Title expanded={expanded}>
                 <TitleButton
+                  id={`btn-accordion-${id}`}
                   aria-expanded={expanded ? 'true' : 'false'}
                   onClick={onClick}
                 >

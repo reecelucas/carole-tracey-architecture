@@ -30,7 +30,7 @@ const Title = styled.h3`
   margin-bottom: 0;
 
   &:after {
-    background-color: ${COLOURS.teal8};
+    background-color: ${COLOURS.green8};
     border-radius: 3px;
     content: '';
     display: block;

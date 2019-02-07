@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import Anchor from '../utils/Anchor/Anchor';
 import {
   COLOURS,
   SPACING,
@@ -10,7 +11,7 @@ import {
 
 const borderRadius = '8px';
 
-const StyledLink = styled.a`
+const StyledLink = styled(Anchor)`
   clip: rect(1px, 1px, 1px, 1px);
   font-family: ${FONT_FAMILIES.fallback};
   font-size: ${FONT_SIZES[6]};
@@ -30,7 +31,7 @@ const StyledLink = styled.a`
   width: 1px;
 
   &:focus {
-    background-color: ${COLOURS.teal8};
+    background-color: ${COLOURS.green8};
     border-bottom-right-radius: ${borderRadius};
     border-bottom-left-radius: ${borderRadius};
     clip: auto;
@@ -45,6 +46,10 @@ const StyledLink = styled.a`
   }
 `;
 
-const SkipLink = () => <StyledLink href="#content">Skip to content</StyledLink>;
+const SkipLink = () => (
+  <StyledLink id="cta-skiplink" href="#content">
+    Skip to content
+  </StyledLink>
+);
 
 export default SkipLink;

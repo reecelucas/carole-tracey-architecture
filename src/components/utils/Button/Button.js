@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import getAttributeProps from '../../helpers/getAttributeProps';
+import getAttributeProps from '../../../helpers/getAttributeProps';
 import styled from '@emotion/styled';
-import { captureInteraction } from '../../error-handling/error-handling';
-import { css } from '@emotion/core';
-import { COLOURS, SPACING } from '../../styles/theme';
+import { captureInteraction } from '../../../error-handling/error-handling';
 
 const propTypes = {
   disabled: PropTypes.bool,
@@ -14,7 +12,7 @@ const propTypes = {
   children: PropTypes.node.isRequired
 };
 
-const reset = css`
+const StyledButton = styled.button`
   appearance: none;
   background: none;
   border: 0;
@@ -22,17 +20,6 @@ const reset = css`
   color: inherit;
   cursor: pointer;
   font-family: inherit;
-`;
-
-const StyledButton = styled.button`
-  ${reset};
-  align-items: center;
-  background-color: ${COLOURS.teal8};
-  color: ${COLOURS.white};
-  display: inline-flex;
-  font-weight: 600;
-  line-height: 1;
-  padding: ${SPACING.small} ${SPACING.base};
 
   &:disabled {
     opacity: 0.5;

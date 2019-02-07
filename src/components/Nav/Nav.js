@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import ScrollSpy from '../utils/ScrollSpy/ScrollSpy';
+import Anchor from '../utils/Anchor/Anchor';
 import ease from '../../helpers/ease';
 import setFocus from '../../helpers/setFocus';
+import isBrowser from '../../helpers/isBrowser';
 import { HEADER_HEIGHT } from '../../constants/global';
 import {
   BREAKPOINTS,
@@ -13,15 +15,21 @@ import {
   SPACING
 } from '../../styles/theme';
 
-const propTypes = {
-  // Array of React Refs
-  spyOn: PropTypes.arrayOf(
-    PropTypes.oneOfType([
-      PropTypes.func,
-      PropTypes.shape({ current: PropTypes.instanceOf(Element) })
-    ])
-  ).isRequired
-};
+/**
+ * `instanceOf` causes Gatsby to error during the HTML build
+ * step due to some SSR issue.
+ */
+const propTypes = isBrowser()
+  ? {
+      // Array of React Refs
+      spyOn: PropTypes.arrayOf(
+        PropTypes.oneOfType([
+          PropTypes.func,
+          PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+        ])
+      ).isRequired
+    }
+  : {};
 
 const StyledNav = styled.nav`
   font-family: ${FONT_FAMILIES.fallback};
@@ -57,14 +65,15 @@ const StyledNav = styled.nav`
   }
 `;
 
-const StyledNavItem = styled.a`
+const StyledNavItem = styled(Anchor)`
+  color: ${COLOURS.black};
   letter-spacing: 0.025em;
   line-height: 1.4;
   position: relative;
   text-transform: uppercase;
 
   &:after {
-    background-color: ${COLOURS.teal8};
+    background-color: ${COLOURS.green8};
     content: '';
     display: ${({ isActive }) => (isActive ? 'inline-block' : 'none')};
     height: 2px;
@@ -113,8 +122,8 @@ const Nav = ({ spyOn }) => {
         setFocus(element, { y: elementTop });
 
         // Reset
-        setClickedItemId('');
         setScrolling(false);
+        setClickedItemId('');
 
         if (window.history && window.history.pushState) {
           // Update url with hash to ensure native anchor behaviour is preserved
@@ -135,7 +144,7 @@ const Nav = ({ spyOn }) => {
         return (
           <StyledNav>
             <StyledNavItem
-              id="nav-item-services"
+              id="cta-nav-services"
               href="#services"
               isActive={isActive('services')}
               onClick={onClick}
@@ -143,7 +152,7 @@ const Nav = ({ spyOn }) => {
               Services
             </StyledNavItem>
             <StyledNavItem
-              id="nav-item-testimonials"
+              id="cta-nav-testimonials"
               href="#testimonials"
               isActive={isActive('testimonials')}
               onClick={onClick}
@@ -151,7 +160,7 @@ const Nav = ({ spyOn }) => {
               Testimonials
             </StyledNavItem>
             <StyledNavItem
-              id="nav-item-process"
+              id="cta-nav-process"
               href="#process"
               isActive={isActive('process')}
               onClick={onClick}
@@ -167,4 +176,4 @@ const Nav = ({ spyOn }) => {
 
 Nav.propTypes = propTypes;
 
-export default React.memo(Nav);
+export default Nav;
