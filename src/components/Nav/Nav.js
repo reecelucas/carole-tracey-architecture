@@ -120,22 +120,22 @@ const Nav = ({ items }) => {
     const { target } = event;
     const hash = target.getAttribute('href');
     const id = hash.substring(1); // Strip leading `#`
-    const { current: element } = spyOn.find(({ current }) => current.id === id);
+    const { current: elem } = spyOn.find(({ current }) => current.id === id);
 
-    if (!element || _currentId === id) return;
+    if (!elem || _currentId === id) return;
 
     setClickedItemId(id);
     setScrolling(true);
 
-    const elementTop = element.offsetTop - HEADER_HEIGHT;
+    const elemTop = elem.offsetTop - HEADER_HEIGHT;
 
     ease({
       startValue: window.pageYOffset,
-      endValue: elementTop,
+      endValue: elemTop,
       durationMs: 450,
       onStep: value => window.scroll(0, value),
       onComplete: () => {
-        setFocus(element, { y: elementTop });
+        setFocus(elem, { y: elemTop });
 
         // Reset
         setScrolling(false);
@@ -159,18 +159,18 @@ const Nav = ({ items }) => {
 
         return (
           <StyledNav>
-            {items.map(item => {
-              const trimmedHref = item.href.substring(1);
+            {items.map(({ id, href, label }) => {
+              const trimmedHref = href.substring(1);
 
               return (
                 <StyledNavItem
-                  key={item.id}
-                  id={item.id}
-                  href={item.href}
+                  key={id}
+                  id={id}
+                  href={href}
                   isActive={isActive(trimmedHref)}
                   onClick={onClick}
                 >
-                  {item.label}
+                  {label}
                 </StyledNavItem>
               );
             })}

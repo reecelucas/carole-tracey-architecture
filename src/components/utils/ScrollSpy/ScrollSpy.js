@@ -21,16 +21,20 @@ const propTypes = isBrowser()
     }
   : {};
 
+let lastElement = null;
 let scrollTicking = false;
+let windowHeight = null;
 let scrollY = null;
-let cache = [];
+let htmlScrollTop = null;
+let htmlScrollHeight = null;
 
 const ScrollSpy = ({ spyOn, offset, children }) => {
   const [currentId, setCurrentId] = useState('');
 
   useEffect(() => {
-    scrollY = window.pageYOffset;
-    cacheElements(spyOn);
+    windowHeight = window.innerHeight;
+    setScrollVariables();
+
     document.addEventListener('scroll', onScroll);
     window.addEventListener('resize', onResize);
 
@@ -43,30 +47,45 @@ const ScrollSpy = ({ spyOn, offset, children }) => {
     };
   }, []);
 
-  const cacheElements = refs => {
-    if (!refs || refs.length === 0) return;
+  useEffect(() => {
+    lastElement = getLastElement();
+  }, [spyOn]);
 
-    refs.forEach(({ current: element }) => {
-      if (!element) return;
+  const getLastElement = () => spyOn[spyOn.length - 1].current || null;
 
-      const elementHeight = element.offsetHeight;
-      const elementTop = offset
-        ? element.offsetTop - offset
-        : element.offsetTop;
-      const cacheEntry = {
-        elementId: element.id || '',
-        elementTop,
-        elementBottom: elementTop + elementHeight
-      };
-
-      cache.push(cacheEntry);
-    });
+  const setScrollVariables = () => {
+    scrollY = window.pageYOffset;
+    htmlScrollTop = document.documentElement.scrollTop;
+    htmlScrollHeight = document.documentElement.scrollHeight;
   };
 
+  const atBottom = () => htmlScrollTop + windowHeight === htmlScrollHeight;
+
   const updateCurrentId = () => {
-    cache.forEach(({ elementId, elementTop, elementBottom }) => {
-      if (elementTop <= scrollY && elementBottom > scrollY) {
-        setCurrentId(elementId);
+    if (atBottom() && lastElement) {
+      // Set the last item to active
+      setCurrentId(lastElement.id);
+      scrollTicking = false;
+      return;
+    }
+
+    spyOn.forEach(({ current: elem }) => {
+      if (!elem) {
+        scrollTicking = false;
+        return;
+      }
+
+      /**
+       * Get element positions. We do this here becasue they can change as
+       * a result of user interaction so we need to ensure we always have
+       * fresh values.
+       */
+      const elemTop = offset ? elem.offsetTop - offset : elem.offsetTop;
+      const elemHeight = elem.offsetHeight;
+      const elemBottom = elemTop + elemHeight;
+
+      if (elemTop <= scrollY && elemBottom >= scrollY) {
+        setCurrentId(elem.id);
       }
     });
 
@@ -77,7 +96,7 @@ const ScrollSpy = ({ spyOn, offset, children }) => {
     if (!scrollTicking) {
       scrollTicking = true;
       window.requestAnimationFrame(updateCurrentId);
-      scrollY = window.pageYOffset;
+      setScrollVariables();
     }
   };
 
@@ -85,9 +104,10 @@ const ScrollSpy = ({ spyOn, offset, children }) => {
     document.removeEventListener('scroll', onScroll);
     setCurrentId('');
 
-    // Rebind event handlers and update cached sizes and dimensions
+    // Rebind event handlers and update scroll variables
     document.addEventListener('scroll', onScroll);
-    cacheElements(spyOn);
+    windowHeight = window.innerHeight;
+    setScrollVariables();
     updateCurrentId();
   });
 
