@@ -13,8 +13,8 @@ const StyledSpacer = styled.div`
   margin-bottom: ${props => SPACING[props.size] || SPACING.base};
 `;
 
-const Spacer = ({ children, size, as }) => (
-  <StyledSpacer size={size} as={as}>
+const Spacer = ({ children, size, ...rest }) => (
+  <StyledSpacer size={size} {...rest}>
     {children}
   </StyledSpacer>
 );

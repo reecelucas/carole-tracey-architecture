@@ -63,8 +63,8 @@ const StyledGrid = styled.div`
   ${props => getColumnStyles(props)}
 `;
 
-const Grid = ({ children, columns, gutter, from, as }) => (
-  <StyledGrid columns={columns} gutter={gutter} from={from} as={as}>
+const Grid = ({ children, columns, gutter, from, ...rest }) => (
+  <StyledGrid columns={columns} gutter={gutter} from={from} {...rest}>
     {children}
   </StyledGrid>
 );

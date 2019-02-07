@@ -46,8 +46,8 @@ const Container = styled.div`
   }
 `;
 
-const IntrinsicRatio = ({ children, ratio, as }) => (
-  <Container ratio={ratio} as={as}>
+const IntrinsicRatio = ({ children, ratio, ...rest }) => (
+  <Container ratio={ratio} {...rest}>
     {children}
   </Container>
 );

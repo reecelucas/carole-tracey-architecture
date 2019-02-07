@@ -9,8 +9,8 @@ const propTypes = {
 
 const StyledGridItem = styled.div``;
 
-const GridItem = ({ children, as }) => (
-  <StyledGridItem as={as} data-grid-item>
+const GridItem = ({ children, ...rest }) => (
+  <StyledGridItem {...rest} data-grid-item>
     {children}
   </StyledGridItem>
 );
