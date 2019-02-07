@@ -8,7 +8,7 @@ import {
   logErrorReport
 } from '../../error-handling/error-handling';
 
-import globalStyles from '../../styles/global';
+import { GLOBAL_STYLES } from '../../styles/global';
 
 const propTypes = {
   children: PropTypes.oneOfType([
@@ -80,7 +80,7 @@ const Layout = ({ children }) => {
                   />
                 ))}
             </Helmet>
-            <Global styles={globalStyles} />
+            <Global styles={GLOBAL_STYLES} />
             {children}
           </React.Fragment>
         );

@@ -113,7 +113,7 @@ const VerticalSteps = ({ items }) => (
             {({ expanded, onClick }) => (
               <Title expanded={expanded}>
                 <TitleButton
-                  id={`btn-accordion-${id}`}
+                  id={`btn-accordion-title-${id}`}
                   aria-expanded={expanded ? 'true' : 'false'}
                   onClick={onClick}
                 >

@@ -1,18 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import getAttributeProps from '../../../helpers/getAttributeProps';
 import styled from '@emotion/styled';
+import { css } from '@emotion/core';
 import { captureInteraction } from '../../../error-handling/error-handling';
+import getAttributeProps from '../../../helpers/getAttributeProps';
+import { BUTTON_STYLES } from '../../../styles/global';
 
 const propTypes = {
-  disabled: PropTypes.bool,
+  appearance: PropTypes.oneOf(['primary', 'secondary']),
   id: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
-  className: PropTypes.string,
   children: PropTypes.node.isRequired
 };
 
-const StyledButton = styled.button`
+const reset = css`
   appearance: none;
   background: none;
   border: 0;
@@ -21,31 +22,36 @@ const StyledButton = styled.button`
   cursor: pointer;
   font-family: inherit;
 
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+  }
+
   &:disabled {
     opacity: 0.5;
     pointer-events: none;
   }
 `;
 
-const Button = ({ id, onClick, disabled, children, className, ...rest }) => {
-  const attributes = getAttributeProps(rest);
+const StyledButton = styled.button`
+  ${reset};
+  ${props => BUTTON_STYLES[props.appearance]};
+`;
+
+const Button = ({ id, onClick, children, appearance, ...rest }) => {
   const clickHandler = event => {
     captureInteraction(event);
     onClick(event);
   };
 
-  if (disabled) {
-    attributes['aria-disabled'] = true;
-    attributes.disabled = true;
-  }
-
   return (
     <StyledButton
       type="button"
       onClick={clickHandler}
-      className={className}
+      appearance={appearance}
       data-interaction-id={id}
-      {...attributes}
+      {...getAttributeProps(rest)}
     >
       {children}
     </StyledButton>

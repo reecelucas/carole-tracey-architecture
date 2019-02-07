@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
+import { VALID_CSS_UNITS } from '../../../constants/global';
 import { BREAKPOINTS, SPACING } from '../../../styles/theme';
-
-const validCSSUnit =
-  'px' || 'rem' || 'em' || '%' || 'vw' || 'vh' || 'vmin' || 'vmax' || 'ch';
 
 const propTypes = {
   children: PropTypes.oneOfType([
@@ -15,7 +13,7 @@ const propTypes = {
   gutter: (props, propValue, componentName) => {
     const value = props[propValue];
 
-    if (value && !value.endsWith(validCSSUnit)) {
+    if (value && !value.endsWith(VALID_CSS_UNITS.join(` || `))) {
       return new Error(
         `Invalid prop \`${propValue}\` of value \`${value}\` supplied to \`${componentName}\`, expected string to end with a valid CSS unit.`
       );

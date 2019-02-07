@@ -20,9 +20,10 @@ const propTypes = {
 };
 
 const IndexPage = ({ data }) => {
-  const sectionOne = React.createRef();
-  const sectionTwo = React.createRef();
-  const sectionThree = React.createRef();
+  const sectionServices = React.createRef();
+  const sectionTestimonials = React.createRef();
+  const sectionProcess = React.createRef();
+  const sectionContact = React.createRef();
 
   const {
     allPrismicServiceCard: services,
@@ -33,11 +34,38 @@ const IndexPage = ({ data }) => {
   return (
     <Layout>
       <Header>
-        <Nav spyOn={[sectionOne, sectionTwo, sectionThree]} />
+        <Nav
+          items={[
+            {
+              id: 'cta-nav-services',
+              label: 'Services',
+              href: '#services',
+              spyOn: sectionServices
+            },
+            {
+              id: 'cta-nav-testimonials',
+              label: 'Testimonials',
+              href: '#testimonials',
+              spyOn: sectionTestimonials
+            },
+            {
+              id: 'cta-nav-process',
+              label: 'Process',
+              href: '#process',
+              spyOn: sectionProcess
+            },
+            {
+              id: 'cta-nav-contact',
+              label: 'Contact',
+              href: '#contact',
+              spyOn: sectionContact
+            }
+          ]}
+        />
       </Header>
 
       <main id="content">
-        <Banner as="section" id="services" ref={sectionOne} contrast>
+        <Banner as="section" id="services" ref={sectionServices} contrast>
           <Wrapper>
             <h1>Services</h1>
 
@@ -59,13 +87,13 @@ const IndexPage = ({ data }) => {
           </Wrapper>
         </Banner>
 
-        <Banner id="testimonials" as="section" ref={sectionTwo}>
+        <Banner id="testimonials" as="section" ref={sectionTestimonials}>
           <Wrapper>
             <TestimonialSlider testimonials={testimonials} />
           </Wrapper>
         </Banner>
 
-        <Banner id="process" as="section" ref={sectionThree} contrast>
+        <Banner as="section" id="process" ref={sectionProcess} contrast>
           <Wrapper>
             <h1>Process</h1>
             <VerticalSteps items={processItems} />
@@ -73,7 +101,7 @@ const IndexPage = ({ data }) => {
         </Banner>
       </main>
 
-      <Footer />
+      <Footer id="contact" ref={sectionContact} />
     </Layout>
   );
 };

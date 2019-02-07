@@ -21,13 +21,18 @@ import {
  */
 const propTypes = isBrowser()
   ? {
-      // Array of React Refs
-      spyOn: PropTypes.arrayOf(
-        PropTypes.oneOfType([
-          PropTypes.func,
-          PropTypes.shape({ current: PropTypes.instanceOf(Element) })
-        ])
-      ).isRequired
+      items: PropTypes.arrayOf(
+        PropTypes.exact({
+          id: PropTypes.string,
+          label: PropTypes.string,
+          href: PropTypes.string,
+          // React Ref
+          spyOn: PropTypes.oneOfType([
+            PropTypes.func,
+            PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+          ])
+        }).isRequired
+      )
     }
   : {};
 
@@ -67,8 +72,9 @@ const StyledNav = styled.nav`
 
 const StyledNavItem = styled(Anchor)`
   color: ${COLOURS.black};
+  display: inline-block;
   letter-spacing: 0.025em;
-  line-height: 1.4;
+  line-height: 2;
   position: relative;
   text-transform: uppercase;
 
@@ -84,7 +90,15 @@ const StyledNavItem = styled(Anchor)`
   }
 
   &:not(:last-child) {
-    margin-right: ${SPACING.base};
+    margin-right: ${SPACING.small};
+  }
+
+  @media (min-width: ${BREAKPOINTS.sm}) {
+    line-height: 1.4;
+
+    &:not(:last-child) {
+      margin-right: ${SPACING.base};
+    }
   }
 `;
 
@@ -94,9 +108,11 @@ const StyledNavItem = styled(Anchor)`
  */
 let _currentId = null;
 
-const Nav = ({ spyOn }) => {
+const Nav = ({ items }) => {
   const [clickedItemId, setClickedItemId] = useState('');
   const [scrolling, setScrolling] = useState(false);
+
+  const spyOn = items.map(({ spyOn }) => spyOn);
 
   const onClick = event => {
     event.preventDefault();
@@ -143,30 +159,21 @@ const Nav = ({ spyOn }) => {
 
         return (
           <StyledNav>
-            <StyledNavItem
-              id="cta-nav-services"
-              href="#services"
-              isActive={isActive('services')}
-              onClick={onClick}
-            >
-              Services
-            </StyledNavItem>
-            <StyledNavItem
-              id="cta-nav-testimonials"
-              href="#testimonials"
-              isActive={isActive('testimonials')}
-              onClick={onClick}
-            >
-              Testimonials
-            </StyledNavItem>
-            <StyledNavItem
-              id="cta-nav-process"
-              href="#process"
-              isActive={isActive('process')}
-              onClick={onClick}
-            >
-              Process
-            </StyledNavItem>
+            {items.map(item => {
+              const trimmedHref = item.href.substring(1);
+
+              return (
+                <StyledNavItem
+                  key={item.id}
+                  id={item.id}
+                  href={item.href}
+                  isActive={isActive(trimmedHref)}
+                  onClick={onClick}
+                >
+                  {item.label}
+                </StyledNavItem>
+              );
+            })}
           </StyledNav>
         );
       }}
