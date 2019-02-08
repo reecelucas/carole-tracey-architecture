@@ -19,7 +19,7 @@ const StyledHeader = styled.header`
     background-color: ${COLOURS.white};
     box-shadow: 0 1px 2px 0 ${COLOURS.gray1};
     display: flex;
-    height: ${HEADER_HEIGHT}px;
+    height: ${HEADER_HEIGHT};
     left: 0;
     position: fixed;
     padding-top: 0;

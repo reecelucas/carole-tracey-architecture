@@ -31,7 +31,7 @@ export default css`
     -moz-osx-font-smoothing: grayscale;
 
     @media (min-width: ${BREAKPOINTS.sm}) {
-      padding-top: ${HEADER_HEIGHT}px;
+      padding-top: ${HEADER_HEIGHT};
     }
   }
 `;

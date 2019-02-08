@@ -1,4 +1,4 @@
-export const HEADER_HEIGHT = 60;
+export const HEADER_HEIGHT = '60px';
 export const VALID_CSS_UNITS = [
   'cm',
   'mm',

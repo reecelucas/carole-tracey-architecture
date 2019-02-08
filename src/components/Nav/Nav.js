@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import ScrollSpy from '../utils/ScrollSpy/ScrollSpy';
@@ -6,6 +6,7 @@ import Anchor from '../utils/Anchor/Anchor';
 import ease from '../../helpers/ease';
 import setFocus from '../../helpers/setFocus';
 import isBrowser from '../../helpers/isBrowser';
+import { stripUnit } from 'polished';
 import { HEADER_HEIGHT } from '../../constants/global';
 import {
   BREAKPOINTS,
@@ -75,19 +76,7 @@ const StyledNavItem = styled(Anchor)`
   display: inline-block;
   letter-spacing: 0.025em;
   line-height: 2;
-  position: relative;
   text-transform: uppercase;
-
-  &:after {
-    background-color: ${COLOURS.green8};
-    content: '';
-    display: ${({ isActive }) => (isActive ? 'inline-block' : 'none')};
-    height: 2px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-  }
 
   &:not(:last-child) {
     margin-right: ${SPACING.small};
@@ -95,6 +84,18 @@ const StyledNavItem = styled(Anchor)`
 
   @media (min-width: ${BREAKPOINTS.sm}) {
     line-height: 1.4;
+    position: relative;
+
+    &:after {
+      background-color: ${COLOURS.green8};
+      content: '';
+      display: ${({ isActive }) => (isActive ? 'inline-block' : 'none')};
+      height: 2px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
 
     &:not(:last-child) {
       margin-right: ${SPACING.base};
@@ -109,10 +110,14 @@ const StyledNavItem = styled(Anchor)`
 let _currentId = null;
 
 const Nav = ({ items }) => {
+  const spyOn = items.map(({ spyOn }) => spyOn);
+  const sectionOffset = stripUnit(HEADER_HEIGHT);
+  const headerIsFixed = isBrowser()
+    ? window.innerWidth > stripUnit(BREAKPOINTS.sm)
+    : false;
+
   const [clickedItemId, setClickedItemId] = useState('');
   const [scrolling, setScrolling] = useState(false);
-
-  const spyOn = items.map(({ spyOn }) => spyOn);
 
   const onClick = event => {
     event.preventDefault();
@@ -127,7 +132,7 @@ const Nav = ({ items }) => {
     setClickedItemId(id);
     setScrolling(true);
 
-    const elemTop = elem.offsetTop - HEADER_HEIGHT;
+    const elemTop = elem.offsetTop - sectionOffset;
 
     ease({
       startValue: window.pageYOffset,
@@ -138,8 +143,8 @@ const Nav = ({ items }) => {
         setFocus(elem, { y: elemTop });
 
         // Reset
-        setScrolling(false);
         setClickedItemId('');
+        setScrolling(false);
 
         if (window.history && window.history.pushState) {
           // Update url with hash to ensure native anchor behaviour is preserved
@@ -153,7 +158,7 @@ const Nav = ({ items }) => {
     (scrolling && clickedItemId === id) || (_currentId === id && !scrolling);
 
   return (
-    <ScrollSpy spyOn={spyOn} offset={HEADER_HEIGHT}>
+    <ScrollSpy spyOn={spyOn} offset={sectionOffset} disable={!headerIsFixed}>
       {({ currentId }) => {
         _currentId = currentId;
 
@@ -168,7 +173,7 @@ const Nav = ({ items }) => {
                   id={id}
                   href={href}
                   isActive={isActive(trimmedHref)}
-                  onClick={onClick}
+                  onClick={headerIsFixed ? onClick : null}
                 >
                   {label}
                 </StyledNavItem>
