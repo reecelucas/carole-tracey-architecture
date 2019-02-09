@@ -38,7 +38,6 @@ const ScrollSpy = ({ spyOn, offset, disable, children }) => {
     updateCurrentId(); // Set initial currentId
 
     if (!disable) {
-      console.log('!disable');
       /**
        * We currently only listen to the `disable` prop
        * on mount, so can't respond to dynamic changes.

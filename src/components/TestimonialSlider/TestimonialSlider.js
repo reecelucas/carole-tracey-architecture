@@ -33,12 +33,29 @@ const buttonSize = '24px';
 
 const CarouselSlides = styled.ul`
   margin-bottom: ${SPACING.large};
+
+  li {
+    display: block;
+  }
+
+  li[aria-hidden='true'] {
+    display: none;
+  }
 `;
 
-const CarouselControls = styled.div`
+const CarouselControls = styled.ul`
   align-items: flex-start;
   display: flex;
   justify-content: center;
+
+  li {
+    display: inline-block;
+    line-height: 1;
+
+    &:not(:last-child) {
+      margin-right: ${SPACING.small};
+    }
+  }
 `;
 
 const CarouselControl = styled(Button)`
@@ -63,11 +80,10 @@ const CarouselControl = styled(Button)`
     transition: transform 0.15s cubic-bezier(0.55, 0, 0.1, 1);
     width: 80%;
   }
-
-  &:not(:last-child) {
-    margin-right: ${SPACING.small};
-  }
 `;
+
+const incIndex = index => index + 1;
+const getSlideId = index => `testimonial-${incIndex(index)}`;
 
 const TestimonialSlider = ({ testimonials }) => {
   let slideIds = [];
@@ -83,16 +99,17 @@ const TestimonialSlider = ({ testimonials }) => {
 
               return (
                 <CarouselSlide key={id} index={i} active={i === 0}>
-                  {({ isActive }) =>
-                    isActive && (
-                      <li>
-                        <Quote
-                          quote={preventOrphanedWord(data.quote.text)}
-                          attribution={data.attribution.text}
-                        />
-                      </li>
-                    )
-                  }
+                  {({ isActive }) => (
+                    <li
+                      id={getSlideId(i)}
+                      aria-hidden={isActive ? 'false' : 'true'}
+                    >
+                      <Quote
+                        quote={preventOrphanedWord(data.quote.text)}
+                        attribution={data.attribution.text}
+                      />
+                    </li>
+                  )}
                 </CarouselSlide>
               );
             })}
@@ -100,15 +117,19 @@ const TestimonialSlider = ({ testimonials }) => {
 
           <CarouselControls>
             {slideIndexes.map(i => (
-              <CarouselControl
-                id={`btn-${slideIds[i]}`}
-                key={slideIds[i]}
-                isActive={activeSlideIndex === i}
-                onClick={() => navigateToSlide(i)}
-                aria-label={`Navigate to slide ${i + 1}`}
-              >
-                <VisuallyHidden>Navigate to slide {i + 1}</VisuallyHidden>
-              </CarouselControl>
+              <li key={slideIds[i]}>
+                <CarouselControl
+                  id={`btn-${slideIds[i]}`}
+                  isActive={activeSlideIndex === i}
+                  onClick={() => navigateToSlide(i)}
+                  aria-controls={getSlideId(i)}
+                  aria-selected={activeSlideIndex === i ? 'true' : 'false'}
+                >
+                  <VisuallyHidden>
+                    Navigate to testimonial {incIndex(i)}
+                  </VisuallyHidden>
+                </CarouselControl>
+              </li>
             ))}
           </CarouselControls>
         </React.Fragment>
