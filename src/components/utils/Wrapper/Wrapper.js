@@ -5,7 +5,7 @@ import validCSSValue from '../../../helpers/propTypes/validCSSValue';
 import { SPACING, WIDTHS } from '../../../styles/theme';
 
 const propTypes = {
-  children: PropTypes.any.isRequired,
+  children: PropTypes.any,
   gutter: validCSSValue,
   as: PropTypes.string
 };

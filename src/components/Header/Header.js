@@ -4,8 +4,11 @@ import styled from '@emotion/styled';
 import Wrapper from '../utils/Wrapper/Wrapper';
 import Anchor from '../utils/Anchor/Anchor';
 import SkipLink from '../SkipLink/SkipLink';
+import Image from '../utils/Image/Image';
 import { HEADER_HEIGHT } from '../../constants/global';
 import { BREAKPOINTS, COLOURS, SPACING, Z_INDEXES } from '../../styles/theme';
+
+import logo from '../../images/logo.png';
 
 const propTypes = {
   children: PropTypes.any.isRequired
@@ -47,10 +50,8 @@ const Logo = styled(Anchor)`
   line-height: 1;
   margin-bottom: 0;
 
-  svg {
+  img {
     display: block;
-    height: 30px;
-    width: 23px;
   }
 `;
 
@@ -61,13 +62,7 @@ const Header = ({ children }) => {
 
       <HeaderInner>
         <Logo id="cta-site-logo" href="/" aria-label="caroletracey.com">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 48">
-            <path
-              fill="#DEC38B"
-              d="M23 0H0v48h41L25.2 29.4C34.2 27.7 41 22 41 14.8 41 6.6 34.2 0 23 0z"
-            />
-            <path fill="#272B3B" d="M0 48h41L26.5 31 0 0v48z" />
-          </svg>
+          <Image src={logo} alt="" />
         </Logo>
         {children}
       </HeaderInner>

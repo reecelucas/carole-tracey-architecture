@@ -13,7 +13,7 @@ const propTypes = {
     url: PropTypes.string.isRequired,
     alt: PropTypes.string
   }).isRequired,
-  paragraphs: PropTypes.arrayOf(PropTypes.string).isRequired
+  paragraphs: PropTypes.string.isRequired
 };
 
 const BORDER_WIDTH = '12px';
