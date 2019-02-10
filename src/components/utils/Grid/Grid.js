@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import { VALID_CSS_UNITS } from '../../../constants/global';
+import validCSSValue from '../../../helpers/propTypes/validCSSValue';
 import { BREAKPOINTS, SPACING } from '../../../styles/theme';
 
 const propTypes = {
@@ -10,15 +10,7 @@ const propTypes = {
     PropTypes.element
   ]).isRequired,
   columns: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]).isRequired,
-  gutter: (props, propValue, componentName) => {
-    const value = props[propValue];
-
-    if (value && !value.endsWith(VALID_CSS_UNITS.join(` || `))) {
-      return new Error(
-        `Invalid prop \`${propValue}\` of value \`${value}\` supplied to \`${componentName}\`, expected string to end with a valid CSS unit.`
-      );
-    }
-  },
+  gutter: validCSSValue,
   from: PropTypes.oneOf([...Object.keys(BREAKPOINTS)]),
   as: PropTypes.string
 };

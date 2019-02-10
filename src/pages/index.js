@@ -11,6 +11,7 @@ import Banner from '../components/Banner/Banner';
 import Header from '../components/Header/Header';
 import Nav from '../components/Nav/Nav';
 import Card from '../components/Card/Card';
+import Profile from '../components/Profile/Profile';
 import TestimonialSlider from '../components/TestimonialSlider/TestimonialSlider';
 import VerticalSteps from '../components/VerticalSteps/VerticalSteps';
 import Footer from '../components/Footer/Footer';
@@ -20,13 +21,15 @@ const propTypes = {
 };
 
 const IndexPage = ({ data }) => {
+  const sectionAbout = React.createRef();
   const sectionServices = React.createRef();
   const sectionTestimonials = React.createRef();
   const sectionProcess = React.createRef();
   const sectionContact = React.createRef();
 
   const {
-    allPrismicServiceCard: services,
+    allPrismicProfile: profile,
+    allPrismicServiceCard: servicesItems,
     allPrismicProcessBlock: processItems,
     allPrismicTestimonial: testimonials
   } = data;
@@ -36,6 +39,12 @@ const IndexPage = ({ data }) => {
       <Header>
         <Nav
           items={[
+            {
+              id: 'cta-nav-about',
+              label: 'About',
+              href: '#about',
+              spyOn: sectionAbout
+            },
             {
               id: 'cta-nav-services',
               label: 'Services',
@@ -65,12 +74,20 @@ const IndexPage = ({ data }) => {
       </Header>
 
       <main id="content">
+        <Banner as="section" id="about" size="lg" ref={sectionAbout}>
+          <Profile
+            title={profile.edges[0].node.data.title.text}
+            image={profile.edges[0].node.data.image}
+            paragraphs={profile.edges[0].node.data.description.html}
+          />
+        </Banner>
+
         <Banner as="section" id="services" ref={sectionServices} contrast>
           <Wrapper>
             <h1>Services</h1>
 
             <Grid columns={3} from="sm">
-              {services.edges.map(({ node }) => {
+              {servicesItems.edges.map(({ node }) => {
                 const { data, id } = node;
 
                 return (
@@ -108,6 +125,24 @@ const IndexPage = ({ data }) => {
 
 export const query = graphql`
   query IndexPageQuery {
+    allPrismicProfile {
+      edges {
+        node {
+          data {
+            title {
+              text
+            }
+            image {
+              alt
+              url
+            }
+            description {
+              html
+            }
+          }
+        }
+      }
+    }
     allPrismicServiceCard(
       sort: { fields: [data___order_position], order: ASC }
     ) {

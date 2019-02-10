@@ -12,7 +12,7 @@ const propTypes = {
 const sizePaddingMap = {
   sm: '5vmin',
   md: '10vmin',
-  lg: '15vmin'
+  lg: '20vmin'
 };
 
 const getPadding = ({ size }) =>
