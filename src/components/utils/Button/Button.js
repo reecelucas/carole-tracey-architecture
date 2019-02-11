@@ -39,7 +39,9 @@ const StyledButton = styled.button`
   ${props => BUTTON_STYLES[props.appearance]};
 `;
 
-const Button = ({ id, onClick, children, appearance, ...rest }) => {
+const Button = React.forwardRef(function Button(props, ref) {
+  const { id, onClick, children, appearance, ...rest } = props;
+
   const clickHandler = event => {
     captureInteraction(event);
     onClick(event);
@@ -50,12 +52,13 @@ const Button = ({ id, onClick, children, appearance, ...rest }) => {
       onClick={clickHandler}
       appearance={appearance}
       data-interaction-id={id}
+      ref={ref}
       {...getAttributeProps(rest)}
     >
       {children}
     </StyledButton>
   );
-};
+});
 
 Button.propTypes = propTypes;
 

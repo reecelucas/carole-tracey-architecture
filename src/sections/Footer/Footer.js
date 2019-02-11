@@ -1,8 +1,8 @@
 import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import styled from '@emotion/styled';
-import Wrapper from '../utils/Wrapper/Wrapper';
-import Anchor from '../utils/Anchor/Anchor';
+import Anchor from '../../components/utils/Anchor/Anchor';
+import Wrapper from '../../components/utils/Wrapper/Wrapper';
 import preventOrphanedWord from '../../helpers/preventOrphanedWord';
 import { BREAKPOINTS, COLOURS, FONT_SIZES, SPACING } from '../../styles/theme';
 import { BUTTON_STYLES } from '../../styles/global';
@@ -53,7 +53,7 @@ const FooterCTA = styled(Anchor)`
 
 const Footer = React.forwardRef(function Footer({ ...nativeAttributes }, ref) {
   return (
-    // The result of the graphql `query` is passed into the `render` prop as `data`
+    // The result of the graphql query is passed into the render prop as `data`
     <StaticQuery
       query={graphql`
         query FooterQuery {

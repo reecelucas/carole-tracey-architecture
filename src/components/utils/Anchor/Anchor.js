@@ -13,7 +13,9 @@ const propTypes = {
   newTab: PropTypes.bool
 };
 
-const Anchor = ({ children, href, id, title, onClick, newTab, ...rest }) => {
+const Anchor = React.forwardRef(function Anchor(props, ref) {
+  const { children, href, id, title, onClick, newTab, ...rest } = props;
+
   const sharedProps = {
     title: title || null,
     ...getAttributeProps(rest)
@@ -28,6 +30,7 @@ const Anchor = ({ children, href, id, title, onClick, newTab, ...rest }) => {
       target={newTab ? '_blank' : null}
       rel={newTab ? 'noopener noreferrer' : null}
       onClick={onClick}
+      ref={ref}
       {...sharedProps}
     >
       {children}
@@ -43,6 +46,7 @@ const Anchor = ({ children, href, id, title, onClick, newTab, ...rest }) => {
         captureInteraction(e);
         onClick(e);
       }}
+      ref={ref}
       {...sharedProps}
     >
       {children}
@@ -50,7 +54,7 @@ const Anchor = ({ children, href, id, title, onClick, newTab, ...rest }) => {
   );
 
   return internal ? renderInternalLink() : renderExternalLink();
-};
+});
 
 Anchor.propTypes = propTypes;
 

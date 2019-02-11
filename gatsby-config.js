@@ -4,8 +4,11 @@ require('dotenv').config({
 
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Static Site Skeleton',
-    description: 'A project skeleton for building static PWAs using Gatsby JS',
+    title: 'Carole Tracey — Freelance Architect',
+    description:
+      'Experienced freelance architect specialising in residential projects.',
+    url: 'https://www.caroletracey.com',
+    socialShareImage: '/images/social-share.png',
     webfonts: [
       {
         name: 'Nunito Sans',

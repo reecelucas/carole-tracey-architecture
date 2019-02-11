@@ -26,12 +26,9 @@ export default css`
   body {
     background-color: ${COLOURS.white};
     overflow-x: hidden;
+    padding-top: ${HEADER_HEIGHT};
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-
-    @media (min-width: ${BREAKPOINTS.sm}) {
-      padding-top: ${HEADER_HEIGHT};
-    }
   }
 `;

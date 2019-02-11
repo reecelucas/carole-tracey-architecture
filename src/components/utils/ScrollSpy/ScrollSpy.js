@@ -17,8 +17,7 @@ const propTypes = isBrowser()
           PropTypes.shape({ current: PropTypes.instanceOf(Element) })
         ])
       ).isRequired,
-      offset: PropTypes.number,
-      disable: PropTypes.bool
+      offset: PropTypes.number
     }
   : {};
 
@@ -29,7 +28,7 @@ let scrollY = null;
 let htmlScrollTop = null;
 let htmlScrollHeight = null;
 
-const ScrollSpy = ({ spyOn, offset, disable, children }) => {
+const ScrollSpy = ({ spyOn, offset, children }) => {
   const [currentId, setCurrentId] = useState('');
 
   useEffect(() => {
@@ -37,14 +36,8 @@ const ScrollSpy = ({ spyOn, offset, disable, children }) => {
     setScrollVariables();
     updateCurrentId(); // Set initial currentId
 
-    if (!disable) {
-      /**
-       * We currently only listen to the `disable` prop
-       * on mount, so can't respond to dynamic changes.
-       */
-      document.addEventListener('scroll', onScroll);
-      window.addEventListener('resize', onResize);
-    }
+    document.addEventListener('scroll', onScroll);
+    window.addEventListener('resize', onResize);
 
     return () => {
       document.removeEventListener('scroll', onScroll);
