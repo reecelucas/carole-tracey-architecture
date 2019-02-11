@@ -55,20 +55,18 @@ const Logo = styled(Anchor)`
   }
 `;
 
-const Header = ({ children }) => {
-  return (
-    <StyledHeader>
-      <SkipLink />
+const Header = ({ children }) => (
+  <StyledHeader>
+    <SkipLink />
 
-      <HeaderInner>
-        <Logo id="cta-site-logo" href="/" aria-label="caroletracey.com">
-          <Image src={logo} alt="" />
-        </Logo>
-        {children}
-      </HeaderInner>
-    </StyledHeader>
-  );
-};
+    <HeaderInner>
+      <Logo id="cta-site-logo" href="/" aria-label="caroletracey.com">
+        <Image src={logo} alt="" />
+      </Logo>
+      {children}
+    </HeaderInner>
+  </StyledHeader>
+);
 
 Header.propTypes = propTypes;
 

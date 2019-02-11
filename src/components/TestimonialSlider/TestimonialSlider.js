@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import VisuallyHidden from '@reach/visually-hidden';
+import VisuallyHidden from '../utils/VisuallyHidden/VisuallyHidden';
 import Button from '../utils/Button/Button';
 import { Carousel, CarouselSlide } from '../utils/Carousel';
 import Quote from '../Quote/Quote';
@@ -85,58 +85,53 @@ const CarouselControl = styled(Button)`
 const incIndex = index => index + 1;
 const getSlideId = index => `testimonial-${incIndex(index)}`;
 
-const TestimonialSlider = ({ testimonials }) => {
-  let slideIds = [];
+const TestimonialSlider = ({ testimonials }) => (
+  <Carousel>
+    {({ navigateToSlide, slideIndexes, activeSlideIndex }) => (
+      <React.Fragment>
+        <CarouselSlides>
+          {testimonials.edges.map(({ node }, i) => {
+            const { data, id } = node;
 
-  return (
-    <Carousel>
-      {({ navigateToSlide, slideIndexes, activeSlideIndex }) => (
-        <React.Fragment>
-          <CarouselSlides>
-            {testimonials.edges.map(({ node }, i) => {
-              const { data, id } = node;
-              slideIds.push(id);
+            return (
+              <CarouselSlide key={id} index={i} active={i === 0}>
+                {({ isActive }) => (
+                  <li
+                    id={getSlideId(i)}
+                    aria-hidden={isActive ? 'false' : 'true'}
+                  >
+                    <Quote
+                      quote={preventOrphanedWord(data.quote.text)}
+                      attribution={data.attribution.text}
+                    />
+                  </li>
+                )}
+              </CarouselSlide>
+            );
+          })}
+        </CarouselSlides>
 
-              return (
-                <CarouselSlide key={id} index={i} active={i === 0}>
-                  {({ isActive }) => (
-                    <li
-                      id={getSlideId(i)}
-                      aria-hidden={isActive ? 'false' : 'true'}
-                    >
-                      <Quote
-                        quote={preventOrphanedWord(data.quote.text)}
-                        attribution={data.attribution.text}
-                      />
-                    </li>
-                  )}
-                </CarouselSlide>
-              );
-            })}
-          </CarouselSlides>
-
-          <CarouselControls>
-            {slideIndexes.map(i => (
-              <li key={slideIds[i]}>
-                <CarouselControl
-                  id={`btn-${slideIds[i]}`}
-                  isActive={activeSlideIndex === i}
-                  onClick={() => navigateToSlide(i)}
-                  aria-controls={getSlideId(i)}
-                  aria-selected={activeSlideIndex === i ? 'true' : 'false'}
-                >
-                  <VisuallyHidden>
-                    Navigate to testimonial {incIndex(i)}
-                  </VisuallyHidden>
-                </CarouselControl>
-              </li>
-            ))}
-          </CarouselControls>
-        </React.Fragment>
-      )}
-    </Carousel>
-  );
-};
+        <CarouselControls>
+          {slideIndexes.map(i => (
+            <li key={getSlideId(i)}>
+              <CarouselControl
+                id={`btn-${getSlideId(i)}`}
+                isActive={activeSlideIndex === i}
+                onClick={() => navigateToSlide(i)}
+                aria-controls={getSlideId(i)}
+                aria-selected={activeSlideIndex === i ? 'true' : 'false'}
+              >
+                <VisuallyHidden>
+                  Navigate to testimonial {incIndex(i)}
+                </VisuallyHidden>
+              </CarouselControl>
+            </li>
+          ))}
+        </CarouselControls>
+      </React.Fragment>
+    )}
+  </Carousel>
+);
 
 TestimonialSlider.propTypes = propTypes;
 

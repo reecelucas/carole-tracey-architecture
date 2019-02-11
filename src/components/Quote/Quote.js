@@ -28,14 +28,12 @@ const StyledAttribution = styled.span`
   vertical-align: top;
 `;
 
-const Quote = ({ quote, attribution }) => {
-  return (
-    <StyledQuote>
-      <p>&ldquo;{quote}&rdquo;</p>
-      {attribution && <StyledAttribution>{attribution}</StyledAttribution>}
-    </StyledQuote>
-  );
-};
+const Quote = ({ quote, attribution }) => (
+  <StyledQuote>
+    <p>&ldquo;{quote}&rdquo;</p>
+    {attribution && <StyledAttribution>{attribution}</StyledAttribution>}
+  </StyledQuote>
+);
 
 Quote.propTypes = propTypes;
 

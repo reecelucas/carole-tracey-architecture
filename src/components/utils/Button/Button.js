@@ -47,7 +47,6 @@ const Button = ({ id, onClick, children, appearance, ...rest }) => {
 
   return (
     <StyledButton
-      type="button"
       onClick={clickHandler}
       appearance={appearance}
       data-interaction-id={id}

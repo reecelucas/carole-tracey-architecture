@@ -79,31 +79,29 @@ const CopyContainer = styled(Wrapper)`
   }
 `;
 
-const Profile = ({ title, image, paragraphs }) => {
-  return (
-    <Wrapper gutter="0">
-      <Wrapper>
-        <Title>{title}</Title>
-      </Wrapper>
-
-      <Grid columns={2} gutter="0" from="md">
-        <GridItem>
-          <Wrapper>
-            <ImageContainer>
-              <IntrinsicRatio ratio="3:4">
-                <Image src={image.url} alt={image.alt || ''} />
-              </IntrinsicRatio>
-            </ImageContainer>
-          </Wrapper>
-        </GridItem>
-
-        <GridItem>
-          <CopyContainer dangerouslySetInnerHTML={{ __html: paragraphs }} />
-        </GridItem>
-      </Grid>
+const Profile = ({ title, image, paragraphs }) => (
+  <Wrapper gutter="0">
+    <Wrapper>
+      <Title>{title}</Title>
     </Wrapper>
-  );
-};
+
+    <Grid columns={2} gutter="0" from="md">
+      <GridItem>
+        <Wrapper>
+          <ImageContainer>
+            <IntrinsicRatio ratio="3:4">
+              <Image src={image.url} alt={image.alt || ''} />
+            </IntrinsicRatio>
+          </ImageContainer>
+        </Wrapper>
+      </GridItem>
+
+      <GridItem>
+        <CopyContainer dangerouslySetInnerHTML={{ __html: paragraphs }} />
+      </GridItem>
+    </Grid>
+  </Wrapper>
+);
 
 Profile.propTypes = propTypes;
 
