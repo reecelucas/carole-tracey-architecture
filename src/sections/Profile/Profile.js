@@ -15,7 +15,7 @@ const BORDER_OFFSET_LEFT = '10%';
 const TITLE_SPACING = `calc(10vmin + ${SPACING.huge})`;
 
 const Title = styled.h1`
-  max-width: 600px;
+  max-width: 550px;
   margin-bottom: ${TITLE_SPACING};
 `;
 
@@ -42,7 +42,7 @@ const ImageContainer = styled.div`
     &:before {
       background-image: linear-gradient(
         to top,
-        ${COLOURS.green8} 20%,
+        ${COLOURS.green8} 0%,
         ${COLOURS.green2} 100%
       );
     }

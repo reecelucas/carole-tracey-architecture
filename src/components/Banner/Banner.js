@@ -19,7 +19,7 @@ const getPadding = ({ size }) =>
   `calc(${sizePaddingMap[size] || sizePaddingMap.md} + ${SPACING.base})`;
 
 const StyledBanner = styled.div`
-  background-color: ${props => props.contrast && COLOURS.gray0};
+  background-color: ${props => props.contrast && COLOURS.green0};
   padding: ${props => getPadding(props)} 0;
 `;
 

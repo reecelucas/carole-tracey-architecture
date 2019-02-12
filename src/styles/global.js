@@ -5,7 +5,7 @@ import { COLOURS, FONT_FAMILIES, SPACING } from './theme';
 
 const baseButtonStyles = css`
   all: initial;
-  border-radius: 50px;
+  border-radius: 2px;
   cursor: pointer;
   display: inline-block;
   font-family: $font-sans;

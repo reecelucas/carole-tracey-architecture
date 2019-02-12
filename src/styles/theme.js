@@ -19,7 +19,7 @@ export const COLOURS = {
   gray7: '#7c8c82',
   gray8: '#5c7063',
   gray9: '#344239',
-  green0: '#e3f6ea',
+  green0: '#ebf8f0',
   green1: '#c4edd3',
   green2: '#a1e3ba',
   green3: '#79d79b',

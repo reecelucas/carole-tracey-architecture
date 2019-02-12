@@ -51,7 +51,7 @@ const TitleButton = styled(Button)`
 const TitleIcon = styled.span`
   align-items: center;
   background-color: ${({ expanded }) =>
-    expanded ? `${COLOURS.green8}` : `${COLOURS.gray0}`};
+    expanded ? `${COLOURS.green8}` : `${COLOURS.green0}`};
   border: 2px solid ${COLOURS.green8};
   border-radius: 50%;
   color: ${props => (props.expanded ? `${COLOURS.white}` : `${COLOURS.black}`)};
@@ -68,7 +68,7 @@ const TitleIcon = styled.span`
 
 const Body = styled.div`
   margin-bottom: 0;
-  max-width: 80ch;
+  max-width: 85ch;
   padding-left: calc(${ICON_SIZE} + ${SPACING.base});
   padding-bottom: ${SPACING.base};
   position: relative;
