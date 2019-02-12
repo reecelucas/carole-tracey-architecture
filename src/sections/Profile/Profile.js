@@ -7,6 +7,8 @@ import IntrinsicRatio from '../../components/utils/IntrinsicRatio/IntrinsicRatio
 import Wrapper from '../../components/utils/Wrapper/Wrapper';
 import { BREAKPOINTS, COLOURS, SPACING, Z_INDEXES } from '../../styles/theme';
 
+const xss = require('xss');
+
 const BORDER_WIDTH = '12px';
 const BORDER_OFFSET_TOP = '7.5%';
 const BORDER_OFFSET_LEFT = '10%';
@@ -117,7 +119,7 @@ const Profile = () => (
 
             <GridItem>
               <CopyContainer
-                dangerouslySetInnerHTML={{ __html: data.description.html }}
+                dangerouslySetInnerHTML={{ __html: xss(data.description.html) }}
               />
             </GridItem>
           </Grid>

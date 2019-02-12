@@ -21,7 +21,8 @@
     "prop-types": "^15.6.2",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
-    "react-helmet": "^5.2.0"
+    "react-helmet": "^5.2.0",
+    "xss": "^1.0.3"
   },
   "keywords": [
     "gatsby"
