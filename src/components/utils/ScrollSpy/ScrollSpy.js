@@ -99,12 +99,12 @@ const ScrollSpy = ({ spyOn, offset, children }) => {
   };
 
   const onResize = debounce(100, () => {
-    document.removeEventListener('scroll', onScroll);
     setCurrentId('');
+    document.removeEventListener('scroll', onScroll);
 
     // Rebind event handlers and update scroll variables
-    document.addEventListener('scroll', onScroll);
     windowHeight = window.innerHeight;
+    document.addEventListener('scroll', onScroll);
     setScrollVariables();
     updateCurrentId();
   });

@@ -6,7 +6,7 @@ import { SPACING } from '../../../styles/theme';
 const propTypes = {
   children: PropTypes.any.isRequired,
   as: PropTypes.string,
-  size: PropTypes.oneOf(['tiny', 'small', 'large', 'huge'])
+  size: PropTypes.oneOf(...Object.keys(SPACING))
 };
 
 const StyledSpacer = styled.div`

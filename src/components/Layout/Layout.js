@@ -44,7 +44,7 @@ const Layout = ({ children }) => {
   }, []);
 
   return (
-    // The result of the graphql `query` is passed into the `render` prop as `data`
+    // The result of the graphql query is passed into the render prop as `data`
     <StaticQuery
       query={graphql`
         query siteMetadata {
@@ -52,6 +52,8 @@ const Layout = ({ children }) => {
             siteMetadata {
               title
               description
+              url
+              socialImage
               webfonts {
                 path
               }

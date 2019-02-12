@@ -42,14 +42,14 @@ const StyledButton = styled.button`
 const Button = React.forwardRef(function Button(props, ref) {
   const { id, onClick, children, appearance, ...rest } = props;
 
-  const clickHandler = event => {
+  const onButtonClick = event => {
     captureInteraction(event);
     onClick(event);
   };
 
   return (
     <StyledButton
-      onClick={clickHandler}
+      onClick={onButtonClick}
       appearance={appearance}
       data-interaction-id={id}
       ref={ref}

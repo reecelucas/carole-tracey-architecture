@@ -23,6 +23,11 @@ const Anchor = React.forwardRef(function Anchor(props, ref) {
 
   // Any internal link will start with one slash
   const internal = /^\/(?!\/)/.test(href);
+  const onLinkClick = event => {
+    // For interal links we record user interaction for error tracking
+    captureInteraction(event);
+    onClick(event);
+  };
 
   const renderExternalLink = () => (
     <a
@@ -41,11 +46,7 @@ const Anchor = React.forwardRef(function Anchor(props, ref) {
     <Link
       to={href}
       data-interaction-id={id}
-      onClick={e => {
-        // For interal links we record user interaction for error tracking
-        captureInteraction(e);
-        onClick(e);
-      }}
+      onClick={onLinkClick}
       ref={ref}
       {...sharedProps}
     >

@@ -5,7 +5,6 @@ import { stripUnit } from 'polished';
 import Anchor from '../../components/utils/Anchor/Anchor';
 import Button from '../../components/utils/Button/Button';
 import Image from '../../components/utils/Image/Image';
-import ScrollSpy from '../../components/utils/ScrollSpy/ScrollSpy';
 import SkipLink from '../../components/SkipLink/SkipLink';
 import Wrapper from '../../components/utils/Wrapper/Wrapper';
 import useWindowWidth from '../../hooks/useWindowWidth';
@@ -164,16 +163,7 @@ const NavItem = styled(Anchor)`
   }
 `;
 
-/**
- * Keep a local reference to the `currentId` property
- * returned from the `ScrollSpy` render function.
- */
-let _currentId = null;
-
-const Header = ({ navItems }) => {
-  const spyOn = navItems.map(({ spyOn }) => spyOn);
-  const sectionOffset = stripUnit(HEADER_HEIGHT);
-
+const Header = ({ currentId, navItems }) => {
   const headerRef = useRef();
   const firstNavItemRef = useRef();
 
@@ -224,9 +214,9 @@ const Header = ({ navItems }) => {
 
     const hash = event.target.getAttribute('href');
     const id = hash.replace('#', '');
-    const { current: elem } = spyOn.find(({ current }) => current.id === id);
+    const elem = document.querySelector(hash);
 
-    if (!elem || _currentId === id) return;
+    if (!elem || currentId === id) return;
 
     setClickedItemId(id);
     setScrolling(true);
@@ -235,17 +225,24 @@ const Header = ({ navItems }) => {
       setShowMenu(false);
     }
 
-    const elemTop = elem.offsetTop - sectionOffset;
+    const elemTop = elem.offsetTop - stripUnit(HEADER_HEIGHT);
 
     ease({
       startValue: window.pageYOffset,
       endValue: elemTop,
-      durationMs: 450,
+      durationMs: 600,
       onStep: value => window.scroll(0, value),
       onComplete: () => {
         setFocus(elem, { y: elemTop });
 
-        // Reset now that we're done
+        /**
+         * Reset now that we're done. As it stands this is quite
+         * precarious, since we reset the `clickedItemId` before
+         * we can be sure that the `currentId` prop has updated to
+         * reflect the new current section. If the duration of
+         * the easing function is reduced we can see this latency
+         * manifest as a brief flicker in the `navItem` active state.
+         */
         setScrolling(false);
         setClickedItemId('');
 
@@ -258,7 +255,7 @@ const Header = ({ navItems }) => {
   };
 
   const navItemIsActive = id =>
-    (scrolling && clickedItemId === id) || (_currentId === id && !scrolling);
+    (scrolling && clickedItemId === id) || (currentId === id && !scrolling);
 
   return (
     <StyledHeader ref={headerRef}>
@@ -282,36 +279,28 @@ const Header = ({ navItems }) => {
           </Hamburger>
         </Controls>
 
-        <ScrollSpy spyOn={spyOn} offset={sectionOffset}>
-          {({ currentId }) => {
-            _currentId = currentId;
+        <StyledNav
+          id="menu"
+          aria-labelledby="menu-button"
+          aria-hidden={showMenu ? 'false' : 'true'}
+        >
+          {navItems.map(({ id, href, label }, i) => {
+            const trimmedHref = href.replace('#', '');
 
             return (
-              <StyledNav
-                id="menu"
-                aria-labelledby="menu-button"
-                aria-hidden={showMenu ? 'false' : 'true'}
+              <NavItem
+                ref={i === 0 ? firstNavItemRef : null}
+                key={id}
+                id={id}
+                href={href}
+                isActive={navItemIsActive(trimmedHref)}
+                onClick={onNavItemClick}
               >
-                {navItems.map(({ id, href, label }, i) => {
-                  const trimmedHref = href.replace('#', '');
-
-                  return (
-                    <NavItem
-                      ref={i === 0 ? firstNavItemRef : null}
-                      key={id}
-                      id={id}
-                      href={href}
-                      isActive={navItemIsActive(trimmedHref)}
-                      onClick={onNavItemClick}
-                    >
-                      {label}
-                    </NavItem>
-                  );
-                })}
-              </StyledNav>
+                {label}
+              </NavItem>
             );
-          }}
-        </ScrollSpy>
+          })}
+        </StyledNav>
       </Inner>
     </StyledHeader>
   );

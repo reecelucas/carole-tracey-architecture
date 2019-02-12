@@ -100,7 +100,7 @@ const Testimonials = () => (
                   const { data, id } = node;
 
                   return (
-                    <CarouselSlide key={id} index={i} active={i === 0}>
+                    <CarouselSlide key={id} index={i}>
                       {({ isActive }) => (
                         <li
                           id={getSlideId(i)}
@@ -125,7 +125,6 @@ const Testimonials = () => (
                       isActive={activeSlideIndex === i}
                       onClick={() => navigateToSlide(i)}
                       aria-controls={getSlideId(i)}
-                      aria-selected={activeSlideIndex === i ? 'true' : 'false'}
                     >
                       <VisuallyHidden>
                         Navigate to testimonial {incIndex(i)}
