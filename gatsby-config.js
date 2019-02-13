@@ -34,13 +34,14 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'gatsby-static-site-skeleton',
-        short_name: 'static-skeleton',
+        name: 'caroletracey.com',
+        short_name: 'caroletracey.com',
         start_url: '/',
-        background_color: '#fff',
-        theme_color: '#fff',
+        background_color: '#f8f9f9',
+        theme_color: '#f8f9f9',
         display: 'minimal-ui',
-        icon: 'src/images/gastby-icon.png'
+        icon: 'src/images/favicon.png',
+        include_favicon: true
       }
     },
     'gatsby-plugin-offline',
