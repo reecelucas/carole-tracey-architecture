@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { graphql, StaticQuery } from 'gatsby';
 import { Global } from '@emotion/core';
+import lazily from 'lazily.js';
 import {
   startErrorTracking,
   logErrorReport
@@ -32,12 +33,21 @@ const onFirstTabPress = ({ key }) => {
 
 const Layout = ({ children }) => {
   useEffect(() => {
+    const lazyLoader = lazily({
+      selector: '[data-lazyload]',
+      loadClass: 'has-loaded',
+      errorClass: 'has-error',
+      rootMargin: '0px 0px 200px 0px'
+    });
+
+    lazyLoader.init();
     window.addEventListener('error', logErrorReport);
     window.addEventListener('keydown', onFirstTabPress);
 
     startErrorTracking();
 
     return () => {
+      lazyLoader.destroy();
       window.removeEventListener('error', logErrorReport);
       window.removeEventListener('keydown', onFirstTabPress);
     };
@@ -66,7 +76,7 @@ const Layout = ({ children }) => {
 
         return (
           <React.Fragment>
-            <Helmet htmlAttributes={{ lang: 'en-GB' }}>
+            <Helmet>
               <title>{siteMetadata.title}</title>
               <meta name="description" content={siteMetadata.description} />
 

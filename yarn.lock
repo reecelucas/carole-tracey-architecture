@@ -6071,6 +6071,11 @@ latest-version@^3.0.0:
   dependencies:
     package-json "^4.0.0"
 
+lazily.js@^1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/lazily.js/-/lazily.js-1.1.6.tgz#5144f643bc6ec0e5986c8bd20a4f0b19ba53334f"
+  integrity sha512-/II/IoN+QoDZsWO8kFEtjHGR6wkiF/mbF3N5XBa+ISDjpq6Alyq7pYTu2kLnvcHNppLxdjaUhXAFzzmN7PUrTw==
+
 lcid@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/lcid/-/lcid-1.0.0.tgz#308accafa0bc483a3867b4b6f2b9506251d1b835"

@@ -45,9 +45,10 @@ const Services = () => (
             return (
               <GridItem key={id}>
                 <Card
-                  thumbnail={data.image}
+                  image={data.image}
                   title={data.title.text}
                   description={preventOrphanedWord(data.description.text)}
+                  lazyload={true}
                 />
               </GridItem>
             );

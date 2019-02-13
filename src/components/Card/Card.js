@@ -6,12 +6,13 @@ import Image from '../utils/Image/Image';
 import { COLOURS, FONT_SIZES, SPACING } from '../../styles/theme';
 
 const propTypes = {
-  thumbnail: PropTypes.exact({
+  image: PropTypes.exact({
     url: PropTypes.string.isRequired,
     alt: PropTypes.string
   }),
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired
+  description: PropTypes.string.isRequired,
+  lazyload: PropTypes.bool
 };
 
 const Wrapper = styled.div`
@@ -45,11 +46,16 @@ const Description = styled.p`
   margin: 0;
 `;
 
-const Card = ({ thumbnail, title, description }) => (
+const Card = ({ image, title, description, lazyload }) => (
   <Wrapper>
     <Thumbnail>
       <IntrinsicRatio ratio="4:3">
-        <Image src={thumbnail.url} alt={thumbnail.alt} />
+        <Image
+          src={image.url}
+          alt={image.alt}
+          lazyLoad={lazyload}
+          data-lazyload={lazyload ? 'true' : null}
+        />
       </IntrinsicRatio>
     </Thumbnail>
 

@@ -30,7 +30,7 @@ const Container = styled.div`
     width: 100%;
   }
 
-  .o-ratio__content,
+  .intrinsic-ratio-child,
   > video,
   > img,
   > iframe,

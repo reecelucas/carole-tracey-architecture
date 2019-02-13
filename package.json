@@ -17,6 +17,7 @@
     "gatsby-plugin-react-helmet": "^3.0.2",
     "gatsby-source-filesystem": "^2.0.8",
     "gatsby-source-prismic": "^2.2.0",
+    "lazily.js": "^1.1.6",
     "polished": "^2.3.3",
     "prop-types": "^15.6.2",
     "react": "^16.8.1",

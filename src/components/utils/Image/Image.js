@@ -26,7 +26,7 @@ const buildSrcset = srcset =>
 const buildSizes = sizes =>
   sizes.map(size => `${size.mediaCondition} ${size.size}`).join(',');
 
-const Image = ({ className, alt, srcset, src, sizes, lazyLoad }) => {
+const Image = ({ className, alt, srcset, src, sizes, lazyLoad, ...rest }) => {
   const placeholderSrc =
     'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
@@ -39,6 +39,7 @@ const Image = ({ className, alt, srcset, src, sizes, lazyLoad }) => {
       data-srcset={srcset && lazyLoad ? buildSrcset(srcset) : null}
       srcSet={srcset && !lazyLoad ? buildSrcset(srcset) : null}
       sizes={srcset && sizes ? buildSizes(sizes) : null}
+      {...rest}
     />
   );
 };
