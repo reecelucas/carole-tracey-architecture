@@ -13,7 +13,8 @@ import Wrapper from '../../components/utils/Wrapper/Wrapper';
 import preventOrphanedWord from '../../helpers/preventOrphanedWord';
 import { COLOURS, FONT_SIZES, SPACING, Z_INDEXES } from '../../styles/theme';
 
-const ICON_SIZE = '3rem';
+const ICON_SIZE = '2rem';
+const STROKE_WIDTH = '3px';
 const CONNECTOR_STYLES = css`
   position: relative;
   z-index: ${Z_INDEXES.base};
@@ -23,9 +24,9 @@ const CONNECTOR_STYLES = css`
     content: '';
     display: inline-block;
     height: 100%;
-    left: calc(${ICON_SIZE} / 2);
+    left: calc((${ICON_SIZE} / 2) - 1px);
     position: absolute;
-    top: 0;
+    top: ${STROKE_WIDTH};
     width: 2px;
     z-index: ${Z_INDEXES.beneath};
   }
@@ -48,22 +49,19 @@ const TitleButton = styled(Button)`
   width: 100%;
 `;
 
-const TitleIcon = styled.span`
-  align-items: center;
-  background-color: ${({ expanded }) =>
+const TitleIcon = styled.svg`
+  display: block;
+  fill: ${({ expanded }) =>
     expanded ? `${COLOURS.green8}` : `${COLOURS.green0}`};
-  border: 2px solid ${COLOURS.green8};
-  border-radius: 50%;
-  color: ${props => (props.expanded ? `${COLOURS.white}` : `${COLOURS.black}`)};
-  display: inline-flex;
-  font-size: ${FONT_SIZES[5]};
   flex-shrink: 0;
   height: ${ICON_SIZE};
-  justify-content: center;
-  line-height: 1;
   margin-right: ${SPACING.base};
-  transition: all 0.2s ease;
   width: ${ICON_SIZE};
+
+  path {
+    stroke: ${COLOURS.green8};
+    stroke-width: ${STROKE_WIDTH};
+  }
 `;
 
 const Body = styled.div`
@@ -125,7 +123,13 @@ const Process = () => (
                         aria-expanded={expanded ? 'true' : 'false'}
                         onClick={onClick}
                       >
-                        <TitleIcon expanded={expanded}>{i}</TitleIcon>
+                        <TitleIcon
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 52 45"
+                          expanded={expanded}
+                        >
+                          <path d="M1.75129 44L26 2L50.2487 44H1.75129Z" />
+                        </TitleIcon>
                         {data.title.text}
                       </TitleButton>
                     </Title>
