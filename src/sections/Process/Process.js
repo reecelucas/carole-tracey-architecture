@@ -19,7 +19,7 @@ const CONNECTOR_STYLES = css`
   z-index: ${Z_INDEXES.base};
 
   &:after {
-    background-color: ${COLOURS.green8};
+    background-color: ${COLOURS.black};
     content: '';
     display: inline-block;
     height: 100%;
@@ -52,7 +52,7 @@ const TitleIcon = styled.span`
   align-items: center;
   background-color: ${({ expanded }) =>
     expanded ? `${COLOURS.green8}` : `${COLOURS.green0}`};
-  border: 2px solid ${COLOURS.green8};
+  border: 2px solid ${COLOURS.black};
   border-radius: 50%;
   color: ${props => (props.expanded ? `${COLOURS.white}` : `${COLOURS.black}`)};
   display: inline-flex;
