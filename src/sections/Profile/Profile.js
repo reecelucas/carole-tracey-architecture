@@ -110,7 +110,7 @@ const Profile = () => (
             <GridItem>
               <Wrapper>
                 <ImageContainer>
-                  <IntrinsicRatio ratio="3:4">
+                  <IntrinsicRatio>
                     <Image src={data.image.url} alt={data.image.alt || ''} />
                   </IntrinsicRatio>
                 </ImageContainer>
