@@ -26,6 +26,7 @@ const ImageContainer = styled.div`
     margin-left: ${BORDER_OFFSET_LEFT};
     margin-bottom: 0;
     position: relative;
+    z-index: ${Z_INDEXES.base};
 
     &:before,
     &:after {
@@ -42,7 +43,7 @@ const ImageContainer = styled.div`
     &:before {
       background-image: linear-gradient(
         to top,
-        ${COLOURS.green8} 0%,
+        ${COLOURS.base} 0%,
         ${COLOURS.green2} 100%
       );
     }

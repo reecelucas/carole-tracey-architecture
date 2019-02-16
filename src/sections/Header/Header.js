@@ -141,7 +141,7 @@ const NavItem = styled(Anchor)`
   text-transform: uppercase;
 
   &:after {
-    background-color: ${COLOURS.green8};
+    background-color: ${COLOURS.base};
     content: '';
     display: ${({ isActive }) => (isActive ? 'inline-block' : 'none')};
     height: 2px;
@@ -281,7 +281,7 @@ const Header = ({ currentId, navItems }) => {
 
         <StyledNav
           id="menu"
-          aria-labelledby="menu-button"
+          aria-labelledby={navIsCollapsible ? 'menu-button' : null}
           aria-hidden={showMenu ? 'false' : 'true'}
         >
           {navItems.map(({ id, href, label }, i) => {

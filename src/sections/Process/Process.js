@@ -13,7 +13,8 @@ import Wrapper from '../../components/utils/Wrapper/Wrapper';
 import preventOrphanedWord from '../../helpers/preventOrphanedWord';
 import { COLOURS, FONT_SIZES, SPACING, Z_INDEXES } from '../../styles/theme';
 
-const ICON_SIZE = '2rem';
+const BORDER_WIDTH = '2px';
+const ICON_SIZE = '1.5rem';
 const CONNECTOR_STYLES = css`
   position: relative;
   z-index: ${Z_INDEXES.base};
@@ -25,7 +26,7 @@ const CONNECTOR_STYLES = css`
     height: 100%;
     left: calc(${ICON_SIZE} / 2);
     position: absolute;
-    top: 0;
+    top: ${BORDER_WIDTH};
     width: 2px;
     z-index: ${Z_INDEXES.beneath};
   }
@@ -49,17 +50,13 @@ const TitleButton = styled(Button)`
 `;
 
 const TitleIcon = styled.span`
-  align-items: center;
   background-color: ${({ expanded }) =>
-    expanded ? `${COLOURS.green8}` : `${COLOURS.green0}`};
-  border: 2px solid ${COLOURS.black};
+    expanded ? `${COLOURS.base}` : `${COLOURS.white}`};
+  border: ${BORDER_WIDTH} solid ${COLOURS.black};
   border-radius: 50%;
-  color: ${props => (props.expanded ? `${COLOURS.white}` : `${COLOURS.black}`)};
-  display: inline-flex;
-  font-size: ${FONT_SIZES[6]};
+  display: inline-block;
   flex-shrink: 0;
   height: ${ICON_SIZE};
-  justify-content: center;
   margin-right: ${SPACING.base};
   width: ${ICON_SIZE};
 `;
@@ -123,7 +120,7 @@ const Process = () => (
                         aria-expanded={expanded ? 'true' : 'false'}
                         onClick={onClick}
                       >
-                        <TitleIcon expanded={expanded}>{i}</TitleIcon>
+                        <TitleIcon expanded={expanded} />
                         {data.title.text}
                       </TitleButton>
                     </Title>

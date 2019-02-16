@@ -31,7 +31,7 @@ const StyledLink = styled(Anchor)`
   width: 1px;
 
   &:focus {
-    background-color: ${COLOURS.green8};
+    background-color: ${COLOURS.black};
     border-bottom-right-radius: ${borderRadius};
     border-bottom-left-radius: ${borderRadius};
     clip: auto;

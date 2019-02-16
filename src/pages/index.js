@@ -69,19 +69,24 @@ const IndexPage = () => {
       </ScrollSpy>
 
       <main id="content">
-        <Banner as="section" id="about" size="lg" ref={sectionAbout}>
+        <Banner as="section" id="about" size="lg" ref={sectionAbout} contrast>
           <Profile />
         </Banner>
 
-        <Banner as="section" id="services" ref={sectionServices} contrast>
+        <Banner as="section" id="services" ref={sectionServices}>
           <Services />
         </Banner>
 
-        <Banner id="testimonials" as="section" ref={sectionTestimonials}>
+        <Banner
+          id="testimonials"
+          as="section"
+          ref={sectionTestimonials}
+          contrast
+        >
           <Testimonials />
         </Banner>
 
-        <Banner as="section" id="process" ref={sectionProcess} contrast>
+        <Banner as="section" id="process" ref={sectionProcess}>
           <Process />
         </Banner>
       </main>

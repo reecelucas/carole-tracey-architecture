@@ -1,13 +1,15 @@
 import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import styled from '@emotion/styled';
-import Anchor from '../../components/utils/Anchor/Anchor';
 import Wrapper from '../../components/utils/Wrapper/Wrapper';
 import preventOrphanedWord from '../../helpers/preventOrphanedWord';
+import { LINK_STYLES } from '../../styles/global';
 import { BREAKPOINTS, COLOURS, FONT_SIZES, SPACING } from '../../styles/theme';
-import { BUTTON_STYLES } from '../../styles/global';
+
+const xss = require('xss');
 
 const StyledFooter = styled.footer`
+  background-color: ${COLOURS.green0};
   padding-top: ${SPACING.tiny};
   padding-bottom: ${SPACING.large};
 
@@ -19,7 +21,7 @@ const StyledFooter = styled.footer`
 
 const FooterBox = styled.div`
   align-items: center;
-  border: 3px solid ${COLOURS.green8};
+  border: 3px solid ${COLOURS.black};
   display: flex;
   flex-direction: column;
   margin: ${SPACING.huge} 0;
@@ -27,11 +29,14 @@ const FooterBox = styled.div`
   text-align: center;
 `;
 
-const FooterCopy = styled.p`
+const FooterCopy = styled.div`
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: ${SPACING.large};
   max-width: 60ch;
+
+  a {
+    ${LINK_STYLES}
+  }
 `;
 
 const FooterBand = styled.div`
@@ -45,10 +50,6 @@ const FooterBand = styled.div`
     flex-direction: row;
     justify-content: space-between;
   }
-`;
-
-const FooterCTA = styled(Anchor)`
-  ${BUTTON_STYLES.primary};
 `;
 
 const Footer = React.forwardRef(function Footer({ ...nativeAttributes }, ref) {
@@ -65,13 +66,7 @@ const Footer = React.forwardRef(function Footer({ ...nativeAttributes }, ref) {
                     text
                   }
                   bio {
-                    text
-                  }
-                  phone {
-                    url
-                  }
-                  email {
-                    url
+                    html
                   }
                   meta {
                     text
@@ -83,7 +78,7 @@ const Footer = React.forwardRef(function Footer({ ...nativeAttributes }, ref) {
         }
       `}
       render={({ allPrismicFooter }) => {
-        const { title, bio, email, meta } = allPrismicFooter.edges[0].node.data;
+        const { title, bio, meta } = allPrismicFooter.edges[0].node.data;
 
         return (
           <StyledFooter key={title} ref={ref} {...nativeAttributes}>
@@ -91,15 +86,9 @@ const Footer = React.forwardRef(function Footer({ ...nativeAttributes }, ref) {
               <FooterBox>
                 <Wrapper>
                   <h2>{title.text}</h2>
-                  <FooterCopy>{preventOrphanedWord(bio.text)}</FooterCopy>
-
-                  <FooterCTA
-                    id="cta-footer-email"
-                    href={email.url}
-                    title="Send me an email"
-                  >
-                    Say Hello
-                  </FooterCTA>
+                  <FooterCopy
+                    dangerouslySetInnerHTML={{ __html: xss(bio.html) }}
+                  />
                 </Wrapper>
               </FooterBox>
 
