@@ -56,6 +56,12 @@ const Card = ({ image, title, description, lazyload }) => (
           lazyLoad={lazyload}
           data-lazyload={lazyload ? 'true' : null}
         />
+
+        {lazyload && (
+          <noscript>
+            <Image src={image.url} alt={image.alt} />
+          </noscript>
+        )}
       </IntrinsicRatio>
     </Thumbnail>
 

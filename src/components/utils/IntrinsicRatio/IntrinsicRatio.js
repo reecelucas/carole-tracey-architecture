@@ -30,12 +30,7 @@ const Container = styled.div`
     width: 100%;
   }
 
-  .intrinsic-ratio-child,
-  > video,
-  > img,
-  > iframe,
-  > embed,
-  > object {
+  > * {
     bottom: 0;
     height: 100%;
     left: 0;

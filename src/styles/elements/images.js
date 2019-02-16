@@ -16,6 +16,10 @@ export default css`
   img[data-lazyload] {
     opacity: 1;
     transition: opacity 0.4s ease;
+
+    .no-js & {
+      display: none;
+    }
   }
 
   img[data-src] {

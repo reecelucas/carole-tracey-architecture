@@ -96,7 +96,7 @@ const Hamburger = styled(Button)`
 
 const StyledNav = styled.nav`
   align-items: flex-start;
-  display: flex;
+  display: ${props => (props.show ? 'flex' : 'none')};
   flex-direction: column;
   font-family: ${FONT_FAMILIES.fallback};
   font-size: ${FONT_SIZES[7]};
@@ -117,12 +117,9 @@ const StyledNav = styled.nav`
     width: 100vw;
   }
 
-  &[aria-hidden='true'] {
-    display: none;
-  }
-
   @media (min-width: ${BREAKPOINTS.sm}) {
     align-items: initial;
+    display: flex;
     flex-direction: row;
     justify-content: flex-end;
     padding: 0;
@@ -283,6 +280,7 @@ const Header = ({ currentId, navItems }) => {
           id="menu"
           aria-labelledby={navIsCollapsible ? 'menu-button' : null}
           aria-hidden={showMenu ? 'false' : 'true'}
+          show={showMenu}
         >
           {navItems.map(({ id, href, label }, i) => {
             const trimmedHref = href.replace('#', '');

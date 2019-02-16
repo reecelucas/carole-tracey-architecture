@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
@@ -77,69 +77,77 @@ const Body = styled.div`
   }
 `;
 
-const Process = () => (
-  // The result of the graphql query is passed into the render prop as `data`
-  <StaticQuery
-    query={graphql`
-      query ProcessQuery {
-        allPrismicProcessBlock(
-          sort: { fields: [data___order_position], order: ASC }
-        ) {
-          edges {
-            node {
-              id
-              data {
-                order_position
-                title {
-                  text
-                }
-                description {
-                  text
+const Process = () => {
+  const [canToggle, setCanToggle] = useState(false);
+
+  useEffect(() => {
+    setCanToggle(true);
+  }, []);
+
+  return (
+    // The result of the graphql query is passed into the render prop as `data`
+    <StaticQuery
+      query={graphql`
+        query ProcessQuery {
+          allPrismicProcessBlock(
+            sort: { fields: [data___order_position], order: ASC }
+          ) {
+            edges {
+              node {
+                id
+                data {
+                  order_position
+                  title {
+                    text
+                  }
+                  description {
+                    text
+                  }
                 }
               }
             }
           }
         }
-      }
-    `}
-    render={({ allPrismicProcessBlock }) => (
-      <Wrapper>
-        <h1>Process</h1>
+      `}
+      render={({ allPrismicProcessBlock }) => (
+        <Wrapper>
+          <h1>Process</h1>
 
-        <Accordion>
-          {allPrismicProcessBlock.edges.map(({ node }, i) => {
-            const { data, id } = node;
+          <Accordion>
+            {allPrismicProcessBlock.edges.map(({ node }, i) => {
+              const { data, id } = node;
 
-            return (
-              <AccordionItem key={id} expanded={i === 0}>
-                <AccordionItemTitle index={data.order_position}>
-                  {({ expanded, onClick }) => (
-                    <Title expanded={expanded}>
-                      <TitleButton
-                        id={`btn-accordion-title-${id}`}
-                        aria-expanded={expanded ? 'true' : 'false'}
-                        onClick={onClick}
-                      >
-                        <TitleIcon expanded={expanded} />
-                        {data.title.text}
-                      </TitleButton>
-                    </Title>
-                  )}
-                </AccordionItemTitle>
-                <AccordionItemBody>
-                  {({ expanded }) => (
-                    <Body hidden={!expanded}>
-                      <p>{preventOrphanedWord(data.description.text)}</p>
-                    </Body>
-                  )}
-                </AccordionItemBody>
-              </AccordionItem>
-            );
-          })}
-        </Accordion>
-      </Wrapper>
-    )}
-  />
-);
+              return (
+                <AccordionItem key={id} expanded={i === 0}>
+                  <AccordionItemTitle index={data.order_position}>
+                    {({ expanded, onClick }) => (
+                      <Title expanded={expanded}>
+                        <TitleButton
+                          id={`btn-accordion-title-${id}`}
+                          aria-expanded={expanded ? 'true' : 'false'}
+                          onClick={onClick}
+                        >
+                          <TitleIcon expanded={expanded} />
+                          {data.title.text}
+                        </TitleButton>
+                      </Title>
+                    )}
+                  </AccordionItemTitle>
+                  <AccordionItemBody>
+                    {({ expanded }) => (
+                      <Body hidden={canToggle && !expanded}>
+                        <p>{preventOrphanedWord(data.description.text)}</p>
+                      </Body>
+                    )}
+                  </AccordionItemBody>
+                </AccordionItem>
+              );
+            })}
+          </Accordion>
+        </Wrapper>
+      )}
+    />
+  );
+};
 
 export default Process;
