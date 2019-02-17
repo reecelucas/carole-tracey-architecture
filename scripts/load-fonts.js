@@ -17,10 +17,8 @@ module.exports = (webfonts, loadedClass) => {
   } else {
     const fonts = webfonts.map(webfont => {
       // Omit the `path` property from the `webfont` object
-      const { path, ...webfontCleaned } = webfont; // eslint-disable-line
-      const values = Object.keys(webfontCleaned).map(
-        key => webfontCleaned[key]
-      );
+      const { path, ...webfontValues } = webfont; // eslint-disable-line
+      const values = Object.keys(webfontValues).map(key => webfontValues[key]);
 
       return new FontFace(...values);
     });

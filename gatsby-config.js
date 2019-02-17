@@ -37,8 +37,8 @@ module.exports = {
         name: 'caroletracey.com',
         short_name: 'caroletracey.com',
         start_url: '/',
-        background_color: '#f8f9f9',
-        theme_color: '#f8f9f9',
+        background_color: '#f8f9f8',
+        theme_color: '#f8f9f8',
         display: 'minimal-ui',
         icon: 'src/images/favicon.png',
         include_favicon: true
