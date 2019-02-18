@@ -20,7 +20,7 @@ const CONNECTOR_STYLES = css`
   z-index: ${Z_INDEXES.base};
 
   &:after {
-    background-color: ${COLOURS.black};
+    background-color: ${COLOURS.green6};
     content: '';
     display: inline-block;
     height: 100%;
@@ -50,15 +50,26 @@ const TitleButton = styled(Button)`
 `;
 
 const TitleIcon = styled.span`
-  background-color: ${({ expanded }) =>
-    expanded ? `${COLOURS.base}` : `${COLOURS.white}`};
-  border: ${BORDER_WIDTH} solid ${COLOURS.black};
+  align-items: center;
+  background-color: ${COLOURS.white};
+  border: ${BORDER_WIDTH} solid ${COLOURS.green6};
   border-radius: 50%;
-  display: inline-block;
+  display: inline-flex;
   flex-shrink: 0;
+  justify-content: center;
   height: ${ICON_SIZE};
   margin-right: ${SPACING.base};
   width: ${ICON_SIZE};
+
+  &:before {
+    background-color: ${COLOURS.base};
+    border: 2px solid ${COLOURS.white};
+    border-radius: 50%;
+    content: '';
+    display: ${({ expanded }) => (expanded ? 'inline-block' : 'none')};
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 const Body = styled.div`

@@ -39,7 +39,7 @@ const CarouselControls = styled.ul`
 `;
 
 const CarouselControl = styled(Button)`
-  border: 2px solid ${COLOURS.green5};
+  border: 2px solid ${COLOURS.green6};
   border-radius: 50%;
   flex-shrink: 0;
   height: ${buttonSize};
