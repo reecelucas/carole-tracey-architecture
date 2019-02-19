@@ -21,7 +21,7 @@ const StyledFooter = styled.footer`
 
 const FooterBox = styled.div`
   align-items: center;
-  border: 3px solid ${COLOURS.base};
+  border: 3px solid ${COLOURS.green6};
   display: flex;
   flex-direction: column;
   margin: ${SPACING.huge} 0;
