@@ -92,26 +92,25 @@ const Layout = ({ children }) => {
                   />
                 ))}
 
+              <meta property="og:type" content="website" />
+              <meta property="og:url" content={siteMetadata.url} />
               <meta property="og:title" content={siteMetadata.title} />
-              <meta property="og:site_name" content={siteMetadata.title} />
               <meta
                 property="og:description"
                 content={siteMetadata.description}
               />
-              <meta property="og:url" content={siteMetadata.url} />
               <meta
                 property="og:image"
                 content={`${siteMetadata.url}${siteMetadata.socialImage}`}
               />
-              <meta property="og:type" content="website" />
 
               <meta name="twitter:card" content="summary_large_image" />
+              <meta name="twitter:url" content={siteMetadata.url} />
               <meta name="twitter:title" content={siteMetadata.title} />
               <meta
                 name="twitter:description"
                 content={siteMetadata.description}
               />
-              <meta name="twitter:url" content={siteMetadata.url} />
               <meta
                 name="twitter:image"
                 content={`${siteMetadata.url}${siteMetadata.socialImage}`}
