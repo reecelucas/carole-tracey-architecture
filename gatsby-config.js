@@ -8,7 +8,7 @@ module.exports = {
     description:
       'Experienced freelance architect specialising in residential projects.',
     url: 'https://www.caroletracey.com',
-    socialImage: '/images/social-share.png',
+    socialImage: '/images/social.jpg',
     webfonts: [
       {
         name: 'Nunito Sans',

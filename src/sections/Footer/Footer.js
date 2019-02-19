@@ -2,9 +2,13 @@ import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import Wrapper from '../../components/utils/Wrapper/Wrapper';
+import Image from '../../components/utils/Image/Image';
 import preventOrphanedWord from '../../helpers/preventOrphanedWord';
 import { LINK_STYLES } from '../../styles/global';
 import { BREAKPOINTS, COLOURS, FONT_SIZES, SPACING } from '../../styles/theme';
+
+import AECBLogo from '../../images/aecb-logo.png';
+import ARBLogo from '../../images/arb-logo.png';
 
 const xss = require('xss');
 
@@ -45,10 +49,29 @@ const FooterBand = styled.div`
   flex-direction: column;
   font-size: ${FONT_SIZES[7]};
   line-height: 2;
+  margin-bottom: ${SPACING.base};
 
   @media (min-width: ${BREAKPOINTS.sm}) {
     flex-direction: row;
     justify-content: space-between;
+  }
+`;
+
+const FooterLogos = styled.div`
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+  @media (min-width: ${BREAKPOINTS.sm}) {
+    justify-content: flex-start;
+  }
+`;
+
+const FooterLogo = styled(Image)`
+  max-width: 80px;
+
+  &:not(:last-child) {
+    margin-right: ${SPACING.small};
   }
 `;
 
@@ -96,6 +119,17 @@ const Footer = React.forwardRef(function Footer({ ...nativeAttributes }, ref) {
                 <span>{preventOrphanedWord(meta.text)}</span>
                 <span>&copy; {new Date().getFullYear()}, Carole Tracey</span>
               </FooterBand>
+
+              <FooterLogos>
+                <FooterLogo
+                  src={AECBLogo}
+                  alt="AECB. The Sustainable Building Association."
+                />
+                <FooterLogo
+                  src={ARBLogo}
+                  alt="ARB. Architects Registration Board."
+                />
+              </FooterLogos>
             </Wrapper>
           </StyledFooter>
         );

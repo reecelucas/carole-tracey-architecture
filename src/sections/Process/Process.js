@@ -26,8 +26,8 @@ const CONNECTOR_STYLES = css`
     height: 100%;
     left: calc(${ICON_SIZE} / 2);
     position: absolute;
-    top: ${BORDER_WIDTH};
-    width: 2px;
+    top: calc(${BORDER_WIDTH} * 2);
+    width: ${BORDER_WIDTH};
     z-index: ${Z_INDEXES.beneath};
   }
 `;
@@ -35,7 +35,7 @@ const CONNECTOR_STYLES = css`
 const Title = styled.h2`
   font-size: ${FONT_SIZES[4]};
   margin-bottom: 0;
-  padding-bottom: ${props => (props.expanded ? '0' : `${SPACING.base}`)};
+  padding-bottom: ${({ expanded }) => (expanded ? SPACING.tiny : SPACING.base)};
 
   &:not(:last-of-type) {
     ${CONNECTOR_STYLES}
@@ -63,7 +63,7 @@ const TitleIcon = styled.span`
 
   &:before {
     background-color: ${COLOURS.base};
-    border: 2px solid ${COLOURS.white};
+    border: ${BORDER_WIDTH} solid ${COLOURS.white};
     border-radius: 50%;
     content: '';
     display: ${({ expanded }) => (expanded ? 'inline-block' : 'none')};
