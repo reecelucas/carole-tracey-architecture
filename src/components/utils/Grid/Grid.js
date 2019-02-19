@@ -18,8 +18,8 @@ const propTypes = {
 const getGutterValue = ({ gutter }) =>
   gutter ? `${gutter}` : `${SPACING.base}`;
 
-const getColumnStyles = ({ columns, from }) => {
-  const bp = BREAKPOINTS[from];
+const getColumnStyles = ({ columns, fromBp }) => {
+  const bp = BREAKPOINTS[fromBp];
   const columnStyles = `
     grid-template-columns: repeat(${columns}, 1fr);
 
@@ -56,7 +56,7 @@ const StyledGrid = styled.div`
 `;
 
 const Grid = ({ children, columns, gutter, from, ...rest }) => (
-  <StyledGrid columns={columns} gutter={gutter} from={from} {...rest}>
+  <StyledGrid columns={columns} gutter={gutter} fromBp={from} {...rest}>
     {children}
   </StyledGrid>
 );

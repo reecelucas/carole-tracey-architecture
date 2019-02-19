@@ -77,12 +77,7 @@ const IndexPage = () => {
           <Services />
         </Banner>
 
-        <Banner
-          id="testimonials"
-          as="section"
-          ref={sectionTestimonials}
-          contrast
-        >
+        <Banner id="testimonials" as="div" ref={sectionTestimonials} contrast>
           <Testimonials />
         </Banner>
 

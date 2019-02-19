@@ -164,12 +164,15 @@ const Header = ({ currentId, navItems }) => {
   const headerRef = useRef();
   const firstNavItemRef = useRef();
 
+  const [navIsCollapsible, setNavIsCollapsible] = useState(false);
   const [clickedItemId, setClickedItemId] = useState('');
   const [scrolling, setScrolling] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const windowWidth = useWindowWidth();
 
-  const navIsCollapsible = windowWidth < stripUnit(BREAKPOINTS.sm);
+  useEffect(() => {
+    setNavIsCollapsible(windowWidth < stripUnit(BREAKPOINTS.sm));
+  }, [windowWidth]);
 
   useEffect(() => {
     if (navIsCollapsible) {
@@ -186,14 +189,6 @@ const Header = ({ currentId, navItems }) => {
       firstNavItemRef.current.focus();
     }
   }, [showMenu]);
-
-  useEffect(() => {
-    if (navIsCollapsible) {
-      setShowMenu(false);
-    } else {
-      setShowMenu(true);
-    }
-  }, [windowWidth]);
 
   const onDocumentClick = ({ target }) => {
     if (!headerRef.current.contains(target)) {
@@ -279,7 +274,7 @@ const Header = ({ currentId, navItems }) => {
         <StyledNav
           id="menu"
           aria-labelledby={navIsCollapsible ? 'menu-button' : null}
-          aria-hidden={showMenu ? 'false' : 'true'}
+          aria-hidden={navIsCollapsible ? (showMenu ? 'false' : 'true') : null}
           show={showMenu}
         >
           {navItems.map(({ id, href, label }, i) => {
