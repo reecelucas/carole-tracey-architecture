@@ -79,6 +79,7 @@ const Layout = ({ children }) => {
             <Helmet>
               <title>{siteMetadata.title}</title>
               <meta name="description" content={siteMetadata.description} />
+              <link rel="canonical" href={siteMetadata.url} />
 
               {siteMetadata.webfonts &&
                 siteMetadata.webfonts.map(({ path }) => (
