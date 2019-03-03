@@ -62,7 +62,7 @@ const Layout = ({ children }) => {
             siteMetadata {
               title
               description
-              url
+              siteUrl
               socialImage
               webfonts {
                 path
@@ -79,7 +79,7 @@ const Layout = ({ children }) => {
             <Helmet>
               <title>{siteMetadata.title}</title>
               <meta name="description" content={siteMetadata.description} />
-              <link rel="canonical" href={siteMetadata.url} />
+              <link rel="canonical" href={siteMetadata.siteUrl} />
 
               {siteMetadata.webfonts &&
                 siteMetadata.webfonts.map(({ path }) => (
@@ -94,7 +94,7 @@ const Layout = ({ children }) => {
                 ))}
 
               <meta property="og:type" content="website" />
-              <meta property="og:url" content={siteMetadata.url} />
+              <meta property="og:url" content={siteMetadata.siteUrl} />
               <meta property="og:title" content={siteMetadata.title} />
               <meta
                 property="og:description"
@@ -102,11 +102,11 @@ const Layout = ({ children }) => {
               />
               <meta
                 property="og:image"
-                content={`${siteMetadata.url}${siteMetadata.socialImage}`}
+                content={`${siteMetadata.siteUrl}${siteMetadata.socialImage}`}
               />
 
               <meta name="twitter:card" content="summary_large_image" />
-              <meta name="twitter:url" content={siteMetadata.url} />
+              <meta name="twitter:url" content={siteMetadata.siteUrl} />
               <meta name="twitter:title" content={siteMetadata.title} />
               <meta
                 name="twitter:description"
@@ -114,7 +114,7 @@ const Layout = ({ children }) => {
               />
               <meta
                 name="twitter:image"
-                content={`${siteMetadata.url}${siteMetadata.socialImage}`}
+                content={`${siteMetadata.siteUrl}${siteMetadata.socialImage}`}
               />
             </Helmet>
             <Global styles={GLOBAL_STYLES} />

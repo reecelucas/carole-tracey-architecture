@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { StaticQuery, graphql } from 'gatsby';
 import { stripUnit } from 'polished';
 
 import Layout from '../components/Layout/Layout';
@@ -23,71 +24,73 @@ const IndexPage = () => {
   const sectionContact = useRef();
 
   return (
-    <Layout>
-      <ScrollSpy
-        spyOn={[
-          sectionAbout,
-          sectionServices,
-          sectionTestimonials,
-          sectionProcess,
-          sectionContact
-        ]}
-        offset={sectionScrollOffset}
-      >
-        {({ currentId }) => (
-          <Header
-            currentId={currentId}
-            navItems={[
-              {
-                id: 'cta-nav-about',
-                label: 'About',
-                href: '#about'
-              },
-              {
-                id: 'cta-nav-services',
-                label: 'Services',
-                href: '#services'
-              },
-              {
-                id: 'cta-nav-testimonials',
-                label: 'Testimonials',
-                href: '#testimonials'
-              },
-              {
-                id: 'cta-nav-process',
-                label: 'Process',
-                href: '#process'
-              },
-              {
-                id: 'cta-nav-contact',
-                label: 'Contact',
-                href: '#contact'
+    <StaticQuery
+      query={graphql`
+        query IndexQuery {
+          site {
+            siteMetadata {
+              navItems {
+                id
+                label
+                href
               }
+            }
+          }
+        }
+      `}
+      render={data => (
+        <Layout>
+          <ScrollSpy
+            spyOn={[
+              sectionAbout,
+              sectionServices,
+              sectionTestimonials,
+              sectionProcess,
+              sectionContact
             ]}
-          />
-        )}
-      </ScrollSpy>
+            offset={sectionScrollOffset}
+          >
+            {({ currentId }) => (
+              <Header
+                currentId={currentId}
+                navItems={data.site.siteMetadata.navItems}
+              />
+            )}
+          </ScrollSpy>
 
-      <main id="content">
-        <Banner as="section" id="about" size="lg" ref={sectionAbout} contrast>
-          <Profile />
-        </Banner>
+          <main id="content">
+            <Banner
+              as="section"
+              id="about"
+              size="lg"
+              ref={sectionAbout}
+              contrast
+            >
+              <Profile />
+            </Banner>
 
-        <Banner as="section" id="services" ref={sectionServices}>
-          <Services />
-        </Banner>
+            <Banner as="section" id="services" ref={sectionServices}>
+              <Services />
+            </Banner>
 
-        <Banner id="testimonials" as="div" ref={sectionTestimonials} contrast>
-          <Testimonials />
-        </Banner>
+            <Banner
+              id="testimonials"
+              as="div"
+              ref={sectionTestimonials}
+              contrast
+            >
+              <Testimonials />
+            </Banner>
 
-        <Banner as="section" id="process" ref={sectionProcess}>
-          <Process />
-        </Banner>
-      </main>
+            <Banner as="section" id="process" ref={sectionProcess}>
+              <Process />
+            </Banner>
+          </main>
 
-      <Footer id="contact" ref={sectionContact} />
-    </Layout>
+          <Footer id="contact" ref={sectionContact} />
+        </Layout>
+      )}
+    />
   );
 };
 

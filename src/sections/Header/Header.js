@@ -86,6 +86,7 @@ const Hamburger = styled(Button)`
     display: block;
     height: 32px;
     fill: ${COLOURS.black};
+    pointer-events: none;
     width: 32px;
   }
 
@@ -265,7 +266,11 @@ const Header = ({ currentId, navItems }) => {
             aria-controls="menu"
             aria-expanded={showMenu ? 'true' : 'false'}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              focusable="false"
+            >
               <path d="M4 10h24a2 2 0 0 0 0-4H4a2 2 0 0 0 0 4zm24 4H4a2 2 0 0 0 0 4h24a2 2 0 0 0 0-4zm0 8H4a2 2 0 0 0 0 4h24a2 2 0 0 0 0-4z" />
             </svg>
           </Hamburger>

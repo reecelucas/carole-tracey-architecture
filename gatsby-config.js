@@ -7,7 +7,7 @@ module.exports = {
     title: 'Carole Tracey — Freelance Architect',
     description:
       'Experienced freelance architect specialising in residential projects.',
-    url: 'https://www.caroletracey.com',
+    siteUrl: 'https://www.caroletracey.com',
     socialImage: '/images/social.jpg',
     webfonts: [
       {
@@ -20,7 +20,34 @@ module.exports = {
         meta: { weight: '400' }
       }
     ],
-    webfontLoadedClass: 'fonts-loaded'
+    webfontLoadedClass: 'fonts-loaded',
+    navItems: [
+      {
+        id: 'cta-nav-about',
+        label: 'About',
+        href: '#about'
+      },
+      {
+        id: 'cta-nav-services',
+        label: 'Services',
+        href: '#services'
+      },
+      {
+        id: 'cta-nav-testimonials',
+        label: 'Testimonials',
+        href: '#testimonials'
+      },
+      {
+        id: 'cta-nav-process',
+        label: 'Process',
+        href: '#process'
+      },
+      {
+        id: 'cta-nav-contact',
+        label: 'Contact',
+        href: '#contact'
+      }
+    ]
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -45,6 +72,7 @@ module.exports = {
       }
     },
     'gatsby-plugin-offline',
-    'gatsby-plugin-emotion'
+    'gatsby-plugin-emotion',
+    'gatsby-plugin-sitemap'
   ]
 };
