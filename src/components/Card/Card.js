@@ -26,7 +26,7 @@ const Thumbnail = styled.div`
   margin-bottom: ${SPACING.base};
 `;
 
-const Title = styled.h3`
+const Title = styled.h2`
   font-size: ${FONT_SIZES[4]};
   margin-bottom: 0;
 
