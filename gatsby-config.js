@@ -6,7 +6,7 @@ module.exports = {
   siteMetadata: {
     title: 'Carole Tracey — Freelance Architect',
     description:
-      'Experienced freelance architect specialising in residential projects.',
+      'Experienced freelance architect specialising in residential projects, based in Warminster.',
     siteUrl: 'https://www.caroletracey.com',
     socialImage: '/images/social.jpg',
     webfonts: [
