@@ -49,7 +49,7 @@ const ImageContainer = styled.div`
     }
 
     &:after {
-      background-color: ${COLOURS.white};
+      background-color: ${COLOURS.green0};
       background-clip: padding-box;
       border: ${BORDER_WIDTH} solid transparent;
     }
